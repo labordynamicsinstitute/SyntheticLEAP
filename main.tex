@@ -34,27 +34,39 @@
 
 \acrodef{CDER}{Canadian Center for Data Development and Economic Research}
 \acrodef{PEI}{Prince Edward Island}
+\acrodef{LEAP}{Longitudinal Employment Analysis Program}
 
 \newcommand{\sym}[1]{\rlap{#1}}
-\title{Synthetic Data for Canadian LEAP}
+\title{Synthetic Data for Canadian Longitudinal Business Data }
 \author{M. Jahangir Alam, Benoit Dostie, Lars Vilhuber}
 \begin{document}
 \maketitle
 \setstretch{1.5}
 \begin{abstract}
 \noindent
-Statistics Canada collects data and creates databases based on administrative records on business establishments and enterprises, however, they only disseminate those business databases in highly aggregated forms. Since it is costly and inconvenient for researchers to get access to Canadian micro business databases, in this project, we implement the algorithm of the U.S. synthetic database for Longitudinal Business Database (LBD) to create the Canadian synthetic database for the Longitudinal Employment Analysis Program (LEAP). This Canadian synthetic database supports analytical validity for a wide range of statistical analyses which frequently use in the literature as well as provide evidence on confidentiality properties.
+Data on businesses collected by statistical agencies are challenging to protect. Many businesses have unique characteristics, distributions of employment, sales, and profits are highly skewed, and  most disclosure avoidance mechanisms  fail to strike an acceptable balance between usefulness and confidentiality protection. Often, only very few aggregate statistics are released, and access to confidential microdata can be burdensome.
+
+%Statistics Canada collects data and creates databases based on administrative records on business establishments and enterprises, however, they only disseminate those business databases in highly aggregated forms. Since it is costly and inconvenient for researchers to get access to Canadian micro business databases, 
+We document an experiment to create an analytically valid synthetic version of the Longitudinal Employment Analysis Program (LEAP). We implement the algorithm used by \cite{RePEc:bla:istatr:v:79:y:2011:i:3:p:362-384}, with minor adjustments. We document the analytical validity for various typical uses, as well as provide evidence of the  confidentiality of the database.
+
 
 \end{abstract}
 \newpage
 \tableofcontents
 \newpage
 \section{Introduction}
-Statistics Canada collects data and creates databases based on administrative records (like T4 slip that is the annual statements of remuneration paid) on business establishments and enterprises, however, they only disseminate those business databases in highly aggregated forms into two-digit industry categories. The \acf{CDER} in Statistics Canada is responsible to protect the confidentiality of business data. \ac{CDER} does not disseminate those business databases for two reasons. First, a confidentiality breach related to the business database is potentially more damaging to the statistical system because of the importance of key respondents that are more likely to be identifiable, e.g. Bombardier inc., a company mainly specializing in air and railway technology or Cavendish farm in \ac{PEI}. Second, the financial gains related to identifying a respondent are potentially greater, for example, people could make a profit by in investing stock markets through identifying Bombardier Inc.  
+Statistics Canada collects data and creates databases from administrative records 
+%(like T4 slip that is the annual statements of remuneration paid) 
+on business establishments and enterprises. One of those databases is the Longitudinal Employment Analysis Program (LEAP) [CITATION], compiled from T4 annual statements of remuneration paid to workers.
+Only some aggregate statistics, typically  aggregated to the two-digit industry categories, are released. [WHERE] More detailed statistics, or even anonymized public-use microdata, are not available.\footnote{The relevant data custodian at Statistics Canada, \ac{CDER}, states two reasons for the current limits on dissemination and access.  First, a confidentiality breach related to the business database is potentially more damaging to the statistical system because of the importance of key respondents that are more likely to be identifiable. Second, the financial gains related to identifying a respondent are potentially greater, for example, people could make a profit by investing in stock markets using re-identified data.} 
 
-To give access to business databases, CDER currently uses three measures in place to mitigate the higher risk to the statistical system when business microdata are accessed. First, a batch-submit system is used when accessing the actual data. Second, actual individual observations cannot be accessed without it being recorded. Third, ``CDER version of synthetic data'' is also provided to aid with programming. 
+Researchers wishing to obtain access to the confidential microdata currently must be approved based on an application process (URL). As of 2018, they can only access the data on-site at the Statistics Canada headquarters, where they must use a batch submission system that prevents access to individual observations. A test file is available to assist with code preparation. 
 
-Since it is costly and inconvenient for both researchers and Statistics Canada to get access to business databases, in this project, we create synthetic data\footnote{Synthetic data are created by replacing sensitive values with repeated draws from a model fit to the original data (Little, 1993; Rubin, 1993). This approach is closely related to multiple imputations.} for Canadian LEAP database during the period of 1991 to 2014 using 2015 LEAP vintage. In this project, we have three objectives: i) evaluate to what extent synthetic code developed for the U.S. Longitudinal Business Database (LBD) can easily transferable to LEAP database with comparable structure; ii) examine whether the automated synthesis will generate useful datasets that offer analytical validity for a wide range of statistical analyses; iii) provide evidence on confidentiality properties. 
+%To give access to business databases, CDER currently uses three measures in place to mitigate the higher risk to the statistical system when business microdata are accessed. First, a batch-submit system is used when accessing the actual data. Second, actual individual observations cannot be accessed without it being recorded. Third, ``CDER version of synthetic data'' is also provided to aid with programming. 
+
+The situation described above for access to Canadian business microdata is not unique. Drechsler (CITE) and \cite{RePEc:bla:istatr:v:79:y:2011:i:3:p:362-384} have proposed solutions based on the creation of synthetic business microdata.\footnote{Synthetic data are created by replacing sensitive values with repeated draws from a model fit to the original data (Little, 1993; Rubin, 1993). The approach is closely related to multiple imputations.} In the latter case, access to the synthetic data is combined with a validation server (CITES). 
+
+To reduce the cost of granting and obtaining access to the Canadian business microdata, we created  synthetic data for the  \ac{LEAP} database. In this project, we have three objectives: i) evaluate to what extent synthetic code developed for the U.S. Longitudinal Business Database (LBD) can easily transferable to LEAP database with comparable structure; ii) examine whether the automated synthesis will generate useful datasets that offer analytical validity for a wide range of statistical analyses; iii) provide evidence on confidentiality properties. 
 
 Synthetic code developed for the U.S. LBD can easily transferable to Canadian LEAP database with comparable structure, however, there are some issues raised to implement that the U.S. synthetic code in Canadian LEAP database. First, the U.S. synthetic LBD code does not converse for a group of industries for each time of implementation. Second, the U.S. synthetic LBD code does not properly approximate the last year information of firms. Third, the U.S. synthetic LBD code generates, in some cases, zero employment or payroll during the life cycles of firms.   
 
@@ -72,6 +84,8 @@ This paper is organized as follows. Section 2 includes a detailed description of
 
 \section{Data Description}
 \subsection{LEAP database}
+
+%  during the period of 1991 to 2014 using 2015 LEAP vintage.
 The Longitudinal Employment Analysis Program (LEAP) is a database that contains annual employment information for each employer business in Canada. The LEAP covers incorporated and unincorporated businesses that issue at least one T4 slip--the annual statements of remuneration paid--in any given calendar year, but excludes self-employed individuals or partnerships where the participants do not draw salaries. The LEAP has the advantage of covering all sectors of the economy-though some of the information is more meaningful for the business sector than the public sector.
 
 The LEAP is constructed using three sources of information: T4 administrative data received from Canada Revenue Agency, data from Statistics Canada's Business Register, and data from Statistics Canada's Survey of Employment, Payrolls and Hours (SEPH). In Canada, employing businesses are required to register with Canada Revenue Agency using the Business Number and issue to each of their employees a T4 slip that summarizes earnings received in the year. This process creates a link between the employee and the business through the Business Number. This link is the backbone of LEAP, and the reported payroll allows estimates of annual employment to be made. The payroll is converted to employment (called ALUs or Average Labour Units) using conversion factors derived from the SEPH. 
@@ -542,7 +556,7 @@ We then average $J_{k,m}^{*}$ over all estimated models and parameters, by valid
 
 Possible papers:
 \begin{itemize}
-\item \textcite{10.1257/aer.20141280} use the BDS to show the role of firm size in firm dynamics, but also had access to the Synthetic LBD.
+\item %\textcite{10.1257/aer.20141280} use the BDS to show the role of firm size in firm dynamics, but also had access to the Synthetic LBD.
 \item \textcite{NBERc0480} use a cross-country dataset to study average post-entry behavior of young firms. 
 \end{itemize}
 
