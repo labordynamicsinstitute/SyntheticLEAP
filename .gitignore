@@ -1,0 +1,17 @@
+*.aux
+*.log
+*.nav
+*.out
+*.snm
+*.toc
+*.gz
+*.blg
+*.bbl
+*.bcf
+*.run.xml
+*.synctex.gz
+*.bcf
+*.bak
+*~
+*.vrb
+*.Rhistory

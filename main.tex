@@ -34,17 +34,24 @@
 
 \acrodef{CDER}{Canadian Center for Data Development and Economic Research}
 \acrodef{PEI}{Prince Edward Island}
+\acrodef{LEAP}{Longitudinal Employment Analysis Program}
 
 \newcommand{\sym}[1]{\rlap{#1}}
-\title{Synthetic Data for Canadian LEAP}
+\title{Synthetic Data for Canadian Longitudinal Business Data }
 \author{M. Jahangir Alam, Benoit Dostie, Lars Vilhuber}
 \begin{document}
 \maketitle
 \setstretch{1.5}
 \begin{abstract}
 \noindent
-%Statistics Canada collects data and creates databases based on administrative records on business establishments and enterprises, however, they only disseminate those business databases in highly aggregated forms. Since it is costly and inconvenient for researchers to get access to Canadian micro business databases, in this project, we implement the algorithm of the U.S. synthetic database for Longitudinal Business Database (LBD) to create the Canadian synthetic database for the Longitudinal Employment Analysis Program (LEAP). This Canadian synthetic database supports analytical validity for a wide range of statistical analyses which frequently use in the literature as well as provide evidence on confidentiality properties.
+=======
+Data on businesses collected by statistical agencies are challenging to protect. Many businesses have unique characteristics, distributions of employment, sales, and profits are highly skewed, and  most disclosure avoidance mechanisms  fail to strike an acceptable balance between usefulness and confidentiality protection. Often, only very few aggregate statistics are released, and access to confidential microdata can be burdensome.
+
+%Statistics Canada collects data and creates databases based on administrative records on business establishments and enterprises, however, they only disseminate those business databases in highly aggregated forms. Since it is costly and inconvenient for researchers to get access to Canadian micro business databases, 
 This paper documents the creation of a synthetic data version of Statistics Canada's Longitudinal Employment Analysis Program (LEAP). Since the LEAP has a structure similar to the U.S. Longitudinal Business Database (LBD), this allows us to adapt the procedures that were used by {add citation} to create the synthetic LBD in a Canadian context. We show the synthetic LEAP is analytically valid for a wide range of commonly used statistical analyses, while maintaining respondents' confidentiality.
+% by Lars: We document an experiment to create an analytically valid synthetic version of the Longitudinal Employment Analysis Program (LEAP). We implement the algorithm used by \cite{RePEc:bla:istatr:v:79:y:2011:i:3:p:362-384}, with minor adjustments. We document the analytical validity for various typical uses, as well as provide evidence of the  confidentiality of the database.
+
+
 \end{abstract}
 \newpage
 \tableofcontents
@@ -58,6 +65,10 @@ Confidentiality protection with CDER is done through a variety of means, includi
 
 %Since it is costly and inconvenient for both researchers and Statistics Canada to get access to business databases, in this project, we create synthetic data\footnote{Synthetic data are created by replacing sensitive values with repeated draws from a model fit to the original data (Little, 1993; Rubin, 1993). This approach is closely related to multiple imputations.} for Canadian LEAP database during the period of 1991 to 2014 using 2015 LEAP vintage. In this project, we have three objectives: i) evaluate to what extent synthetic code developed for the U.S. Longitudinal Business Database (LBD) can easily transferable to LEAP database with comparable structure; ii) examine whether the automated synthesis will generate useful datasets that offer analytical validity for a wide range of statistical analyses; iii) provide evidence on confidentiality properties. 
 Since 2018, Statistics Canada has undertaken a so-called Modernization initiative. One of the objective of that Initiative is to improve access to researchers to confidential firm-level micro data. As part of this initiative, we have been asked by CDER to explore how the creation of synthetic data could help achieve part of that objective. Synthetic data are created by replacing sensitive value from the original data with repeated draws from a model fit to the original data (Little, 1993; Rubin, 1993). This approach is closely related to multiple imputations. 
+
+% by Lars: The situation described above for access to Canadian business microdata is not unique. Drechsler (CITE) and \cite{RePEc:bla:istatr:v:79:y:2011:i:3:p:362-384} have proposed solutions based on the creation of synthetic business microdata.\footnote{Synthetic data are created by replacing sensitive values with repeated draws from a model fit to the original data (Little, 1993; Rubin, 1993). The approach is closely related to multiple imputations.} In the latter case, access to the synthetic data is combined with a validation server (CITES). 
+
+% by Lars: To reduce the cost of granting and obtaining access to the Canadian business microdata, we created  synthetic data for the  \ac{LEAP} database. In this project, we have three objectives: i) evaluate to what extent synthetic code developed for the U.S. Longitudinal Business Database (LBD) can easily transferable to LEAP database with comparable structure; ii) examine whether the automated synthesis will generate useful datasets that offer analytical validity for a wide range of statistical analyses; iii) provide evidence on confidentiality properties. 
 
 %Synthetic code developed for the U.S. LBD can easily transferable to Canadian LEAP database with comparable structure, however, there are some issues raised to implement that the U.S. synthetic code in Canadian LEAP database. First, the U.S. synthetic LBD code does not converse for a group of industries for each time of implementation. Second, the U.S. synthetic LBD code does not properly approximate the last year information of firms. Third, the U.S. synthetic LBD code generates, in some cases, zero employment or payroll during the life cycles of firms.   
 We use this approach on the Canadian Longitudinal Employment Analysis Program (LEAP) 2015 that contains retrospective data on firms from 1991 to 2014. Our implementation adapts the approach used to create synthetic data version of the Longitudinal Business Database (LBD) from the United States since both data sets have a similar structure and are used for similar research questions. We assess the performance of the newly created synthetic along two dimensions: analytical validity and confidentiality protection.
@@ -547,7 +558,7 @@ We then average $J_{k,m}^{*}$ over all estimated models and parameters, by valid
 
 Possible papers:
 \begin{itemize}
-\item \textcite{10.1257/aer.20141280} use the BDS to show the role of firm size in firm dynamics, but also had access to the Synthetic LBD.
+\item %\textcite{10.1257/aer.20141280} use the BDS to show the role of firm size in firm dynamics, but also had access to the Synthetic LBD.
 \item \textcite{NBERc0480} use a cross-country dataset to study average post-entry behavior of young firms. 
 \end{itemize}
 
