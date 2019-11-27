@@ -9,7 +9,6 @@
 \usepackage[plainpages=false]{hyperref}
 \usepackage{todonotes}
 
-
 \hypersetup{%
 	%backref=true,%
     plainpages=false,%
@@ -45,7 +44,12 @@
 \setstretch{1.5}
 \begin{abstract}
 \noindent
-Data on businesses collected by statistical agencies are challenging to protect. Many businesses have unique characteristics, distributions of employment, sales, and profits are highly skewed, and  most disclosure avoidance mechanisms  fail to strike an acceptable balance between usefulness and confidentiality protection. Often, only very few aggregate statistics are released, and access to confidential microdata can be burdensome. We document an experiment to create an analytically valid synthetic version of the Longitudinal Employment Analysis Program (LEAP). We implement the algorithm used by \cite{RePEc:bla:istatr:v:79:y:2011:i:3:p:362-384}, with minor adjustments. We document the analytical validity for various typical uses, as well as provide evidence of the  confidentiality of the database.
+=======
+Data on businesses collected by statistical agencies are challenging to protect. Many businesses have unique characteristics, distributions of employment, sales, and profits are highly skewed, and  most disclosure avoidance mechanisms  fail to strike an acceptable balance between usefulness and confidentiality protection. Often, only very few aggregate statistics are released, and access to confidential microdata can be burdensome.
+
+%Statistics Canada collects data and creates databases based on administrative records on business establishments and enterprises, however, they only disseminate those business databases in highly aggregated forms. Since it is costly and inconvenient for researchers to get access to Canadian micro business databases, 
+This paper documents the creation of a synthetic data version of Statistics Canada's Longitudinal Employment Analysis Program (LEAP). Since the LEAP has a structure similar to the U.S. Longitudinal Business Database (LBD), this allows us to adapt the procedures that were used by {add citation} to create the synthetic LBD in a Canadian context. We show the synthetic LEAP is analytically valid for a wide range of commonly used statistical analyses, while maintaining respondents' confidentiality.
+% by Lars: We document an experiment to create an analytically valid synthetic version of the Longitudinal Employment Analysis Program (LEAP). We implement the algorithm used by \cite{RePEc:bla:istatr:v:79:y:2011:i:3:p:362-384}, with minor adjustments. We document the analytical validity for various typical uses, as well as provide evidence of the  confidentiality of the database.
 
 
 \end{abstract}
@@ -53,23 +57,30 @@ Data on businesses collected by statistical agencies are challenging to protect.
 \tableofcontents
 \newpage
 \section{Introduction}
+%Statistics Canada collects data and creates databases based on administrative records (like T4 slip that is the annual statements of remuneration paid) on business establishments and enterprises, however, they only disseminate those business databases in highly aggregated forms into two-digit industry categories. The \acf{CDER} in Statistics Canada is responsible to protect the confidentiality of business data. \ac{CDER} does not disseminate those business databases for two reasons. First, a confidentiality breach related to the business database is potentially more damaging to the statistical system because of the importance of key respondents that are more likely to be identifiable, e.g. Bombardier inc., a company mainly specializing in air and railway technology or Cavendish farm in \ac{PEI}. Second, the financial gains related to identifying a respondent are potentially greater, for example, people could make a profit by in investing stock markets through identifying Bombardier Inc. 
 While Canada maintains a network of research data centers similar to the one in the U.S., there is virtually no firm-level data sets amongst the data holdings of the Canadian Research Data Center Networks (CRDCN). Researchers who need access to confidential micro-level business data have to go to the Canadian Center for Data Development and Economic Research (CDER) located in the headquarters of Statistics Canada. One reason commonly heard for this limited access has to do with the fact that Canada is a small country with a highly skewed distribution of firms, thus compounding problems linked to confidentiality protection. 
 
-Confidentiality protection with CDER is done through a variety of means, including remote execution and research monitoring. But more importantly, researchers accessing CDER data holdings must become \textit{deemed employees} of Statistics Canada and sign an asset-freeze agreement to ensure they do not profit financially from their research. Since 2018, Statistics Canada has undertaken a so-called Modernization initiative. One of the objective of that Initiative is to improve access to researchers to confidential firm-level micro data.
+%To give access to business databases, CDER currently uses three measures in place to mitigate the higher risk to the statistical system when business microdata are accessed. First, a batch-submit system is used when accessing the actual data. Second, actual individual observations cannot be accessed without it being recorded. Third, ``CDER version of synthetic data'' is also provided to aid with programming.
+Confidentiality protection with CDER is done through a variety of means, including remote execution and research monitoring. But more importantly, researchers accessing CDER data holdings must become \textit{deemed employees} of Statistics Canada and sign an asset-freeze agreement to ensure they do not profit financially from their research.
 
-The situation described above for access to Canadian business microdata is not unique. Drechsler (CITE) and \cite{RePEc:bla:istatr:v:79:y:2011:i:3:p:362-384} have proposed solutions based on the creation of synthetic business microdata.\footnote{Synthetic data are created by replacing sensitive values with repeated draws from a model fit to the original data (Little, 1993; Rubin, 1993). The approach is closely related to multiple imputations.} In the latter case, access to the synthetic data is combined with a validation server (CITES). 
+%Since it is costly and inconvenient for both researchers and Statistics Canada to get access to business databases, in this project, we create synthetic data\footnote{Synthetic data are created by replacing sensitive values with repeated draws from a model fit to the original data (Little, 1993; Rubin, 1993). This approach is closely related to multiple imputations.} for Canadian LEAP database during the period of 1991 to 2014 using 2015 LEAP vintage. In this project, we have three objectives: i) evaluate to what extent synthetic code developed for the U.S. Longitudinal Business Database (LBD) can easily transferable to LEAP database with comparable structure; ii) examine whether the automated synthesis will generate useful datasets that offer analytical validity for a wide range of statistical analyses; iii) provide evidence on confidentiality properties. 
+Since 2018, Statistics Canada has undertaken a so-called Modernization initiative. One of the objective of that Initiative is to improve access to researchers to confidential firm-level micro data. As part of this initiative, we have been asked by CDER to explore how the creation of synthetic data could help achieve part of that objective. Synthetic data are created by replacing sensitive value from the original data with repeated draws from a model fit to the original data (Little, 1993; Rubin, 1993). This approach is closely related to multiple imputations. 
 
-To reduce the cost of granting and obtaining access to the Canadian business microdata, we created  synthetic data for the  \ac{LEAP} database. In this project, we have three objectives: i) evaluate to what extent synthetic code developed for the U.S. Longitudinal Business Database (LBD) can easily transferable to LEAP database with comparable structure; ii) examine whether the automated synthesis will generate useful datasets that offer analytical validity for a wide range of statistical analyses; iii) provide evidence on confidentiality properties. 
+% by Lars: The situation described above for access to Canadian business microdata is not unique. Drechsler (CITE) and \cite{RePEc:bla:istatr:v:79:y:2011:i:3:p:362-384} have proposed solutions based on the creation of synthetic business microdata.\footnote{Synthetic data are created by replacing sensitive values with repeated draws from a model fit to the original data (Little, 1993; Rubin, 1993). The approach is closely related to multiple imputations.} In the latter case, access to the synthetic data is combined with a validation server (CITES). 
 
+% by Lars: To reduce the cost of granting and obtaining access to the Canadian business microdata, we created  synthetic data for the  \ac{LEAP} database. In this project, we have three objectives: i) evaluate to what extent synthetic code developed for the U.S. Longitudinal Business Database (LBD) can easily transferable to LEAP database with comparable structure; ii) examine whether the automated synthesis will generate useful datasets that offer analytical validity for a wide range of statistical analyses; iii) provide evidence on confidentiality properties. 
 
+%Synthetic code developed for the U.S. LBD can easily transferable to Canadian LEAP database with comparable structure, however, there are some issues raised to implement that the U.S. synthetic code in Canadian LEAP database. First, the U.S. synthetic LBD code does not converse for a group of industries for each time of implementation. Second, the U.S. synthetic LBD code does not properly approximate the last year information of firms. Third, the U.S. synthetic LBD code generates, in some cases, zero employment or payroll during the life cycles of firms.   
+We use this approach on the Canadian Longitudinal Employment Analysis Program (LEAP) 2015 that contains retrospective data on firms from 1991 to 2014. Our implementation adapts the approach used to create synthetic data version of the Longitudinal Business Database (LBD) from the United States since both data sets have a similar structure and are used for similar research questions. We assess the performance of the newly created synthetic along two dimensions: analytical validity and confidentiality protection.
+
+%Canadian synthetic database generates analytical validity for a wide range of statistical analysis which commonly uses in the literature. For example, we find that firm characteristics (gross employment, total payroll, the share of firms, the share of employment, the share of payroll) in the Canada synthetic data are very close to those in the LEAP, however, the manufacturing sector shows more close pattern than the private sector.  In addition, we compare firm dynamics (entry and exit rates) and dynamics of job flows (job creation rate, and net job creation rate) between Canadian synthetic and LEAP database and find that those firm dynamics are similar. Furthermore, we assess how well Canadian database captures variability in economic growth due to industry and firm age using several dynamic panel data models and find that Canadian synthetic database provides similar predictions to LEAP database. 
 We verify the analytical validity of synthetic data set so created along a variety of measures. First, we show that more average firm characteristics (gross employment, total payroll) in the synthetic data closely match those from the original data. Second, we also find the synthetic data close replicates various measures of firm dynamics (entry and exit rates) and job flows (gross and net job creation rate) from the original data. Finally, we assess whether measures of economic growth vary between both data sets using a dynamic panel data models and find that both data sets yield similar predictions.
 
-To provide evidence on the confidentiality properties this newly created  synthetic database, we estimate the probability that the synthetic first year equals the true first year given the synthetic fist year and find that those probabilities are quite low except for the first year of LEAP database. The probability for the first year is higher because of censoring and lack of previous information.\todo{BD: I have no idea what this means, please explain better.} \todo{JA: I do not know what else I could add here.}
+%To provide evidence on confidentiality properties of Canadian synthetic database, we estimate the probability that the synthetic first year equals the true first year given the synthetic fist year and find that those probabilities are quite low except for the first year of LEAP database. This is because of censoring and lack of previous information. 
+To provide evidence on the confidentiality properties this newly created  synthetic database, we estimate the probability that the synthetic first year equals the true first year given the synthetic fist year and find that those probabilities are quite low except for the first year of LEAP database. This is because of censoring and lack of previous information.\todo{BD: I have no idea what this means, please explain better.}
 
-
+%This paper is organized as follows. Section 2 includes a detailed description of the LEAP database and usages of LEAP database. Section 3 provides a brief overview of the evolution of synthetic data and implementation in the Canadian context. In section 4, the analytical validity of synthetic database is discussed. Finally, this paper concludes in Section 5. In addition, it includes a description to include other variables in Canadian synthetic database as an extension.
 The rest of the paper is organized as follows. Section 2 provides a detailed description of the LEAP database and its uses. Section 3 defines what we mean by synthetic data and describe how we created the synthetic LEAP. In section 4, the analytical validity of synthetic database is assessed. Section 5 concludes.
-
-
 
 \section{Data Description}
 
@@ -98,9 +109,14 @@ We next turn to the methods we used to create a synthetic version of the LEAP.
 
 \section{Methodology}
 
+
+
 \subsection{Overview}
 
-There is growing demand for firm-level data allowing detailed studies of firm dynamics. Recent examples include \textcite{NBERc0480} who use cross-country firm-level data to study average post-entry behavior of young firms. \textcite{10.1257/aer.20141280} use the Business Dynamics Statistics (BDS) to show the role of firm size in firm dynamics. However, such studies are made difficult due to the limited or restricted access to firm-level data. To provide better access to establishment data in the United States, \textcite{RePEc:bla:istatr:v:79:y:2011:i:3:p:362-384} describe an approach to create and release synthetic data for Longitudinal Business Database (LBD), which was created in the early 2000s (see \textcite{RePEc:cen:wpaper:02-17} for details). The variables currently available in the LBD are industry, annual payroll, employment, geography (county), birth year, death year, year, and firm structure (multiunit status).    
+There is growing demand for firm-level data allowing detailed studies of firm dynamics. Recent examples include \textcite{NBERc0480} who use cross-country firm-level data to study average post-entry behavior of young firms. \textcite{10.1257/aer.20141280} use the BDS \todo{BD: define BDS} to show the role of firm size in firm dynamics. % but also had access to the Synthetic LBD. 
+
+However, such studies are made difficult due to the limited or restricted access to firm-level data.% across countries and also within-country, it is difficult to identify the sources of the variation in firm dynamics across countries. 
+To provide better access to establishment data in the United States, \textcite{RePEc:bla:istatr:v:79:y:2011:i:3:p:362-384} describe an approach to create and release synthetic data for Longitudinal Business Database (LBD), which was created in the early 2000s (see \textcite{RePEc:cen:wpaper:02-17} for details). The variables currently available in the LBD are industry, annual payroll, employment, geography, birth year, death year, and firm structure\todo{BD: can we be more precise than geography and firm structure?}.    
 
 We can currently distinguish between two methods to create synthetic data. The general approach to data synthesis is to generate a joint posterior predictive distribution of $Y|X$ where $Y$ are variables to be synthesized and $X$ are unsynthesized variables. In the Phase 1 version of the method, variables are synthesized in a sequential fashion, with categorical variables being generally processed first using a variant of Dirichlet-Multinomial. Continuous variables are then synthesized using a normal linear regression model with kennel density-based transformation (\textcite{WOODCOCK20094228}). 
 
@@ -110,18 +126,19 @@ To evaluate whether synthetic data algorithms developed in the U.S. can be adapt
 
 \subsection{Implementation in the Canadian context}
 
-To create a Canadian synthetic database, we use the 2015 LEAP vintage. As for the U.S. synthetic database for LBD,\todo{BD: Is the name SynLBD official, and should we use it?} \todo{JA: I think we could use it. However, I did use a few times.} we synthesize categorical variables first, followed by continuous variables, controlling for the firm ID and industry classification at 4-digit NAICS (see Table~\ref{tab:LEAP_Variable}.)
+To create a Canadian synthetic database, we use the 2015 LEAP vintage. As for the U.S. synthetic database for LBD,\todo{BD: Is the name SynLBD official, and should we use it?} we synthesize categorical variables first, followed by continuous variables, controlling for the firm ID and industry classification at 4-digit NAICS (see Table~\ref{tab:LEAP_Variable}.)
 
 % Table tab:LEAP_Variable
 \input{tables/table_vardescription}
 
 After implementing the U.S. synthetic LBD code, we follow four steps to create a Canadian synthetic database. \begin{enumerate}
     \item We exclude the public sector (NAICS 61, 62, and 91) because Statistics Canada does not produce any statistics for those sectors.
-    \item We exclude industries for which the algorithm is not converging. These industries are NAICS 4481,    4482,     4483,     4511,     4513,     4841,     4842,     5241, and 5242. These industries represent approximately 7 percent of the total number of observations and are labeled as ``not synthesized'' in Table \ref{Synthesized_observations}.
-    \item We drop some industries, from the synthesized industries, which have less than ten observations in a given year.
+    \item We exclude industries for which the algorithm is not converging.% for each time of implementation of the U.S. synthetic code for LBD. 
+    These industries are NAICS 4481,    4482,     4483,     4511,     4513,     4841,     4842,     5241, and 5242. These industries represent approximately 7 percent of the total number of observations and are labeled as ``not synthesized'' in Table \ref{Synthesized_observations}.
+    \item We drop some industries, from the synthesized industries, which have sensitive information.\todo{Which one? What is meant by sensitive?}
     \item We drop observation for the last year each firm was observed since the SynLBD code does not properly approximate the last year of the data.
 \end{enumerate}. 
-After the implementation of these steps, we have around 22 million observations in the CanSynLBD database during the period of 1991 - 2014.
+After the implementation of these steps, we have around 22 million observations in the CanSynLBD database during the period of 1991 - 2014.\todo{Need to mention suppressed industries. Note presence of 0000 industries. Discuss.}
 
 \begin{table}[H]
   \centering
@@ -137,7 +154,7 @@ After the implementation of these steps, we have around 22 million observations 
   \end{tabular} 
 \begin{tablenotes}
 \small
-\item Note: Not synthesized industries are NAICS 4481,    4482,     4483,     4511,     4513,     4841,     4842, 5241, and 5242. These industries are not converging for each time of implementation We drop industries, from the synthesized industries, which have less than ten observations in a given year. We do not synthesize the public sector (NAICS 61, 62, and 91).
+\item Note: Not synthesized industries are NAICS 4481,    4482,     4483,     4511,     4513,     4841,     4842,     5241, and 5242. These industries are not converging for each time of implementation We drop industries, from the synthesized industries, which have sensitiveness information.\todo{BD: adjust footnote using previous answers to questions.} We do not synthesize the public sector (NAICS 61, 62, and 91).
  \end{tablenotes}
  \end{threeparttable}
 \end{table}
@@ -146,22 +163,19 @@ After the implementation of these steps, we have around 22 million observations 
 
 \section{Analytical validity}
 
-\newcommand{\TableNote}{$LEAP$ is the Longitudinal Employment Analysis Program and $CanSynLBD$ is the Canadian synthetic database based on LEAP. Here, we use the 2015 vintage of LEAP and drop the last year observations.}
-
 \subsection{Firm Characteristics}
 
-The CanSynLBD and LEAP generally provide comparable inferences on aggregate means and correlations. For example, Figures \ref{GrossEmploymentPrivate} and \ref{GrossEmploymentManufacturing} show that gross employment levels for each year in the CanSynLBD are very close to those in the LEAP. However, the manufacturing sector shows closer patterns than the private sector.\footnote{The private sector comprises all industries including the manufacturing sector except the public sector  (NAICS 61, 62, and 91)} We find similar results for total payroll (Figures \ref{TotalPayrollPrivate} and  \ref{TotalPayrollManufacturing}) .
+The CanSynLBD and LEAP generally provide comparable inferences on aggregate means and correlations. For example, Figures \ref{GrossEmploymentPrivate} and \ref{GrossEmploymentManufacturing} show that gross employment levels for each year in the CanSynLBD are very close to those in the LEAP. However, the manufacturing sector shows closer patterns than private sector.\todo{BD: Is what is included in the Private sector defined somewhere? Is the Manufacturing sector included in the Private sector? Please provide details} We find similar results for total payroll (Figures \ref{TotalPayrollPrivate} and  \ref{TotalPayrollManufacturing}) .\todo{Redo Graph \ref{GrossEmploymentPrivate} omitting the last year}
 
-\todo{Why is manufacturing always below, but overall employment crosses? Which industries are driving that?} \todo{JA: I checked before, but I could not able to identify any specific reason.}
+\todo{Why is manufacturing always below, but overall employment crosses? Which industries are driving that?}
 \begin{figure} [H]
 \centering
 \caption{Gross employment level by year (private)} \label{GrossEmploymentPrivate}
 \includegraphics[height=2.8in, width=.7\linewidth]{graphs/Gross_employment_level_by_year_private_bw.pdf} 
 \begin{minipage}{0.85\textwidth}
-{\footnotesize Note: \TableNote \par}
+{\footnotesize Note: $LEAP$ is the Longitudinal Employment Analysis Program and $CanSynLBD$ is the Canadian synthetic database based on LEAP. In this graph, we use the 2015 vintage of LEAP for private sector and drop the last year of observation for each firm. \par}
 \end{minipage}
 \end{figure}
-
 
 
 \begin{figure} [H]
@@ -169,7 +183,7 @@ The CanSynLBD and LEAP generally provide comparable inferences on aggregate mean
 \caption{Gross employment level by year (manufacturing)} \label{GrossEmploymentManufacturing}
 \includegraphics[height=2.8in, width=.7\linewidth]{graphs/Gross_employment_level_by_year_manufacturing_bw.pdf} 
 \begin{minipage}{0.85\textwidth}
-{\footnotesize Note: \TableNote  \par}
+{\footnotesize Note: $LEAP$ is the Longitudinal Employment Analysis Program and $CanSynLBD$ is the Canadian synthetic database based on LEAP. In this graph, we use the 2015 vintage of LEAP for the private sector and drop the last year of observation for each firm. \par}
 \end{minipage}
 \end{figure}
 
@@ -179,7 +193,7 @@ The CanSynLBD and LEAP generally provide comparable inferences on aggregate mean
 \caption{Total payroll by year (private)} \label{TotalPayrollPrivate}
 \includegraphics[height=2.8in, width=.7\linewidth]{graphs/Total_payroll_by_year_private_bw.pdf} 
 \begin{minipage}{0.85\textwidth}
-{\footnotesize Note: \TableNote \par}
+{\footnotesize Note: $LEAP$ is the Longitudinal Employment Analysis Program and $CanSynLBD$ is the Canadian synthetic database based on LEAP. In this graph, we use the 2015 vintage of LEAP for the private sector and drop the last year of observation for each firm. \par}
 \end{minipage}
 \end{figure}
 \begin{figure} [H]
@@ -187,7 +201,7 @@ The CanSynLBD and LEAP generally provide comparable inferences on aggregate mean
 \caption{Total payroll by year (manufacturing)} \label{TotalPayrollManufacturing}
 \includegraphics[height=2.8in, width=.7\linewidth]{graphs/Total_payroll_by_year_manufacturing_bw.pdf} 
 \begin{minipage}{0.85\textwidth}
-{\footnotesize Note: \TableNote \par}
+{\footnotesize Note: $LEAP$ is the Longitudinal Employment Analysis Program and $CanSynLBD$ is the Canadian synthetic database based on LEAP. In this graph, we use the 2015 vintage of LEAP for the private sector and drop the last year of observation for each firm. \par}
 \end{minipage}
 \end{figure}
 
@@ -198,7 +212,7 @@ Figures \ref{FirmSharePrivate} and \ref{FirmShareManufacturing} plot the share o
 \caption{Share of firms by NAICS two-digit and year (private)} \label{FirmSharePrivate}
 \includegraphics[height=2.8in, width=.7\linewidth]{graphs/Share_of_firms_by_NAICS_two-digit_and_year_private_bw.pdf} 
 \begin{minipage}{0.85\textwidth}
-{\footnotesize Note: \TableNote \par}
+{\footnotesize Note: $LEAP$ is the Longitudinal Employment Analysis Program and $CanSynLBD$ is the Canadian synthetic database based on LEAP. In this graph, we use the 2015 vintage of LEAP for the private sector and drop the last year of observation for each firm. \par}
 \end{minipage}
 \end{figure}
 
@@ -209,18 +223,18 @@ Figures \ref{FirmSharePrivate} and \ref{FirmShareManufacturing} plot the share o
 \caption{Share of firms by NAICS two-digit and year (manufacturing)} \label{FirmShareManufacturing}
 \includegraphics[height=2.8in, width=.7\linewidth]{graphs/Share_of_firms_by_NAICS_two-digit_and_year_Manufacturing_bw.pdf} 
 \begin{minipage}{0.85\textwidth}
-{\footnotesize Note: \TableNote \par}
+{\footnotesize Note: $LEAP$ is the Longitudinal Employment Analysis Program and $CanSynLBD$ is the Canadian synthetic database based on LEAP. In this graph, we use the 2015 vintage of LEAP for the private sector and drop the last year of observation for each firm. \par}
 \end{minipage}
 \end{figure}
 
 Figures \ref{EmploymentSharePrivate} and \ref{EmploymentShareManufacturing} plot the share of employment by two-digit industry and year for both the CanSynLBD and the LEAP database
-\footnote{We define the share of employment as $x_{its} = X_{its}/\sum_{i} \sum_{t} X_{its}$, where $i$ are two-digit NAICS industries, $t$ are the years in-sample, $s$ indicates whether it is in the synthetic or confidential data, and $X_{its}$ is the total employment for industry $i$ and year $t$ for either the synthetic or confidential data $s$.} and show that those shares do not cluster along the 45-degree line. However, this hides significant differences between sectors as, for the share of employment for the manufacturing sector, we do observe more clustering along the 45-degrees.
+\footnote{$x_{its} = X_{its}/\sum_{i} \sum_{t} X_{its}$,\todo{BD: Define $x$ and $X$} where $i$ are two-digit NAICS industries, $t$ are the years in-sample, and $s$ indicates whether it is in the synthetic or confidential data. } and show that those shares do not cluster along the 45-degree line. However, this hides significant differences between sectors as, for the share of employment for the manufacturing sector, we do observe clustering along the 45-degrees.\todo{BD: This is not easily apparent from the graph}
 \begin{figure} [H]
 \centering
 \caption{Share of employment by NAICS two-digit and year (private)} \label{EmploymentSharePrivate}
 \includegraphics[height=2.8in, width=.7\linewidth]{graphs/Share_of_employment_by_NAICS_two-digit_and_year_private_bw.pdf} 
 \begin{minipage}{0.85\textwidth}
-{\footnotesize Note: \TableNote \par}
+{\footnotesize Note: $LEAP$ is the Longitudinal Employment Analysis Program and $CanSynLBD$ is the Canadian synthetic database based on LEAP. In this graph, we use the 2015 vintage of LEAP for the private sector and drop the last year of observation for each firm. \par}
 \end{minipage}
 \end{figure}
 \vspace{-15.5pt}
@@ -229,17 +243,17 @@ Figures \ref{EmploymentSharePrivate} and \ref{EmploymentShareManufacturing} plot
 \caption{Share of employment by NAICS two-digit and year (manufacturing)} \label{EmploymentShareManufacturing}
 \includegraphics[height=2.8in, width=.7\linewidth]{graphs/Share_of_employment_by_NAICS_two-digit_and_year_Manufacturing_bw.pdf} 
 \begin{minipage}{0.85\textwidth}
-{\footnotesize Note: \TableNote \par}
+{\footnotesize Note: $LEAP$ is the Longitudinal Employment Analysis Program and $CanSynLBD$ is the Canadian synthetic database based on LEAP. In this graph, we use the 2015 vintage of LEAP for the private sector and drop the last year of observation for each firm. \par}
 \end{minipage}
 \end{figure}
 
-Figures \ref{PayrollSharePrivate} and \ref{PayrollShareManufacturing} plot the share of payroll by two-digit industry and year for both CanSynLBD and LEAP database and show that those shares do not cluster along the 45-degree line. Again, we do notice that for the share of employment for the manufacturing sector, we do observe more clustering along the 45-degrees.
+Figures \ref{PayrollSharePrivate} and \ref{PayrollShareManufacturing} plot the share of payroll by two-digit industry and year for both CanSynLBD and LEAP database and show that those shares do not cluster along the 45-degree line. Again, we do notice that for the share of employment for the manufacturing sector, we do observe clustering along the 45-degrees.\todo{BD: This is not easily apparent from the graph}
 \begin{figure} [H]
 \centering
 \caption{Share of payroll by NAICS two-digit and year (private)} \label{PayrollSharePrivate}
 \includegraphics[height=2.8in, width=.7\linewidth]{graphs/Share_of_payroll_by_NAICS_two-digit_and_year_private_bw.pdf} 
 \begin{minipage}{0.85\textwidth}
-{\footnotesize Note: \TableNote \par}
+{\footnotesize Note: $LEAP$ is the Longitudinal Employment Analysis Program and $CanSynLBD$ is the Canadian synthetic database based on LEAP. In this graph, we use the 2015 vintage of LEAP for the private sector and drop the last year of observation for each firm. \par}
 \end{minipage}
 \end{figure}
 \vspace{-15.5pt}
@@ -248,12 +262,13 @@ Figures \ref{PayrollSharePrivate} and \ref{PayrollShareManufacturing} plot the s
 \caption{Share of payroll by NAICS two-digit and year (manufacturing)} \label{PayrollShareManufacturing}
 \includegraphics[height=2.8in, width=.7\linewidth]{graphs/Share_of_payroll_by_NAICS_two-digit_and_year_Manufacturing_bw.pdf} 
 \begin{minipage}{0.85\textwidth}
-{\footnotesize Note: \TableNote \par}
+{\footnotesize Note: $LEAP$ is the Longitudinal Employment Analysis Program and $CanSynLBD$ is the Canadian synthetic database based on LEAP. In this graph, we use the 2015 vintage of LEAP for the private sector and drop the last year of observation for each firm. \par}
 \end{minipage}
 \end{figure}
 
 \subsection{Firm Dynamics}
-To assess how well the CanSynLBD captures firm dynamics, we also compute entry and exit rates of the private sector by year. Table \ref{FirmDynamics} shows that those rates for CanSynLBD are similar to LEAP database. To show further those rates are similar, we compute the divergence of entry rate as the entry rate of CanSynLBD net the entry rate of LEAP as well as the divergence of exit rate as the exit rate of CanSynLBD net the exit rate of LEAP (see Figure \ref{Divergence}).
+To assess how well the CanSynLBD captures firm dynamics, we also compute entry and exit rates of the private sector by year. Table \ref{FirmDynamics} shows that those rates for CanSynLBD are similar to LEAP database. In addition, we compute the difference between the entry rate as the entry rate of CanSynLBD net the entry rate of LEAP and the divergence of exit rate as the exit rate of CanSynLBD net the exit rate of LEAP \todo{BD: I don't understand what was done here}(see Table \ref{FirmDynamics}).
+\todo{LV Reformat table, compute divergence}
 
 \begin{table}[H]
   \centering
@@ -270,7 +285,7 @@ To assess how well the CanSynLBD captures firm dynamics, we also compute entry a
   \end{tabular} 
 \begin{tablenotes}
 \small
-\item Note: \TableNote  We calculate the divergence of entry rate as the entry rate of CanSynLBD net the entry rate of LEAP and the divergence of exit rate as the exit rate of CanSynLBD net the exit rate of LEAP.
+\item Note: $LEAP$ is the Longitudinal Employment Analysis Program and $CanSynLBD$ is the Canadian synthetic database based on LEAP. In this graph, we use 2015 vintage of LEAP for the manufacturing sector and drop last year observation of each firm. We calculate the divergence of entry rate as the entry rate of CanSynLBD net the entry rate of LEAP and the divergence of exit rate as the exit rate of CanSynLBD net the exit rate of LEAP.
  \end{tablenotes}
  \end{threeparttable}
 \end{table}
@@ -280,39 +295,38 @@ To assess how well the CanSynLBD captures firm dynamics, we also compute entry a
 \caption{Divergence of exit and entry rate between LEAP and CanSynLBD} \label{Divergence}
 \includegraphics[height=2.8in, width=.7\linewidth]{graphs/Divergence_of_exit_and_entry_rate_between_LEAP_and_CanSynLBD_bw.pdf} 
 \begin{minipage}{0.85\textwidth}
-{\footnotesize Note: \TableNote  We calculate the divergence of entry rate as the entry rate of CanSynLBD net the entry rate of LEAP and the divergence of exit rate as the exit rate of CanSynLBD net the exit rate of LEAP. \par}
+{\footnotesize Note: $LEAP$ is the Longitudinal Employment Analysis Program and $CanSynLBD$ is the Canadian synthetic database based on LEAP. In this graph, we use 2015 vintage of LEAP for private sector and drop last year observation of each firm. We calculate the divergence of entry rate as the entry rate of CanSynLBD net the entry rate of LEAP and the divergence of exit rate as the exit rate of CanSynLBD net the exit rate of LEAP. \par}
 \end{minipage}
 \end{figure}
 
 \subsection{Dynamics of Job Flows}
 
-One of the most important applications of LEAP is to generate statistics that describe job flows. Following \cite{DavisHaltiwangerSchuh}, the job creation is defined as the sum of all employment gains from expanding firms from year $t-1$ to year $t$ including entry firms. The job destruction rate is defined as the sum of all employment losses from contracting firms from year $t-1$ to year $t$ including exiting firms. Net job creation is the job creation rate minus the job destruction rate. Figures \ref{JobCreationPrivate} and \ref{JobCreationManufacturing} show the job creation rates from the CanSynLBD compared againg those of the LEAP. These figures show that the manufacturing sector has closer pattern than the private sector. We find a similar patterns for net job creation rates (Figures \ref{NetJobCreationPrivate} and  \ref{NetJobCreationManufacturing}).
+One of the most important applications of LEAP is to generate statistics that describe job flows. Following \cite{DavisHaltiwangerSchuh}, the job creation is defined as the sum of all employment gains from expanding firms from year $t-1$ to year $t$ including entry firms. The job destruction rate is defined as the sum of all employment losses from contracted \todo{BD: Contracted?}firms from year $t-1$ to year $t$ including exiting firms. Net job creation is the job creation rate minus the job destruction rate. Figures \ref{JobCreationPrivate} and \ref{JobCreationManufacturing} show the job creation rates from the CanSynLBD compared againg those of the LEAP. These figures show that the manufacturing sector has closer pattern than the private sector. We find a similar patterns for net job creation rates (Figures \ref{NetJobCreationPrivate} and  \ref{NetJobCreationManufacturing}).
 
 \begin{figure} [H]
 \centering
 \caption{Job creation rate by year (private)} \label{JobCreationPrivate}
 \includegraphics[height=2.8in, width=.7\linewidth]{graphs/Job_creation_rate_by_year_private_bw.pdf} 
 \begin{minipage}{0.85\textwidth}
-{\footnotesize Note: \TableNote \par}
+{\footnotesize Note: $LEAP$ is the Longitudinal Employment Analysis Program and $CanSynLBD$ is the Canadian synthetic database based on LEAP. In this graph, we use 2015 vintage of LEAP for the private sector and drop last year observation of each firm. \todo{BD: Make sure we use the same table footnote when appropriate; this should be \LateX coded.}\par}
 \end{minipage}
 \end{figure}
-
 \begin{figure} [H]
 \centering
 \caption{Job creation rate  by year (manufacturing)} \label{JobCreationManufacturing}
 \includegraphics[height=2.8in, width=.7\linewidth]{graphs/Job_creation_rate_by_year_Manufacturing_bw.pdf} 
 \begin{minipage}{0.85\textwidth}
-{\footnotesize Note: \TableNote \par}
+{\footnotesize Note: $LEAP$ is the Longitudinal Employment Analysis Program and $CanSynLBD$ is the Canadian synthetic database based on LEAP. In this graph, we use 2015 vintage of LEAP for the manufacturing sector and drop last year observation of each firm. \par}
 \end{minipage}
 \end{figure}
 
-\todo{LV regraph, dropping last year} \todo{JA: Should we mention this in the text including reasons if we drop the last year here?}
+\todo{LV regraph, dropping last year (net job creation not defined)}
 \begin{figure} [H]
 \centering
 \caption{Net job creation rate by year (private)} \label{NetJobCreationPrivate}
 \includegraphics[height=2.8in, width=.7\linewidth]{graphs/Net_job_creation_rate_by_year_private_bw.pdf} 
 \begin{minipage}{0.85\textwidth}
-{\footnotesize Note: \TableNote \par}
+{\footnotesize Note: $LEAP$ is the Longitudinal Employment Analysis Program and $CanSynLBD$ is the Canadian synthetic database based on LEAP. In this graph, we use 2015 vintage of LEAP for the private sector and drop last year observation of each firm. \par}
 \end{minipage}
 \end{figure}
 \begin{figure} [H]
@@ -326,7 +340,7 @@ One of the most important applications of LEAP is to generate statistics that de
 
 \subsection{pMSE}
 
-To compare the quality of the synthetic data relative to the confidential data, we compute $pMSE$, which is the mean-squared error of the predicted probabilities (i.e., propensity scores) for those two databases. Specifically, $pMSE$ is a metric to assess how well we are able to discern the high distributional similarity between synthetic data and confidential data. 
+To compare the quality of the synthetic data relative to the confidential data, we compute $pMSE$, which is the mean-squared error of the predicted probabilities (i.e., propensity scores) for those two databases. Specifically, $pMSE$ is a metric to assess how well we are able to discern between synthetic data and confidential data. %This means that these two databases have high distributional similar if we are unable to discern.
 
 We follow the method by \textcite{SnokeSlavkovic2018} to calculate the $pMSE$. This method involved the following steps: 
 \begin{enumerate}
@@ -334,17 +348,15 @@ We follow the method by \textcite{SnokeSlavkovic2018} to calculate the $pMSE$. T
     \item Create an indicator variable, $I$, to $X^{comb}$ subject to $I=\{1: X^{comb} \in X^s\}$. This means that we create an indicator variable of $1$ for the synthetic database and $0$ for the confidential database. 
     \item Fit the following model to predict $I$
     \begin{eqnarray}	
-        I & = &\alpha + ALU_{it} + \lambda Pay_{it} + Age_{it}^{T}\beta + \lambda_t + \alpha_s + \epsilon_{it} \label{pMSE}
+        I & = &\alpha + ALU_{it} + \lambda Pay_{it} + Age_{it}^{T}\beta + \lambda_t + \alpha_s + \epsilon_{it} \label{pMSE}\todo{BD: I don't understand why the dependant variable has no indices?}
      \end{eqnarray}
-     \todo{BD: I don't understand why the dependant variable has no indices?}
-     \todo{JA: This is an indicator variable of $1$ for the synthetic database and $0$ for the confidential database. In this case, we need to add one more index in all variables as well.}
     where $ALU_{it}$ is the logarithm of average labour unit (ALU) of firm $i$ in year $t$, $Pay_{it}$ is the logarithm of payroll of firm $i$ in year $t$, $Age_{it}$ is a vector of dummy variables for age of firm $i$ in year $t$, $\lambda_t$ is the year fixed effect, $\alpha_s$ is an unobserved time-invariant industry-specific effect, and $\epsilon_{it}$ is the disturbance term of firm $i$ in year $t$. 
     \item calculate the predicted probabilities, $\hat{p}_i$ for each row of $X^{comb}$
     \item Compute the $pMSE=\frac{1}{N}\sum_{i=1}^N(\hat{p}_i - 0.5)^2$
 \end{enumerate}
-A $pMSE$ = 0 means every $\hat{p}_i = 0.5$. 
+A $pMSE$ = 0 means every $\hat{p}_i = 0.5$. %This implies the highest utility. 
 
-To compute the $pMSE$, we estimate equation \ref{pMSE} using both the logit and probit models. Table \ref{pMSE_regression} \todo{BD: Are those coefficients or marginal effects? Does it make sense to show coefficients? Or are we interested only in the last row? If we are interested in the coefficient, why is there no discussion of those?} \todo{Those are coefficients. I think we are interested in the last row.} shows the calculated value of $pMSE$, which is lower for the manufacturing sector than the public sector in both regressions. This is because, as we explained before, the synthetic data mirrors the original data more closely in the case of the manufacturing sector.
+To compute the $pMSE$, we estimate equation \ref{pMSE} using both the logit and probit models. Table \ref{pMSE_regression} \todo{BD: Are those coefficients or marginal effects? Does it make sense to show coefficients? Or are we interested only in the last row? If we are interested in the coefficient, why is there no discussion of those?} shows the calculated value of $pMSE$, which is lower for the manufacturing sector than the public sector in both regressions. This is because, as we explained before, the synthetic data mirrors the original data more closely in the case of the manufacturing sector.
 
 \begin{table}[H]
   \centering
@@ -392,7 +404,7 @@ where $ALU_{it}$ is the logarithm of average labour unit (ALU) of firm $i$ in ye
  \end{threeparttable}
 \end{table}
 
-We estimate the model separately on LEAP and CanSynLBD data for the private and manufacturing sectors and find that the CansynLBD data provides similar predictions to LEAP data (Tables  \ref{OLS}).\todo{compute overlap interval} \todo{JA: @Lars, I think you mentioned once that you would like to calculate this. I could calculate using the method explained in the appendix.}
+We estimate the model separately on LEAP and CanSynLBD data for the private and manufacturing sectors and find that the CansynLBD data provides similar predictions to LEAP data (Tables  \ref{OLS}).\todo{compute overlap interval}
 
 \begin{table}[H]
   \centering
@@ -465,7 +477,7 @@ Table \ref{Dynamic - system GMM with MA(1)} shows that the CansynLBD provides si
 
 \subsection{Confidentiality protection}
 
-In this section, we estimate the probability that the synthetic first year equals the true first year, given the synthetic first year.\todo{BD: That is some strange wording} \todo{JA: I got this definition from the U.S. SynLBD paper.} Tables \ref{ProbabilityPrivate} and \ref{ProbabilityManufacturing} show that these probabilities are quite low except for the first year.\todo{BD: Are we worried about this?} \todo{JA: Somebody asked me when I presented at StatCan.} The probability for the first year is higher because of censoring and lack of previous information.
+In this section, we estimate the probability that the synthetic first year equals the true first year, given the synthetic first year.\todo{BD: That is some strange wording} Tables \ref{ProbabilityPrivate} and \ref{ProbabilityManufacturing} show that these probabilities are quite low except for the first year.\todo{BD: Are we worried about this?} This is because of censoring and lack of previous information.
 
 \begin{table}[H]
 \centering\footnotesize
@@ -520,8 +532,6 @@ In this paper, we adapt and implement algorithms used to create the U.S. synthet
 \subsection{Addition of analytically valid variables}\todo{BD: ?}
 
 Capital stock or revenue for incorporated \todo{BD: ?}
-
-\todo{JA: I think we do not need these two sections.}
 
 \newpage
 

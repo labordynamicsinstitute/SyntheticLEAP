@@ -1,0 +1,23 @@
+
+\subsection{LEAP database}
+
+The LEAP contains information on annual employment for each employer in Canada. It covers incorporated and unincorporated businesses that issue at least one annual statements of remuneration paid (T4) in any given calendar year, but excludes self-employed individuals or partnerships with non-salaried participants. One advantage of the LEAP is that it covers all sectors of the Canadian economy.
+
+To construct the LEAP Statistics Canada draws from three distinct sources: (1) T4 statements from Canada Revenue Agency, (2) Statistics Canada's Business Register, and (3) Statistics Canada's Survey of Employment, Payrolls and Hours (SEPH). In Canada, employing businesses are required to register with Canada Revenue Agency using their Business Number, and issue to each of their employees a T4 statement summarizing earnings received in the current year. This process creates a link between the employee and the business through the Business Number that is the backbone of LEAP. Reported payrolls from SEPH allows estimates of annual employment to be added to the data set. The payroll is converted to employment (called ALUs or Average Labour Units, defined later) using conversion factors derived from the SEPH. 
+
+The LEAP essentially contains four variables (1) A Longitudinal Business Register Identifier (LBRID), (2) Industry, (3) Employment and (4) Payroll. This still allows research on multiple themes, like employment growth, industry turnover, firm survival, job creation and job destruction, etc. We discuss each of those variables in turns. 
+
+\textbf{LBRID:} This is the unique identifier assigned to each enterprise.  The LBRID tracks the enterprise across all years in which it has employees, for the period covered by the LEAP vintage. It is derived from the Business Register enterprise identifier (BRID). 
+
+For various administrative reasons, an enterprise's identifier in the Business Register may sometimes change from year to year.  This would lead to the appearance of false deaths and births in the LEAP file.  To avoid this, a system of Labour Tracking is used to track the movements of workers between firms.  This is used to detect false births and deaths and link firms by a common LBRID. Labour tracking can lead to many different types of linkages between firms. 
+
+The simplest would be a one-to-one linkage between a death and a birth record. For example, if a business changes from incorporated to limited business, the Business Register may remove the original business from the register and create a new one. In this case, the only action necessary is to assign a common LBRID to the two businesses over time. 
+
+A more complex case would be a merger between two firms, where most employees from the previous two firms are at a new firm. Here, all three entities are given the same LBRID, and the past records of the two merged firms would be combined into a single record. The employment of the two firms is added together, and the current NAICS code for the new firm is assigned to the combined, synthetic past record. In other words, it would be as if the newly merged firm already existed in the past. Similarly, acquisitions and spin offs lead to the combination of firms and the creation of synthetic records. 
+
+\textbf{Industry:} The 4-digit North American Industrial Classification System (NAICS) code that is assigned to a firm nationally. This is the dominant NAICS code for firms that have activity in multiple industries. One of the characteristics of the LEAP is that the industry code for the most recent year that the firm is in operation is pushed back in time, so that an enterprise has the same industry code each year within the same vintage.  
+
+\textbf{Employment:} Employment of each firm is measured by its average labour units (ALUs). ALUs are the average employment an enterprise would have if it paid its workers the average annual earnings (AAE) of a typical worker in the enterprise's particular industry, province and enterprise size class. AAE are derived using information from the SEPH.
+
+\textbf{Payroll:} Sum of payroll from all T4 slips issued by the enterprise.
+We next turn to the methods we used to create a synthetic version of the LEAP.

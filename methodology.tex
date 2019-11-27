@@ -1,0 +1,46 @@
+
+\subsection{Overview}
+
+There is growing demand for firm-level data allowing detailed studies of firm dynamics. Recent examples include \textcite{NBERc0480} who use cross-country firm-level data to study average post-entry behavior of young firms. \textcite{10.1257/aer.20141280} use the Business Dynamics Statistics (BDS) to show the role of firm size in firm dynamics. However, such studies are made difficult due to the limited or restricted access to firm-level data. To provide better access to establishment data in the United States, \textcite{RePEc:bla:istatr:v:79:y:2011:i:3:p:362-384} describe an approach to create and release synthetic data for Longitudinal Business Database (LBD), which was created in the early 2000s (see \textcite{RePEc:cen:wpaper:02-17} for details). The variables currently available in the LBD are industry, annual payroll, employment, geography (county), birth year, death year, year, and firm structure (multiunit status).    
+
+We can currently distinguish between two methods to create synthetic data. The general approach to data synthesis is to generate a joint posterior predictive distribution of $Y|X$ where $Y$ are variables to be synthesized and $X$ are unsynthesized variables. In the Phase 1 version of the method, variables are synthesized in a sequential fashion, with categorical variables being generally processed first using a variant of Dirichlet-Multinomial. Continuous variables are then synthesized using a normal linear regression model with kennel density-based transformation (\textcite{WOODCOCK20094228}). 
+
+The Phase 2 version of the method has shifted to a Classification and Regression Trees (CART) model with Bayesian bootstrap. For the United States, the phase 2 version  is currently in its final stages of implementation (\textcite{RePEc:cen:wpaper:14-12}). 
+
+To evaluate whether synthetic data algorithms developed in the U.S. can be adapted to generate similar synthetic data for other countries, \textcite{RePEc:cen:wpaper:14-13} implement the Phase 1 version of the method to the German Longitudinal Business Database (GLBD). 
+
+\subsection{Implementation in the Canadian context}
+
+To create a Canadian synthetic database, we use the 2015 LEAP vintage. As for the U.S. synthetic database for LBD,\todo{BD: Is the name SynLBD official, and should we use it?} \todo{JA: I think we could use it. However, I did use a few times.} we synthesize categorical variables first, followed by continuous variables, controlling for the firm ID and industry classification at 4-digit NAICS (see Table~\ref{tab:LEAP_Variable}.)
+
+% Table tab:LEAP_Variable
+\input{tables/table_vardescription}
+
+After implementing the U.S. synthetic LBD code, we follow four steps to create a Canadian synthetic database. \begin{enumerate}
+    \item We exclude the public sector (NAICS 61, 62, and 91) because Statistics Canada does not produce any statistics for those sectors.
+    \item We exclude industries for which the algorithm is not converging. These industries are NAICS 4481,    4482,     4483,     4511,     4513,     4841,     4842,     5241, and 5242. These industries represent approximately 7 percent of the total number of observations and are labeled as ``not synthesized'' in Table \ref{Synthesized_observations}.
+    \item We drop some industries, from the synthesized industries, which have less than ten observations in a given year.
+    \item We drop observation for the last year each firm was observed since the SynLBD code does not properly approximate the last year of the data.
+\end{enumerate}. 
+After the implementation of these steps, we have around 22 million observations in the CanSynLBD database during the period of 1991 - 2014.
+
+\begin{table}[H]
+  \centering
+\begin{threeparttable}
+  \caption{Synthesized observations}  \label{Synthesized_observations} \medskip
+  \renewcommand{\arraystretch}{1}
+  \begin{tabular}{l  c c }
+    \toprule
+    \textbf{Category}&\textbf{\# of Observations (millions)}&\textbf{Percentage}\\
+    \midrule
+\input{tables/Synthesized_observations}
+   \bottomrule
+  \end{tabular} 
+\begin{tablenotes}
+\small
+\item Note: Not synthesized industries are NAICS 4481,    4482,     4483,     4511,     4513,     4841,     4842, 5241, and 5242. These industries are not converging for each time of implementation We drop industries, from the synthesized industries, which have less than ten observations in a given year. We do not synthesize the public sector (NAICS 61, 62, and 91).
+ \end{tablenotes}
+ \end{threeparttable}
+\end{table}
+
+%\newpage
