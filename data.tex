@@ -1,23 +1,25 @@
 
-\subsection{LEAP database}
+The LEAP contains information on annual employment for each employer business in all sectors of the Canadian economy. It covers incorporated and unincorporated businesses that issue at least one annual statement of remuneration paid (T4 slips) in any given calendar year. It excludes self-employed individuals or partnerships with non-salaried participants.
 
-The LEAP contains information on annual employment for each employer in Canada. It covers incorporated and unincorporated businesses that issue at least one annual statements of remuneration paid (T4) in any given calendar year, but excludes self-employed individuals or partnerships with non-salaried participants. One advantage of the LEAP is that it covers all sectors of the Canadian economy.
+To construct the LEAP, Statistics Canada uses three sources of information: (1) T4 administrative data  from the Canada Revenue Agency (CRA), (2) data from Statistics Canada's Business Register (BR), and (3) data from  Statistics Canada's Survey of Employment, Payrolls and Hours (SEPH). 
 
-To construct the LEAP Statistics Canada draws from three distinct sources: (1) T4 statements from Canada Revenue Agency, (2) Statistics Canada's Business Register, and (3) Statistics Canada's Survey of Employment, Payrolls and Hours (SEPH). In Canada, employing businesses are required to register with Canada Revenue Agency using their Business Number, and issue to each of their employees a T4 statement summarizing earnings received in the current year. This process creates a link between the employee and the business through the Business Number that is the backbone of LEAP. Reported payrolls from SEPH allows estimates of annual employment to be added to the data set. The payroll is converted to employment (called ALUs or Average Labour Units, defined later) using conversion factors derived from the SEPH. 
+\begin{description}
+\item[T4] In general, all employers in Canada need to fill out a T4 slip to submit to the CRA if they paid employment income, taxable allowances and benefits, or any other remuneration in any calendar year. 
 
-The LEAP essentially contains four variables (1) A Longitudinal Business Register Identifier (LBRID), (2) Industry, (3) Employment and (4) Payroll. This still allows research on multiple themes, like employment growth, industry turnover, firm survival, job creation and job destruction, etc. We discuss each of those variables in turns. 
+\item[BR] The Business Register is Statistics Canada's central repository of baseline information on business and institutions operating in Canada. It is used as the survey frame for all business related data sets.
 
-\textbf{LBRID:} This is the unique identifier assigned to each enterprise.  The LBRID tracks the enterprise across all years in which it has employees, for the period covered by the LEAP vintage. It is derived from the Business Register enterprise identifier (BRID). 
+\item[SEPH] The objective of the SEPH is to provide monthly information on the level of earnings, the number of jobs, and hours worked by detailed industry at the national and provincial levels. To do so, it combines a census of approximately one million payroll deductions provided by the CRA, and the Business Payrolls Survey, a sample of 15,000 establishments.  
+\end{description}
+The LEAP essentially contains four variables (1) A Longitudinal Business Register Identifier (LBRID), (2) Industry, (3) Employment and (4) Payroll. 
+\begin{enumerate}
 
-For various administrative reasons, an enterprise's identifier in the Business Register may sometimes change from year to year.  This would lead to the appearance of false deaths and births in the LEAP file.  To avoid this, a system of Labour Tracking is used to track the movements of workers between firms.  This is used to detect false births and deaths and link firms by a common LBRID. Labour tracking can lead to many different types of linkages between firms. 
+\item The LBRID uniquely identifies each enterprise and is derived from the Business Register. To avoid ``false'' deaths and births due to mergers, restructuring or changes in reporting practices, Statistics Canada uses a method of ``labour tracking'' that compares cluster of workers in each newly identified enterprise with all the clusters of workers in firms from the previous year. This comparison yields a new identifier (LBRID) derived from those of the BR.
 
-The simplest would be a one-to-one linkage between a death and a birth record. For example, if a business changes from incorporated to limited business, the Business Register may remove the original business from the register and create a new one. In this case, the only action necessary is to assign a common LBRID to the two businesses over time. 
+\item The industry information comes from the BR for single-industry firms. If a firm operates in multiple industries, information on payroll from the SEPH is used to identify the industry in which the firm pays the highest payroll. Prior to 1991, information on industry was based on the SIC but it is now based on the  North American Industrial Classification System (NAICS) at the four-digits level. 
 
-A more complex case would be a merger between two firms, where most employees from the previous two firms are at a new firm. Here, all three entities are given the same LBRID, and the past records of the two merged firms would be combined into a single record. The employment of the two firms is added together, and the current NAICS code for the new firm is assigned to the combined, synthetic past record. In other words, it would be as if the newly merged firm already existed in the past. Similarly, acquisitions and spin offs lead to the combination of firms and the creation of synthetic records. 
+\item Employment is measured either using Individual Labour Unit (ILU) or Average Labour Unit (ALU). ALUs are obtained by dividing the business annual payroll (as the sum of T4 slips income issued in the year) and diving by the average annual earnings in its industry/province/class category computed using the SEPH. ILUs is a head count of the number of T4 issued by the enterprise, with employees working for multiple employers split proportionately across firms according to their total annual payroll earned in each firm. 
 
-\textbf{Industry:} The 4-digit North American Industrial Classification System (NAICS) code that is assigned to a firm nationally. This is the dominant NAICS code for firms that have activity in multiple industries. One of the characteristics of the LEAP is that the industry code for the most recent year that the firm is in operation is pushed back in time, so that an enterprise has the same industry code each year within the same vintage.  
+\item Finally, the firm's payroll comes from the sum of all T4s as reported to the CRA.
 
-\textbf{Employment:} Employment of each firm is measured by its average labour units (ALUs). ALUs are the average employment an enterprise would have if it paid its workers the average annual earnings (AAE) of a typical worker in the enterprise's particular industry, province and enterprise size class. AAE are derived using information from the SEPH.
-
-\textbf{Payroll:} Sum of payroll from all T4 slips issued by the enterprise.
-We next turn to the methods we used to create a synthetic version of the LEAP.
+\end{enumerate}
+With that information, the LEAP is the only data set in Canada  that allows research on a variety of themes, like employment growth, industry turnover, firm survival, job creation and job destruction, etc. 
