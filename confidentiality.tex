@@ -1,0 +1,45 @@
+
+In this section, we estimate the probability that the synthetic first year equals the true first year, given the synthetic first year.\todo{BD: That is some strange wording} \todo{JA: I got this definition from the U.S. SynLBD paper.} Tables \ref{ProbabilityPrivate} and \ref{ProbabilityManufacturing} show that these probabilities are quite low except for the first year.\todo{BD: Are we worried about this?} \todo{JA: Somebody asked me when I presented at StatCan.} The probability for the first year is higher because of censoring and lack of previous information.
+
+\begin{table}[H]
+\centering\footnotesize
+\caption{Observed firm births given synthetic births (private)} \label{ProbabilityPrivate} \medskip
+\renewcommand{\arraystretch}{1}
+\begin{tabular}{c c| c c c}
+\toprule
+\multicolumn{2}{c|}{\textbf{First (Birth) Year}} &  \multicolumn{3}{c}{\textbf{\% of Births over NAICS}}\\
+\textbf{Synthetic}&\textbf{Actual}&\textbf{Minimum}&\textbf{Mean}&\textbf{Maximum}\\
+\midrule
+\input{tables/Observed_firm_births_given_synthetic_births_private}
+\bottomrule
+\end{tabular} 
+\\
+\justify
+%Note:
+\end{table}
+
+\begin{table}[H]
+\centering\footnotesize
+\caption{Observed firm births given synthetic births (manufacturing)} \label{ProbabilityManufacturing} \medskip
+\renewcommand{\arraystretch}{1}
+\begin{tabular}{c c| c c c}
+\toprule
+\multicolumn{2}{c|}{\textbf{First (Birth) Year}} &  \multicolumn{3}{c}{\textbf{\% of Births over NAICS}}\\
+\textbf{Synthetic}&\textbf{Actual}&\textbf{Minimum}&\textbf{Mean}&\textbf{Maximum}\\
+\midrule
+\input{tables/Observed_firm_births_given_synthetic_births_manufacturing}
+\bottomrule
+\end{tabular} 
+\\
+\justify
+%Note:
+\end{table}
+
+\begin{figure} [H]
+\centering
+\caption{The difference between first and last year given synthetic first year} \label{SyntheticFirstYear}
+\includegraphics[height=2.8in, width=.7\linewidth]{graphs/The_difference_between_first_and_last_year_given_synthetic_first_year_bw.pdf} 
+\begin{minipage}{0.85\textwidth}
+%{\footnotesize Note:  \par}
+\end{minipage}
+\end{figure}
