@@ -26,3 +26,9 @@
   \iftoggle{bbx:url}
     {\usebibmacro{url+urldate}}
     {}}
+
+
+\AtEveryBibitem{%
+  \clearlist{language}%
+  \clearlist{isbn}
+}
