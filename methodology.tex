@@ -4,43 +4,22 @@
 The Synthetic LBD is derived from the LBD as a partially synthetic database with analytic validity, by synthesizing the life-span of establishments, as well as the evolution of their employment, conditional on industry. Geography is not synthesized, but is suppressed from the released file \citep{RePEc:cen:tnotes:11-01}. The current version, is based on the Standard Industrial Classification (SIC) and extends through 2000. \citet{RePEc:cen:wpaper:14-12} describes efforts to create a new version of the Synthetic LBD, using a longer time  series (through 2010) and newer industry coding (NAICS), while also adjusting and extending the models for  improved  analytic validity and  the imputation of additional variables. In this paper, we refer to and re-use the older methodology, which we will call \SynLBD. Our emphasis is on the comparability of results obtained for a given methodology across the various applications.
   
 
-We can currently distinguish between two methods to create synthetic data. The general approach to data synthesis is to generate a joint posterior predictive distribution of $Y|X$ where $Y$ are variables to be synthesized and $X$ are unsynthesized variables. In \SynLBD, variables are synthesized in a sequential fashion, with categorical variables being generally processed first using a variant of Dirichlet-Multinomial models. Continuous variables are then synthesized using a normal linear regression model with kennel density-based transformation (\textcite{WOODCOCK20094228}).\footnote{\textcite{RePEc:cen:wpaper:14-12} shift  to a Classification and Regression Trees (CART) model with Bayesian bootstrap. } \SynLBD{} is implemented in SAS\texttrademark, which is frequently used in national statistical offices.
+We can currently distinguish between two methods to create synthetic data. The general approach to data synthesis is to generate a joint posterior predictive distribution of $Y|X$ where $Y$ are variables to be synthesized and $X$ are unsynthesized variables. In \SynLBD, variables are synthesized in a sequential fashion, with categorical variables being generally processed first using a variant of Dirichlet-Multinomial models. Continuous variables are then synthesized using a normal linear regression model with kennel density-based transformation \citep{WOODCOCK20094228}.\footnote{\textcite{RePEc:cen:wpaper:14-12} shift  to a Classification and Regression Trees (CART) model with Bayesian bootstrap. } \SynLBD{} is implemented in SAS\texttrademark, which is frequently used in national statistical offices.
 
 To evaluate whether synthetic data algorithms developed in the U.S. can be adapted to generate similar synthetic data for other countries, \textcite{RePEc:cen:wpaper:14-13} implement \SynLBD{} to the German Longitudinal Business Database (GLBD). In this paper, we extend the analysis from the earlier paper, and extend the application to the Canadian context (SynLEAP). 
 
 \subsection{Limitations}
 
-In both cases, we encountered various technical and data-driven limitations. In the German case, our experiments were limited to only a handful of industries, due to a combination of time and software availability factors. The results should still be considered preliminary. In both countries, as outlined in Section~\ref{sec:data}, there are subtle but potentially important definitions in the various variable definitions. Industry coding differs across all three countries, and the level of detail in each of the industry codings may affect the success and precision of the synthesis.\footnote{
+In both cases, we encountered various technical and data-driven limitations. In the German case, our experiments were limited to only a handful of industries, due to a combination of time and software availability factors. The results should still be considered preliminary. In both countries, as outlined in Section~\ref{sec:data}, there are subtle but potentially important definitions in the various variable definitions. Industry coding differs across all three countries, and the level of detail in each of the industry codings may affect the success and precision of the synthesis.\footnote{\textcite{StatisticsCanada1991}, when comparing the 1987 US \ac{SIC} to the 1980 Canadian \ac{SIC},  already pointed out that the degree of specialization, the organization of production, and the size of the respective markets differed. Thus, the density of establishments within each of the chosen categories is likely affect the quality of the synthesis.} 
+
+Furthermore, due to the nature of the underlying data, entities are establishments in Germany and the US, but employers in Canada. \SynLBD{} should work on any level of entity aggregation (see \citet{RePEc:cen:wpaper:14-12} for an application to hierarchical firm data with both firm/employer and establishment level imputation). However, it may yet again affect the observed density of the data within industry-year categories, and therefore the overall comparability. Finally, both the German and the Canadian data experience some level of industry coding change, which may affect the classification of some entities.
+
+\subsection{Common processing}
+
+In all countries, the underlying data provides annual measures. However, \SynLBD{} assumes a longitudinal (wide) structure of the dataset, with invariant industry (and location). In all cases, the modal industry is chosen to represent the entity's industrial activity. 
+
+In all countries, the first and last years are occassionally problematic, and were dropped. Furthermore, in all countries, the synthesis of certain industries failed to complete. In both Canada and the US, this number is less than 10. In Canada, they account for about 7 percent of the total number of observations (Table \ref{tab:Synthesized_observations}).
 
 
-% Table tab:LEAP_Variable
-\input{tables/table_vardescription}
-
-After implementing the U.S. synthetic LBD code, we follow four steps to create a Canadian synthetic database. \begin{enumerate}
-    \item We exclude the public sector (NAICS 61, 62, and 91) because Statistics Canada does not produce any statistics for those sectors.
-    \item We exclude industries for which the algorithm is not converging. These industries are NAICS 4481,    4482,     4483,     4511,     4513,     4841,     4842,     5241, and 5242. These industries represent approximately 7 percent of the total number of observations and are labeled as ``not synthesized'' in Table \ref{Synthesized_observations}.
-    \item We drop some industries, from the synthesized industries, which have less than ten observations in a given year.
-    \item We drop observation for the last year each firm was observed since the SynLBD code does not properly approximate the last year of the data.
-\end{enumerate}. 
-After the implementation of these steps, we have around 22 million observations in the CanSynLBD database during the period of 1991 - 2014.
-
-\begin{table}[H]
-  \centering
-\begin{threeparttable}
-  \caption{Synthesized observations}  \label{Synthesized_observations} \medskip
-  \renewcommand{\arraystretch}{1}
-  \begin{tabular}{l  c c }
-    \toprule
-    \textbf{Category}&\textbf{\# of Observations (millions)}&\textbf{Percentage}\\
-    \midrule
-\input{tables/Synthesized_observations}
-   \bottomrule
-  \end{tabular} 
-\begin{tablenotes}
-\small
-\item Note: Not synthesized industries are NAICS 4481,    4482,     4483,     4511,     4513,     4841,     4842, 5241, and 5242. These industries are not converging for each time of implementation We drop industries, from the synthesized industries, which have less than ten observations in a given year. We do not synthesize the public sector (NAICS 61, 62, and 91).
- \end{tablenotes}
- \end{threeparttable}
-\end{table}
 
 %\newpage
