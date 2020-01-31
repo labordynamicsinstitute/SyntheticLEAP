@@ -1,17 +1,17 @@
 
-\newcommand{\TableNote}{$LEAP$ is the Longitudinal Employment Analysis Program and $CanSynLBD$ is the Canadian synthetic database based on LEAP. }
+\newcommand{\CanTableNote}{$LEAP$ is the Longitudinal Employment Analysis Program and $CanSynLBD$ is the Canadian synthetic database based on LEAP. }
 
 \subsection{Entity Characteristics}
 
-The CanSynLBD and LEAP generally provide comparable inferences on aggregate means and correlations. For example, Figures \ref{GrossEmploymentPrivate} and \ref{GrossEmploymentManufacturing} show that gross employment levels for each year in the CanSynLBD are very close to those in the LEAP. However, the manufacturing sector shows closer patterns than the private sector.\footnote{The private sector comprises all industries including the manufacturing sector except the public sector  (NAICS 61, 62, and 91)} We find similar results for total payroll (Figures \ref{TotalPayrollPrivate} and  \ref{TotalPayrollManufacturing}) .
+The CanSynLBD and LEAP generally provide comparable inferences on aggregate means and correlations. For example, Figures \ref{tab:Can:GrossEmploymentPrivate} and \ref{tab:Can:GrossEmploymentManufacturing} show that gross employment levels for each year in the CanSynLBD are very close to those in the LEAP. However, the manufacturing sector shows closer patterns than the private sector.\footnote{The private sector comprises all industries including the manufacturing sector except the public sector  (NAICS 61, 62, and 91)} We find similar results for total payroll (Figures \ref{tab:Can:TotalPayrollPrivate} and  \ref{tab:Can:TotalPayrollManufacturing}) .
 
 \todo{Why is manufacturing always below, but overall employment crosses? Which industries are driving that?} \todo{JA: I checked before, but I could not able to identify any specific reason.}
 \begin{figure} [H]
 \centering
-\caption{Gross employment level by year (private)} \label{GrossEmploymentPrivate}
+\caption{Gross employment level by year (private)} \label{tab:Can:GrossEmploymentPrivate}
 \includegraphics[height=2.8in, width=.7\linewidth]{graphs/Gross_employment_level_by_year_private_bw.pdf} 
 \begin{minipage}{0.85\textwidth}
-{\footnotesize Note: \TableNote \par}
+{\footnotesize Note: \CanTableNote \par}
 \end{minipage}
 \end{figure}
 
@@ -32,38 +32,38 @@ The CanSynLBD and LEAP generally provide comparable inferences on aggregate mean
 
 \begin{figure} [H]
 \centering
-\caption{Gross employment level by year (manufacturing)} \label{GrossEmploymentManufacturing}
+\caption{Gross employment level by year (manufacturing)} \label{tab:Can:GrossEmploymentManufacturing}
 \includegraphics[height=2.8in, width=.7\linewidth]{graphs/Gross_employment_level_by_year_manufacturing_bw.pdf} 
 \begin{minipage}{0.85\textwidth}
-{\footnotesize Note: \TableNote  \par}
+{\footnotesize Note: \CanTableNote  \par}
 \end{minipage}
 \end{figure}
 
 
 \begin{figure} [H]
 \centering
-\caption{Total payroll by year (private)} \label{TotalPayrollPrivate}
+\caption{Total payroll by year (private)} \label{tab:Can:TotalPayrollPrivate}
 \includegraphics[height=2.8in, width=.7\linewidth]{graphs/Total_payroll_by_year_private_bw.pdf} 
 \begin{minipage}{0.85\textwidth}
-{\footnotesize Note: \TableNote \par}
+{\footnotesize Note: \CanTableNote \par}
 \end{minipage}
 \end{figure}
 \begin{figure} [H]
 \centering
-\caption{Total payroll by year (manufacturing)} \label{TotalPayrollManufacturing}
+\caption{Total payroll by year (manufacturing)} \label{tab:Can:TotalPayrollManufacturing}
 \includegraphics[height=2.8in, width=.7\linewidth]{graphs/Total_payroll_by_year_manufacturing_bw.pdf} 
 \begin{minipage}{0.85\textwidth}
-{\footnotesize Note: \TableNote \par}
+{\footnotesize Note: \CanTableNote \par}
 \end{minipage}
 \end{figure}
 
-\subsection{Firm Dynamics}
-To assess how well the CanSynLBD captures firm dynamics, we also compute entry and exit rates of the private sector by year. Table \ref{FirmDynamics} shows that those rates for CanSynLBD are similar to LEAP database. To show further those rates are similar, we compute the divergence of entry rate as the entry rate of CanSynLBD net the entry rate of LEAP as well as the divergence of exit rate as the exit rate of CanSynLBD net the exit rate of LEAP (see Figure \ref{Divergence}).
+\subsection{Entity Dynamics}
+To assess how well the synthetic data capture entity dynamics, we also compute entry and exit rates  by year. Table \ref{tab:Can:FirmDynamics} shows that those rates for CanSynLBD are similar to LEAP database. To show further those rates are similar, we compute the divergence of entry rate as the entry rate of CanSynLBD net the entry rate of LEAP as well as the divergence of exit rate as the exit rate of CanSynLBD net the exit rate of LEAP (see Figure \ref{Divergence}).
 
 \begin{table}[H]
   \centering
 \begin{threeparttable}
- \caption{Entry and exit rates by year} \label{FirmDynamics} \medskip
+ \caption{Entry and exit rates by year (LEAP)} \label{tab:Can:FirmDynamics} \medskip
 \renewcommand{\arraystretch}{1}
 \begin{tabular}{l|c c| c c| c c}
 \toprule
@@ -75,7 +75,27 @@ To assess how well the CanSynLBD captures firm dynamics, we also compute entry a
   \end{tabular} 
 \begin{tablenotes}
 \small
-\item Note: \TableNote  We calculate the divergence of entry rate as the entry rate of CanSynLBD net the entry rate of LEAP and the divergence of exit rate as the exit rate of CanSynLBD net the exit rate of LEAP.
+\item Note: \CanTableNote  We calculate the divergence of entry rate as the entry rate of CanSynLBD net of the entry rate of LEAP and the divergence of exit rate as the exit rate of CanSynLBD net of the exit rate of LEAP. Private sector only.
+ \end{tablenotes}
+ \end{threeparttable}
+\end{table}
+
+\begin{table}[H]
+  \centering
+\begin{threeparttable}
+ \caption{Entry and exit rates by year (GLBD)} \label{tab:DE:FirmDynamics} \medskip
+\renewcommand{\arraystretch}{1}
+\begin{tabular}{l|c c| c c| c c}
+\toprule
+&\multicolumn{2}{c|}{\textbf{GLBD}} &  \multicolumn{2}{c|}{\textbf{GSynLBD}}&  \multicolumn{2}{c}{\textbf{Divergence}}\\
+\textbf{Year}&\textbf{Entry Rate}&\textbf{Exit Rate}&\textbf{Entry Rate}&\textbf{Exit Rate} &\textbf{Entry Rate}&\textbf{Exit Rate}\\
+\midrule
+\input{tables/Entry_and_exit_rate_by_year_GsynLBD.tex}
+   \bottomrule
+  \end{tabular} 
+\begin{tablenotes}
+\small
+\item Note: We calculate the divergence of entry rate as the entry rate of GSynLBD net of the entry rate of GLBD and the divergence of exit rate as the exit rate of GSynLBD net of the exit rate of GLBD.
  \end{tablenotes}
  \end{threeparttable}
 \end{table}
@@ -85,7 +105,7 @@ To assess how well the CanSynLBD captures firm dynamics, we also compute entry a
 \caption{Divergence of exit and entry rate between LEAP and CanSynLBD} \label{Divergence}
 \includegraphics[height=2.8in, width=.7\linewidth]{graphs/Divergence_of_exit_and_entry_rate_between_LEAP_and_CanSynLBD_bw.pdf} 
 \begin{minipage}{0.85\textwidth}
-{\footnotesize Note: \TableNote  We calculate the divergence of entry rate as the entry rate of CanSynLBD net the entry rate of LEAP and the divergence of exit rate as the exit rate of CanSynLBD net the exit rate of LEAP. \par}
+{\footnotesize Note: \CanTableNote  We calculate the divergence of entry rate as the entry rate of CanSynLBD net the entry rate of LEAP and the divergence of exit rate as the exit rate of CanSynLBD net the exit rate of LEAP. \par}
 \end{minipage}
 \end{figure}
 
@@ -98,7 +118,7 @@ One of the most important applications of LEAP is to generate statistics that de
 \caption{Job creation rate by year (private)} \label{JobCreationPrivate}
 \includegraphics[height=2.8in, width=.7\linewidth]{graphs/Job_creation_rate_by_year_private_bw.pdf} 
 \begin{minipage}{0.85\textwidth}
-{\footnotesize Note: \TableNote \par}
+{\footnotesize Note: \CanTableNote \par}
 \end{minipage}
 \end{figure}
 
@@ -107,7 +127,7 @@ One of the most important applications of LEAP is to generate statistics that de
 \caption{Job creation rate  by year (manufacturing)} \label{JobCreationManufacturing}
 \includegraphics[height=2.8in, width=.7\linewidth]{graphs/Job_creation_rate_by_year_Manufacturing_bw.pdf} 
 \begin{minipage}{0.85\textwidth}
-{\footnotesize Note: \TableNote \par}
+{\footnotesize Note: \CanTableNote \par}
 \end{minipage}
 \end{figure}
 
@@ -117,7 +137,7 @@ One of the most important applications of LEAP is to generate statistics that de
 \caption{Net job creation rate by year (private)} \label{NetJobCreationPrivate}
 \includegraphics[height=2.8in, width=.7\linewidth]{graphs/Net_job_creation_rate_by_year_private_bw.pdf} 
 \begin{minipage}{0.85\textwidth}
-{\footnotesize Note: \TableNote \par}
+{\footnotesize Note: \CanTableNote \par}
 \end{minipage}
 \end{figure}
 \begin{figure} [H]
@@ -145,7 +165,7 @@ Figures~\ref{FirmSharePrivate} and \ref{FirmShareManufacturing} plot the share o
 \caption{Share of firms by NAICS two-digit and year (private)} \label{FirmSharePrivate}
 \includegraphics[height=2.8in, width=.7\linewidth]{graphs/Share_of_firms_by_NAICS_two-digit_and_year_private_bw.pdf} 
 \begin{minipage}{0.85\textwidth}
-{\footnotesize Note: \TableNote \par}
+{\footnotesize Note: \CanTableNote \par}
 \end{minipage}
 \end{figure}
 
@@ -156,7 +176,7 @@ Figures~\ref{FirmSharePrivate} and \ref{FirmShareManufacturing} plot the share o
 \caption{Share of firms by NAICS two-digit and year (manufacturing)} \label{FirmShareManufacturing}
 \includegraphics[height=2.8in, width=.7\linewidth]{graphs/Share_of_firms_by_NAICS_two-digit_and_year_Manufacturing_bw.pdf} 
 \begin{minipage}{0.85\textwidth}
-{\footnotesize Note: \TableNote \par}
+{\footnotesize Note: \CanTableNote \par}
 \end{minipage}
 \end{figure}
 
@@ -165,7 +185,6 @@ Given a distribution of entities alive, we can also compute the share of observe
 \begin{equation}
     \label{eq:share_employment}
 x_{its} = X_{its}/\sum_{i} \sum_{t} X_{its}, 
-
 \end{equation}
 
 where $i$ are two-digit NAICS industries, $t$ are  years in-sample, $s$ indicates whether it is in the synthetic or confidential data, and $X_{its}$ is the sum of the variable of interest $X$ for industry $i$ and year $t$ in  dataset $s$.
@@ -178,7 +197,7 @@ Employment shares  do not cluster along the 45-degree line. However, this hides 
 \caption{Share of employment by NAICS two-digit and year (private)} \label{EmploymentSharePrivate}
 \includegraphics[height=2.8in, width=.7\linewidth]{graphs/Share_of_employment_by_NAICS_two-digit_and_year_private_bw.pdf} 
 \begin{minipage}{0.85\textwidth}
-{\footnotesize Note: \TableNote \par}
+{\footnotesize Note: \CanTableNote \par}
 \end{minipage}
 \end{figure}
 \vspace{-15.5pt}
@@ -187,7 +206,7 @@ Employment shares  do not cluster along the 45-degree line. However, this hides 
 \caption{Share of employment by NAICS two-digit and year (manufacturing)} \label{EmploymentShareManufacturing}
 \includegraphics[height=2.8in, width=.7\linewidth]{graphs/Share_of_employment_by_NAICS_two-digit_and_year_Manufacturing_bw.pdf} 
 \begin{minipage}{0.85\textwidth}
-{\footnotesize Note: \TableNote \par}
+{\footnotesize Note: \CanTableNote \par}
 \end{minipage}
 \end{figure}
 
@@ -198,7 +217,7 @@ Figures~\ref{PayrollSharePrivate} and~\ref{PayrollShareManufacturing} plot the s
 \caption{Share of payroll by NAICS two-digit and year (private)} \label{PayrollSharePrivate}
 \includegraphics[height=2.8in, width=.7\linewidth]{graphs/Share_of_payroll_by_NAICS_two-digit_and_year_private_bw.pdf} 
 \begin{minipage}{0.85\textwidth}
-{\footnotesize Note: \TableNote \par}
+{\footnotesize Note: \CanTableNote \par}
 \end{minipage}
 \end{figure}
 \vspace{-15.5pt}
@@ -207,7 +226,7 @@ Figures~\ref{PayrollSharePrivate} and~\ref{PayrollShareManufacturing} plot the s
 \caption{Share of payroll by NAICS two-digit and year (manufacturing)} \label{PayrollShareManufacturing}
 \includegraphics[height=2.8in, width=.7\linewidth]{graphs/Share_of_payroll_by_NAICS_two-digit_and_year_Manufacturing_bw.pdf} 
 \begin{minipage}{0.85\textwidth}
-{\footnotesize Note: \TableNote \par}
+{\footnotesize Note: \CanTableNote \par}
 \end{minipage}
 \end{figure}
 
@@ -223,13 +242,13 @@ $pMSE$ is closer to zero for the manufacturing sector than the private sector in
 \begin{table}[H]
   \centering
 \begin{threeparttable}
- \caption{$pMSE$ estimates} \label{tab:pMSE_regression} \medskip
+ \caption{$pMSE$ estimates for CanSynLBD} \label{tab:pMSE_regression} \medskip
 \renewcommand{\arraystretch}{1}
 \begin{tabular}{l|c c| c c}
 \toprule
 \textbf{Independent Variables}&\multicolumn{2}{c|}{\textbf{Logistic Regression}} &  \multicolumn{2}{c}{\textbf{Probit Regression}}\\
 \midrule
-\input{tables/pMSE_estimates}
+\input{tables/pMSE_estimates.tex}
    \bottomrule
   \end{tabular} 
 \begin{tablenotes}
@@ -237,6 +256,25 @@ $pMSE$ is closer to zero for the manufacturing sector than the private sector in
 \item Note: An observation is a entity-year in the combined database. In all specifications, we include both time and industry fixed effects. Standard errors are in parentheses.  ***, **, and * indicate statistically significant coefficients at 1\%, 5\%, and 10\% percent levels, respectively.
  \end{tablenotes}
  \end{threeparttable}
+\end{table}
+
+\begin{table}[H]
+  \centering
+%\begin{threeparttable}
+ \caption{$pMSE$ estimates for GSynLBD} \label{tab:pMSE_regression} \medskip
+\renewcommand{\arraystretch}{1}
+\begin{tabular}{l|c |c}
+\toprule
+\textbf{Independent Variables}&\textbf{Logistic Regression} &\textbf{Probit Regression}\\
+\midrule
+\input{tables/pMSE_estimates_GsynLBD.tex}
+   \bottomrule
+  \end{tabular} 
+\begin{tablenotes}
+\small
+\item Note: An observation is a entity-year in the combined database. In all specifications, we include both time and industry fixed effects. Standard errors are in parentheses.  ***, **, and * indicate statistically significant coefficients at 1\%, 5\%, and 10\% percent levels, respectively.
+ \end{tablenotes}
+% \end{threeparttable}
 \end{table}
 
 DISCUSSION IS STILL MISSING.\todo{pMSE discussion}
@@ -252,7 +290,7 @@ where $Emp_{et}$ is log employment of entity $e$ in year $t$, $Emp_{e,t-1}$ is i
 \begin{table}[H]
   \centering
 \begin{threeparttable}
- \caption{Regression coefficients (OLS)} \label{OLS} \medskip
+ \caption{Regression coefficients (OLS) for LEAP} \label{OLS} \medskip
 \renewcommand{\arraystretch}{1}
 \begin{tabular}{l|c c| c c}
 \toprule
@@ -268,13 +306,32 @@ where $Emp_{et}$ is log employment of entity $e$ in year $t$, $Emp_{e,t-1}$ is i
  \end{threeparttable}
 \end{table}
 
+\begin{table}[H]
+  \centering
+%\begin{threeparttable}
+ \caption{Regression coefficients (OLS) for GLBD} \label{OLS} \medskip
+\renewcommand{\arraystretch}{1}
+\begin{tabular}{l|c |c}
+\toprule
+\textbf{Independent Variables}&\textbf{GLBD} &  \textbf{GSynLBD}\\
+\midrule
+\input{tables/Regression_coefficients_OLS_GsynLBD.tex}
+   \bottomrule
+  \end{tabular} 
+\begin{tablenotes}
+\small
+\item Note: In all specifications, we include both year and industry fixed effects. Standard errors are in parentheses.  ***, **, and * indicate statistically significant coefficients at 1\%, 5\%, and 10\% percent levels, respectively.
+ \end{tablenotes}
+ %\end{threeparttable}
+\end{table}
+
 \todo{adjust for german analysis}
 We estimate the model separately on confidential and synthetic data for the private sector (and for Canada, for the manufacturing sector). We find that the CansynLBD data provides similar predictions to LEAP data (Tables  \ref{OLS}).\todo{compute overlap interval} \todo{JA: @Lars, I think you mentioned once that you would like to calculate this. I could calculate using the method explained in the appendix.}
 
 \begin{table}[H]
   \centering
 \begin{threeparttable}
- \caption{Regression coefficients (Dynamic)} \label{Dynamic - GMM} \medskip
+ \caption{Regression coefficients (Dynamic) for LEAP} \label{Dynamic - GMM} \medskip
 \renewcommand{\arraystretch}{1}
 \begin{tabular}{l|c c| c c}
 \toprule
@@ -290,6 +347,25 @@ We estimate the model separately on confidential and synthetic data for the priv
  \end{threeparttable}
 \end{table}
 
+\begin{table}[H]
+  \centering
+%\begin{threeparttable}
+ \caption{Regression coefficients (Dynamic) for GLBD} \label{Dynamic - GMM} \medskip
+\renewcommand{\arraystretch}{1}
+\begin{tabular}{l|c |c}
+\toprule
+\textbf{Independent Variables}&\textbf{GLBD} &\textbf{GSynLBD}\\
+\midrule
+\input{tables/Regression_coefficients_Dynamic_GMM_GsynLBD.tex}
+   \bottomrule
+  \end{tabular} 
+\begin{tablenotes}
+\small
+\item Note: In this table, $m2$ is the Arellano-Bond test for zero autocorrelation in first-differenced errors for order two. Standard errors are in parentheses. ***, **, and * indicate statistically significant coefficients at 1\%, 5\%, and 10\% percent levels, respectively.
+ \end{tablenotes}
+% \end{threeparttable}
+\end{table}
+
 As $Emp_{e,t-1}$ is correlated with $\alpha_{i}$ because $Emp_{e,t-1}$ is a function of $\alpha_{i}$, \todo{This may need to be explained for non-economists - why is lagged employment of firm e a function of industry effect alpha i?}
 OLS estimators are biased and inconsistent. 
 To take this endogeneity bias into account, we use the estimation method from \textcite{RePEc:oup:restud:v:58:y:1991:i:2:p:277-297.} and find similar predictions (Table \ref{Dynamic - GMM}). To check the validity of the model, we use two tests. First, to test for autocorrelation, we use the test $m2$ by \textcite{RePEc:oup:restud:v:58:y:1991:i:2:p:277-297.}. In the table, we report the $z$ test statistic for $m2$ test for zero autocorrelation in the  first-differenced errors of order two. Second, we use the Sargan test to verify the validity of instrument subsets (shown in the last three rows in the table).
@@ -299,7 +375,7 @@ We furthermore estimate the model using the system GMM  method proposed by \text
 \begin{table}[H]
   \centering
 \begin{threeparttable}
- \caption{Regression coefficients (Dynamic - system GMM)} \label{Dynamic - system GMM} \medskip
+ \caption{Regression coefficients (Dynamic - system GMM) for LEAP} \label{Dynamic - system GMM} \medskip
 \renewcommand{\arraystretch}{1}
 \begin{tabular}{l|c c| c c}
 \toprule
@@ -315,6 +391,25 @@ We furthermore estimate the model using the system GMM  method proposed by \text
  \end{threeparttable}
 \end{table}
 
+\begin{table}[H]
+  \centering
+%\begin{threeparttable}
+ \caption{Regression coefficients (Dynamic - system GMM) for GLBD} \label{Dynamic - system GMM} \medskip
+\renewcommand{\arraystretch}{1}
+\begin{tabular}{l|c| c}
+\toprule
+\textbf{Independent Variables}&\textbf{GLBD} &\textbf{GSynLBD}\\
+\midrule
+\input{tables/Regression_coefficients_Dynamic_System_GMM_GsynLBD.tex}
+   \bottomrule
+  \end{tabular} 
+\begin{tablenotes}
+\small
+\item Note: An observation is an entity-year. In this table, $m2$ is the Arellano-Bond test for zero autocorrelation in first-differenced errors for order two. Standard errors are in parentheses. ***, **, and * indicate statistically significant coefficients at 1\%, 5\%, and 10\% percent levels, respectively.
+ \end{tablenotes}
+ %\end{threeparttable}
+\end{table}
+
 We also estimate above dynamic panel data model with a first-order moving average using appropriate instruments for both level and difference equation as proposed by \textcite{RePEc:eee:econom:v:68:y:1995:i:1:p:29-51} and \textcite{RePEc:eee:econom:v:87:y:1998:i:1:p:115-143}:
 
 \todo{@ JA: $\alpha$ is used twice - not clear - please verify - I have added subscripts}
@@ -327,7 +422,7 @@ Table \ref{Dynamic - system GMM with MA(1)} shows that the CansynLBD provides si
 \begin{table}[H]
   \centering
 \begin{threeparttable}
- \caption{Regression coefficients (Dynamic - system GMM with MA(1))} \label{Dynamic - system GMM with MA(1)} \medskip
+ \caption{Regression coefficients (Dynamic - system GMM with MA(1)) for LEAP} \label{Dynamic - system GMM with MA(1)} \medskip
 \renewcommand{\arraystretch}{1}
 \begin{tabular}{l|c c| c c}
 \toprule
@@ -341,4 +436,23 @@ Table \ref{Dynamic - system GMM with MA(1)} shows that the CansynLBD provides si
 \item Note: An observation is a firm and a year. In this table, $m2$ is the Arellano-Bond test for zero autocorrelation in first-differenced errors for order two. $LEAP$ is the Longitudinal Employment Analysis Program and $CanSynLBD$ is the Canadian synthetic database based on LEAP. In this table, we use 2015 vintage of LEAP and drop last year observation of each firm. Standard errors are in parentheses. ***, **, and * indicate statistically significant coefficients at 1\%, 5\%, and 10\% percent levels, respectively.
  \end{tablenotes}
  \end{threeparttable}
+\end{table}
+
+\begin{table}[H]
+  \centering
+%\begin{threeparttable}
+ \caption{Regression coefficients (Dynamic - system GMM with MA(1)) for GLBD} \label{Dynamic - system GMM with MA(1)} \medskip
+\renewcommand{\arraystretch}{1}
+\begin{tabular}{l|c| c}
+\toprule
+\textbf{Independent Variables}&\textbf{GLBD} &\textbf{GSynLBD}\\
+\midrule
+\input{tables/Regression_coefficients_Dynamic_System_GMM_MA_GsynLBD.tex}
+   \bottomrule
+  \end{tabular} 
+\begin{tablenotes}
+\small
+\item Note: An observation is a firm and a year. In this table, $m2$ is the Arellano-Bond test for zero autocorrelation in first-differenced errors for order two. Standard errors are in parentheses. ***, **, and * indicate statistically significant coefficients at 1\%, 5\%, and 10\% percent levels, respectively.
+ \end{tablenotes}
+% \end{threeparttable}
 \end{table}
