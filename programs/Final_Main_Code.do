@@ -1,6 +1,6 @@
 
 set  more off
-cd "\\f4cder02\2017_SynLBD_LEAP\CanSynLBD\Stata\"
+cd "\\f4cder01\2017_SynLBD_LEAP\CanSynLBD\Stata\"
 
 
 *** Synthesized data
@@ -302,11 +302,18 @@ use "TemporaryFile\Entry_Exit_Ori.dta", clear
 sort year
 merge m:1 year using "TemporaryFile\Entry_Exit_Syn.dta"
 drop _merge
-listtex year entry_ori exit_ori entry_syn exit_syn using  "Report\Entry_and_exit_rate_by_year.tex" , replace rstyle(tabular)
+gen divergence_entry=entry_syn -entry_ori
+gen divergence_exit=exit_syn -exit_ori
+format divergence_entry divergence_exit %9.2fc
+listtex year entry_ori exit_ori entry_syn exit_syn divergence_entry divergence_exit using  "Report\Entry_and_exit_rate_by_year.tex" , replace rstyle(tabular)
 export excel using  "Report\Entry_and_exit_rate_by_year.xls" , replace firstrow(variables)
 
+twoway (connected divergence_entry  year) || (connected divergence_exit  year),  xlabel(1990(5)2015, labsize(small)) ylabel(-1.5(.5)1, labsize(small)) xtitle("Year", size(small)) ytitle("Divergence of exit and entry rate", size(small)) legend(label(1 "Divergence of entry rate") label(2 "Divergence of exit rate")  size(small)) 
 
-
+graph save "Report\Divergence_of_exit_and_entry_rate_between_LEAP_and_CanSynLBD.gph", replace
+graph export "Report\Divergence_of_exit_and_entry_rate_between_LEAP_and_CanSynLBD.pdf", as(pdf) replace
+twoway (connected divergence_entry  year, lpattern(dash) lcolor(black) msymbol(circle) mcolor(black)) || (connected divergence_exit  year, lpattern(solid) lcolor(black) msymbol(diamond) mcolor(black)),  xlabel(1990(5)2015, labsize(small)) ylabel(-1.5(.5)1, labsize(small)) xtitle("Year", size(small)) ytitle("Divergence of exit and entry rate", size(small)) legend(label(1 "Divergence of entry rate") label(2 "Divergence of exit rate")  size(small)) plotregion(color(white)) graphregion(color(white))
+graph export "Report\Divergence_of_exit_and_entry_rate_between_LEAP_and_CanSynLBD_bw.pdf", as(pdf) replace
 
 
 
@@ -357,7 +364,7 @@ eststo clear
 
 
 ** Economic Growth -Dynamic GMM
-global exogenous log_pay age2 - age5  i.year
+global exogenous log_pay age2 - age5  i.year i.naics
 
 eststo clear
 use "TemporaryFile\Regression_Ori.dta", clear
@@ -414,7 +421,7 @@ eststo clear
 
 
 ** Economic Growth -Dynamic System GMM
-global exogenous log_pay age2 - age5  i.year
+global exogenous log_pay age2 - age5  i.year i.naics
 
 eststo clear
 use "TemporaryFile\Regression_Ori.dta", clear
@@ -471,7 +478,7 @@ eststo clear
 
 
 ** Economic Growth -Dynamic System GMM with MA(1)
-global exogenous log_pay age2 - age5  i.year
+global exogenous log_pay age2 - age5  i.year i.naics
 eststo clear
 use "TemporaryFile\Regression_Ori.dta", clear
 xtset id year 
@@ -710,6 +717,71 @@ gen net_job=job_creation - job_destruction
 saveold "\\f4cder02\2017_SynLBD_LEAP\CanSynLBD\UserGuide\Vetting\ManufacturingSectorRegression.dta", replace 
 
 
+
+
+
+**** pMSE
+set  more off
+cd "\\f4cder01\2017_SynLBD_LEAP\CanSynLBD\Stata\"
+use "TemporaryFile\MainData.dta", clear
+rename (ori_alu ori_pay ori_firstyear ori_lastyear) (alu0 pay0 firstyear0 lastyear0)
+rename (syn_alu syn_pay syn_firstyear syn_lastyear) (alu1 pay1 firstyear1 lastyear1)
+reshape long alu pay firstyear lastyear, i(synid year) j(indicator)
+
+keep if alu>0 | pay>0
+gen log_alu=ln(alu)
+gen log_pay=ln(pay)
+sort id year
+egen min_year=min(year), by(id)
+gen age=year-min_year+1
+recode age (1/2=1) (3/4=2) (5/7=3) (8/12=4) (13/30=5), gen (age_group)
+gen size_group=1 if alu<20
+replace size_group=2 if alu>=20 & alu<100
+replace size_group=3 if alu>=100
+save "TemporaryFile\Regression_pMSE.dta", replace
+
+
+
+eststo clear
+use "TemporaryFile\Regression_pMSE.dta", clear
+*keep if year>=2010
+tab age_group, gen (age)
+
+eststo : xi: logit indicator log_alu log_pay age2 - age5  i.year i.naics if industry =="31-33"
+predict pi1 if industry =="31-33"
+gen pMSE1=(pi1-0.5)*(pi1-0.5)
+summ pMSE1
+estadd scalar pMSE=r(mean)
+
+eststo : xi: logit indicator log_alu log_pay age2 - age5  i.year i.naics
+predict pi2
+gen pMSE2=(pi2-0.5)*(pi2-0.5)
+summ pMSE2
+estadd scalar pMSE=r(mean)
+
+eststo : xi: probit indicator log_alu log_pay age2 - age5  i.year i.naics if industry =="31-33"
+predict pi3 if industry =="31-33"
+gen pMSE3=(pi3-0.5)*(pi3-0.5)
+summ pMSE3
+estadd scalar pMSE=r(mean)
+
+eststo : xi: probit indicator log_alu log_pay age2 - age5  i.year i.naics
+predict pi4
+gen pMSE4=(pi4-0.5)*(pi4-0.5)
+summ pMSE4
+estadd scalar pMSE=r(mean)
+
+
+*sum  pMSE_manu1 pMSE2 pMSE_manu3 pMSE4 pMSE_manu5 pMSE6
+
+
+*esttab using "Report\Regression_coefficients_pMSE.rtf", keep (log_alu log_pay age2 age3 age4  age5) b(%8.4f) pr2(%8.4f) se(%8.4f) coeflabels (log_alu "Ln ALU" log_pay "Ln Pay" age2 "Age 3-4" age3 "Age 5-7" age4 "Age 8-12"  age5 "Age 13 or more")  compress   star(* 0.1  ** 0.05 *** 0.01) pr2    mtitles(Manufacturing Private Manufacturing Private Manufacturing Private)  replace nonumbers fragment scalars("pMSE pMSE" )
+esttab using "Report\Regression_coefficients_pMSE.tex", keep (log_alu log_pay age2 age3 age4  age5) b(%8.4f) pr2(%8.4f) se(%8.4f) coeflabels (log_alu "Ln ALU" log_pay "Ln Pay" age2 "Age 3-4" age3 "Age 5-7" age4 "Age 8-12"  age5 "Age 13 or more")  compress   star(* 0.1  ** 0.05 *** 0.01) pr2    mtitles(Manufacturing Private Manufacturing Private Manufacturing Private)  replace nonumbers fragment  scalars("pMSE pMSE" )
+esttab using "Report\Regression_coefficients_pMSE.csv", keep (log_alu log_pay age2 age3 age4  age5) b(%8.4f) pr2(%8.4f) se(%8.4f) coeflabels (log_alu "Ln ALU" log_pay "Ln Pay" age2 "Age 3-4" age3 "Age 5-7" age4 "Age 8-12"  age5 "Age 13 or more")  compress   star(* 0.1  ** 0.05 *** 0.01) pr2    mtitles(Manufacturing Private Manufacturing Private Manufacturing Private)  replace nonumbers  scalars("pMSE pMSE" )
+
+esttab using "Report\Regression_coefficients_pMSE.csv", keep (log_alu log_pay age2 age3 age4  age5) b(%8.4f) pr2(%8.4f) se(%8.4f) coeflabels (log_alu "Ln ALU" log_pay "Ln Pay" age2 "Age 3-4" age3 "Age 5-7" age4 "Age 8-12"  age5 "Age 13 or more")  compress   pr2    mtitles(Manufacturing Private Manufacturing Private Manufacturing Private)  replace nonumbers  plain noparentheses  nostar wide  scalars("pMSE pMSE" ) 
+
+eststo clear
 
 exit
 
