@@ -2,6 +2,7 @@
 
 \section{Analytical validity}
 
+\todo{I don't think we need this part.}
 \subsection{Confidence interval for gross employment and other measures}
 We compute the standard error for gross employment as follows. We consider gross employment $E$ to be the sum of firm employments $E_j$:
 
@@ -11,13 +12,7 @@ E = \sum_j E_j
 
 Average firm employment $\bar{E} = \frac{E}{N_j}$ is assumed to be normally distributed, with standard deviation $\sigma_{\bar{E}}$. We compare the synthetic and the confidential data for gross employment, including error bands.
 
-\subsection{Confidence interval overlap measures}
 
-More generally, the question as to the statistical precision of the results obtained from the synthetic data can be assessed. For this purpose, we computed the overlap of parameter estimates  as suggested by \cite{tas2006}. We compute the \emph{interval overlap measure} $J_{k,m}$ for parameter $k$ in model $m$. Consider the overlap of confidence intervals $(L,U)$ for $\beta_{k,m}$ (estimated from the confidential data) and $(L^{*},U^{*})$ for $\beta_{k,m}^*$ (from the synthetic data). Let $L^{over} = \max (L,L^{*} )$ and $U^{over} = \min (U,U^{*})$. Then the average overlap in confidence intervals is
-$$
-J_{k,m}^{*} = \frac{1}{2} \left [ \frac{U^{over} - L^{over}}{U-L} + \frac{U^{over} - L^{over}}{U^*-L ^*}        \right ]
-$$
-We then average $J_{k,m}^{*}$ over all estimated models and parameters, by validation request. The correct counterfactual involved running these validation requests against synthetic data that does not claim analytical validity, such as synthetic data generated from uni-dimensional distributions of variables. Results are pending.\todo{BD: ?}
 
 %\subsection{Other models}
 %
