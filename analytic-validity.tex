@@ -8,7 +8,7 @@ The CanSynLBD and LEAP generally provide comparable inferences on aggregate mean
 \begin{figure} [H]
 \centering
 \label{tab:Can:GrossEmploymentPrivate}
-\includegraphics[height=2.8in, width=.7\linewidth]{graphs/Gross_employment_level_by_year_private_bw.pdf} 
+\includegraphics[width=.8\linewidth]{graphs/Figure1-placeholder.png} 
 \caption{Alternate graph} 
 \begin{minipage}{0.48\linewidth}
 {\footnotesize To be computed in R, or redone in Stata using GPH files. \par}
@@ -77,8 +77,62 @@ The CanSynLBD and LEAP generally provide comparable inferences on aggregate mean
 \end{minipage}
 \end{figure}
 
+
+\subsection{Dynamics of Job Flows}
+
+One of the most important applications of LEAP is to generate statistics that describe job flows. Following \cite{DavisHaltiwangerSchuh}, the job creation is defined as the sum of all employment gains from expanding firms from year $t-1$ to year $t$ including entry firms. The job destruction rate is defined as the sum of all employment losses from contracting firms from year $t-1$ to year $t$ including exiting firms. Net job creation is the job creation rate minus the job destruction rate. Figures \ref{JobCreationPrivate} and \ref{JobCreationManufacturing} show the job creation rates from the CanSynLBD compared againg those of the LEAP. These figures show that the manufacturing sector has closer pattern than the private sector. We find a similar patterns for net job creation rates (Figures \ref{NetJobCreationPrivate} and  \ref{NetJobCreationManufacturing}).
+
+\begin{figure} [H]
+\centering
+\caption{Job creation rate by year (private)} \label{JobCreationPrivate}
+\includegraphics[height=2.8in, width=.7\linewidth]{graphs/Job_creation_rate_by_year_private_bw.pdf} 
+\begin{minipage}{0.85\textwidth}
+{\footnotesize Note: \CanTableNote \par}
+\end{minipage}
+\end{figure}
+
+\begin{figure} [H]
+\centering
+\caption{Job creation rate  by year (manufacturing)} \label{JobCreationManufacturing}
+\includegraphics[height=2.8in, width=.7\linewidth]{graphs/Job_creation_rate_by_year_Manufacturing_bw.pdf} 
+\begin{minipage}{0.85\textwidth}
+{\footnotesize Note: \CanTableNote \par}
+\end{minipage}
+\end{figure}
+
+\todo{LV regraph, dropping last year} \todo{JA: Should we mention this in the text including reasons if we drop the last year here?}
+\begin{figure} [H]
+\centering
+\caption{Net job creation rate by year (private)} \label{NetJobCreationPrivate}
+\includegraphics[height=2.8in, width=.7\linewidth]{graphs/Net_job_creation_rate_by_year_private_bw.pdf} 
+\begin{minipage}{0.85\textwidth}
+{\footnotesize Note: \CanTableNote \par}
+\end{minipage}
+\end{figure}
+\begin{figure} [H]
+\centering
+\caption{Net job creation rate  by year (manufacturing)} \label{NetJobCreationManufacturing}
+\includegraphics[height=2.8in, width=.7\linewidth]{graphs/Net_job_creation_rate_by_year_Manufacturing_bw.pdf} 
+\begin{minipage}{0.85\textwidth}
+{\footnotesize Note: $LEAP$ is the Longitudinal Employment Analysis Program and $CanSynLBD$ is the Canadian synthetic database based on LEAP. In this graph, we use 2015 vintage of LEAP for the manufacturing sector and drop last year observation of each firm. \par}
+\end{minipage}
+\end{figure}
+
+
+
 \subsection{Entity Dynamics}
 To assess how well the synthetic data capture entity dynamics, we also compute entry and exit rates  by year. Table \ref{tab:Can:FirmDynamics} shows that those rates for CanSynLBD are similar to LEAP database. To show further those rates are similar, we compute the divergence of entry rate as the entry rate of CanSynLBD net the entry rate of LEAP as well as the divergence of exit rate as the exit rate of CanSynLBD net the exit rate of LEAP (see Figure \ref{Divergence}).
+
+\todo{Also consolidate graphs here}
+\begin{figure} [H]
+\centering
+\label{tab:Can:FirmDynamics}
+\includegraphics[width=.8\linewidth]{graphs/Figure2-placeholder.png} 
+\caption{Alternate graph} 
+\begin{minipage}{0.48\linewidth}
+{\footnotesize To be computed in R, or redone in Stata using GPH files. \par}
+\end{minipage}
+\end{figure}
 
 \begin{table}[H]
   \centering
@@ -128,49 +182,6 @@ To assess how well the synthetic data capture entity dynamics, we also compute e
 {\footnotesize Note: \CanTableNote  We calculate the divergence of entry rate as the entry rate of CanSynLBD net the entry rate of LEAP and the divergence of exit rate as the exit rate of CanSynLBD net the exit rate of LEAP. \par}
 \end{minipage}
 \end{figure}
-
-\subsection{Dynamics of Job Flows}
-
-One of the most important applications of LEAP is to generate statistics that describe job flows. Following \cite{DavisHaltiwangerSchuh}, the job creation is defined as the sum of all employment gains from expanding firms from year $t-1$ to year $t$ including entry firms. The job destruction rate is defined as the sum of all employment losses from contracting firms from year $t-1$ to year $t$ including exiting firms. Net job creation is the job creation rate minus the job destruction rate. Figures \ref{JobCreationPrivate} and \ref{JobCreationManufacturing} show the job creation rates from the CanSynLBD compared againg those of the LEAP. These figures show that the manufacturing sector has closer pattern than the private sector. We find a similar patterns for net job creation rates (Figures \ref{NetJobCreationPrivate} and  \ref{NetJobCreationManufacturing}).
-
-\begin{figure} [H]
-\centering
-\caption{Job creation rate by year (private)} \label{JobCreationPrivate}
-\includegraphics[height=2.8in, width=.7\linewidth]{graphs/Job_creation_rate_by_year_private_bw.pdf} 
-\begin{minipage}{0.85\textwidth}
-{\footnotesize Note: \CanTableNote \par}
-\end{minipage}
-\end{figure}
-
-\begin{figure} [H]
-\centering
-\caption{Job creation rate  by year (manufacturing)} \label{JobCreationManufacturing}
-\includegraphics[height=2.8in, width=.7\linewidth]{graphs/Job_creation_rate_by_year_Manufacturing_bw.pdf} 
-\begin{minipage}{0.85\textwidth}
-{\footnotesize Note: \CanTableNote \par}
-\end{minipage}
-\end{figure}
-
-\todo{LV regraph, dropping last year} \todo{JA: Should we mention this in the text including reasons if we drop the last year here?}
-\begin{figure} [H]
-\centering
-\caption{Net job creation rate by year (private)} \label{NetJobCreationPrivate}
-\includegraphics[height=2.8in, width=.7\linewidth]{graphs/Net_job_creation_rate_by_year_private_bw.pdf} 
-\begin{minipage}{0.85\textwidth}
-{\footnotesize Note: \CanTableNote \par}
-\end{minipage}
-\end{figure}
-\begin{figure} [H]
-\centering
-\caption{Net job creation rate  by year (manufacturing)} \label{NetJobCreationManufacturing}
-\includegraphics[height=2.8in, width=.7\linewidth]{graphs/Net_job_creation_rate_by_year_Manufacturing_bw.pdf} 
-\begin{minipage}{0.85\textwidth}
-{\footnotesize Note: $LEAP$ is the Longitudinal Employment Analysis Program and $CanSynLBD$ is the Canadian synthetic database based on LEAP. In this graph, we use 2015 vintage of LEAP for the manufacturing sector and drop last year observation of each firm. \par}
-\end{minipage}
-\end{figure}
-
-
-
 
 
 \subsection{Distribution of variables across time and industry}
