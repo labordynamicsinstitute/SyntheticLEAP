@@ -1,19 +1,12 @@
 # Read in and convert screwy Stata tabular output (eststo)
+# Lars Vilhuber
+# 2020-02-01
 
-# libraries
-library(tidyverse)
-library(readr)
-library(here)
-
-
-# location
-basedir <- here::here() # will find base of git repo
-datadir <- file.path(basedir,"data")
-tabledir <- file.path(basedir,"tables")
+source(here::here("programs","Post","config.R"),echo=TRUE)
 
 #!-------------- FIRST BATCH ------------------
 
-clean_table <- function(infile,tag = "Model",...) {
+clean_table <- function(infile,tag = "Model",countryval = "Canada",...) {
   # these work for a first batch
   # [1] "---- reading infile=Regression_coefficients_Dynamic.csv --------"
   # [1] "=\"\""                "=\"Private\""         "=\"Manufacturing\""  
@@ -33,7 +26,7 @@ clean_table <- function(infile,tag = "Model",...) {
     mutate(value = str_replace_all(`_parameter`,"[=\"*()]",""),
            synthetic=if_else(str_detect(sector,"_1"),TRUE,FALSE),
            sector=str_squish(str_replace(sector,"_1"," ")),
-           model=tag) %>%
+           model=tag,country=countryval) %>%
     select(-`_parameter`) %>%
     filter(name!="* p<0.1") %>% filter(name!="Standard errors in parentheses")
 }
@@ -41,7 +34,7 @@ clean_table <- function(infile,tag = "Model",...) {
 
 #!-------------------- Second batch --------------------
 
-clean_table2 <- function(infile,tag = "Model",...) {
+clean_table2 <- function(infile,tag = "Model", countryval = "Canada",...) {
   # these work for a second batch
   # [1] "---- reading infile=Regression_coefficients_Dynamic2.csv --------"
   # [1] "X1"              "Private"         "X3"              "Manufacturing"  
@@ -66,41 +59,37 @@ clean_table2 <- function(infile,tag = "Model",...) {
            type=if_else(str_detect(sector,"-se"),"stderr","estimate"),
            sector=str_squish(str_replace(sector,"-se"," ")),
            synthetic=if_else(str_detect(sector,"_1"),TRUE,FALSE),
-           sector=str_squish(str_replace(sector,"_1"," "))) %>%
+           sector=str_squish(str_replace(sector,"_1"," ")),
+           model=tag,country=countryval) %>%
     select(-`_parameter`) %>%
     filter(name!="* p<0.1") %>% filter(name!="Standard errors in parentheses")
 }
 
 
-#!------------ aux function - consistent saving -----------
-mysave <- function(object) {
-  name=deparse(substitute(object))
-  print(paste0("  ---> saving as ",name))
-  print(names(object))
-  saveRDS(object,file.path(datadir,paste0(name,".Rds")))
-  write_csv(object,file.path(datadir,paste0(name,".csv")))
-
-}
 
 #! ---------- now process them. A few have additional features. ---------
 
 ### CANADA 
-reg_can_dyn <- clean_table("Regression_coefficients_Dynamic.csv","Dynamic")
-mysave(reg_can_dyn)
+# reg_can_OLS <- clean_table("Regression_coefficients_OLS.csv","OLS")
+# mysave(reg_can_OLS)
+# 
+# reg_can_dyn <- clean_table("Regression_coefficients_Dynamic.csv","Dynamic")
+# mysave(reg_can_dyn)
+# 
+# reg_can_dyn_gmm <- clean_table("Regression_coefficients_Dynamic_GMM.csv","GMM")
+# mysave(reg_can_dyn_gmm)
+# 
+# reg_can_dyn_System_gmm <- clean_table("Regression_coefficients_Dynamic_System_GMM.csv","System GMM")
+# mysave(reg_can_dyn_System_gmm)
+# 
+# reg_can_dyn_System_gmm_MA <- clean_table("Regression_coefficients_Dynamic_System_GMM_MA.csv","System GMM MA")
+# mysave(reg_can_dyn_System_gmm_MA)
 
-reg_can_dyn_System_gmm_MA <- clean_table("Regression_coefficients_Dynamic_System_GMM_MA.csv","System GMM MA")
-mysave(reg_can_dyn_System_gmm_MA)
-
-reg_can_OLS <- clean_table("Regression_coefficients_OLS.csv","OLS")
-mysave(reg_can_OLS)
-
-reg_can_dyn_gmm <- clean_table("Regression_coefficients_Dynamic_GMM.csv","GMM")
-mysave(reg_can_dyn_gmm)
-
-reg_can_dyn_System_gmm <- clean_table("Regression_coefficients_Dynamic_System_GMM.csv","System GMM")
-mysave(reg_can_dyn_System_gmm)
 
 ## Second batch
+reg_can_OLS2 <- clean_table2("Regression_coefficients_OLS2.csv","OLS")
+mysave(reg_can_OLS2)
+
 reg_can_dyn2 <- clean_table2("Regression_coefficients_Dynamic2.csv","Dynamic)
 mysave(reg_can_dyn2") 
 
@@ -113,32 +102,45 @@ mysave(reg_can_dyn2_System_gmm)
 reg_can_dyn2_System_gmm_MA <- clean_table2("Regression_coefficients_Dynamic2_System_GMM_MA.csv","System GMM MA)
 mysave(reg_can_dyn2_System_gmm_MA")
 
-reg_can_OLS2 <- clean_table2("Regression_coefficients_OLS2.csv","OLS")
-mysave(reg_can_OLS2)
+
+#! ----- Germany - GsynLBD ----
+
+#! ------ ### Alter Stil -----
+# 
+# reg_ger_OLS <- clean_table("Regression_coefficients_OLS_GsynLBD.csv","OLS",country="Germany",col_names=c("_name","Universe","Universe_1"))
+# mysave(reg_ger_OLS)
+# 
+# # es fehlt reg_ger_dyn!!
+# 
+# reg_ger_dyn_gmm <- clean_table("Regression_coefficients_Dynamic_GMM_GsynLBD.csv","GMM",country="Germany",col_names=c("_name","Universe","Universe_1"))
+# mysave(reg_ger_dyn_gmm)
+# 
+# reg_ger_dyn_System_gmm <- clean_table("Regression_coefficients_Dynamic_System_GMM_GsynLBD.csv","System GMM",country="Germany",col_names=c("_name","Universe","Universe_1"))
+# mysave(reg_ger_dyn_System_gmm)
+# 
+# reg_ger_dyn_System_gmm_MA <- clean_table("Regression_coefficients_Dynamic_System_GMM_MA_GsynLBD.csv","System GMM MA",country="Germany",col_names=c("_name","Universe","Universe_1"))
+# mysave(reg_ger_dyn_System_gmm_MA)
 
 
-### Germany - GsynLBD
+#! ------ ### Neuer Stil -----
 
+reg_ger_OLS2 <- clean_table2("Regression_coefficients_OLS2_GsynLBD.csv","OLS",country="Germany",col_names=c("_name","Universe","Universe-se","Universe_1","Universe_1-se"))
+mysave(reg_ger_OLS2)
 
-reg_ger_dyn2_System_gmm_MA <- clean_table2("Regression_coefficients_Dynamic2_System_GMM_MA_GsynLBD.csv","System GMM MA",col_names=c("_name","Universe","Universe-se","Universe_1","Universe_1-se"))
-mysave(reg_ger_dyn2_System_gmm_MA)
+# es fehlt reg_ger_dyn2 !
 
-reg_ger_dyn2_gmm <- clean_table2("Regression_coefficients_Dynamic2_GMM_GsynLBD.csv","GMM",col_names=c("_name","Universe","Universe-se","Universe_1","Universe_1-se"))
+reg_ger_dyn2_gmm <- clean_table2("Regression_coefficients_Dynamic2_GMM_GsynLBD.csv","GMM",country="Germany",col_names=c("_name","Universe","Universe-se","Universe_1","Universe_1-se"))
 mysave(reg_ger_dyn2_gmm)
 
-reg_ger_dyn2_System_gmm <- clean_table2("Regression_coefficients_Dynamic2_System_GMM_GsynLBD.csv","System GMM",col_names=c("_name","Universe","Universe-se","Universe_1","Universe_1-se"))
+reg_ger_dyn2_System_gmm <- clean_table2("Regression_coefficients_Dynamic2_System_GMM_GsynLBD.csv","System GMM",country="Germany",col_names=c("_name","Universe","Universe-se","Universe_1","Universe_1-se"))
 mysave(reg_ger_dyn2_System_gmm)
 
-reg_ger_dyn_gmm <- clean_table("Regression_coefficients_Dynamic_GMM_GsynLBD.csv","GMM",col_names=c("_name","Universe","Universe_1"))
-mysave(reg_ger_dyn_gmm)
+reg_ger_dyn2_System_gmm_MA <- clean_table2("Regression_coefficients_Dynamic2_System_GMM_MA_GsynLBD.csv","System GMM MA",country="Germany",col_names=c("_name","Universe","Universe-se","Universe_1","Universe_1-se"))
+mysave(reg_ger_dyn2_System_gmm_MA)
 
-reg_ger_dyn_System_gmm <- clean_table("Regression_coefficients_Dynamic_System_GMM_GsynLBD.csv","System GMM",col_names=c("_name","Universe","Universe_1"))
-mysave(reg_ger_dyn_System_gmm)
+#! ---- List them all ----
 
-reg_ger_dyn_System_gmm_MA <- clean_table("Regression_coefficients_Dynamic_System_GMM_MA_GsynLBD.csv","System GMM MA",col_names=c("_name","Universe","Universe_1"))
-mysave(reg_ger_dyn_System_gmm_MA)
-
-reg_ger_OLS2 <- clean_table2("Regression_coefficients_OLS2_GsynLBD.csv","OLS",col_names=c("_name","Universe","Universe-se","Universe_1","Universe_1-se"))
-mysave(reg_ger_OLS2)
-reg_ger_OLS <- clean_table("Regression_coefficients_OLS_GsynLBD.csv","OLS",col_names=c("_name","Universe","Universe_1"))
-mysave(reg_ger_OLS)
+list.files(path = datadir,
+           pattern = glob2rx("^reg*.Rds"),
+           full.names = FALSE,
+           recursive = FALSE)
