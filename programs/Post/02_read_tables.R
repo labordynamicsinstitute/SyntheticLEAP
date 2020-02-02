@@ -13,7 +13,7 @@ tabledir <- file.path(basedir,"tables")
 
 #!-------------- FIRST BATCH ------------------
 
-clean_table <- function(infile,...) {
+clean_table <- function(infile,tag = "Model",...) {
   # these work for a first batch
   # [1] "---- reading infile=Regression_coefficients_Dynamic.csv --------"
   # [1] "=\"\""                "=\"Private\""         "=\"Manufacturing\""  
@@ -32,7 +32,8 @@ clean_table <- function(infile,...) {
     pivot_longer(-c("name","type"),names_to = "sector",values_to = "_parameter") %>%
     mutate(value = str_replace_all(`_parameter`,"[=\"*()]",""),
            synthetic=if_else(str_detect(sector,"_1"),TRUE,FALSE),
-           sector=str_squish(str_replace(sector,"_1"," "))) %>%
+           sector=str_squish(str_replace(sector,"_1"," ")),
+           model=tag) %>%
     select(-`_parameter`) %>%
     filter(name!="* p<0.1") %>% filter(name!="Standard errors in parentheses")
 }
@@ -40,7 +41,7 @@ clean_table <- function(infile,...) {
 
 #!-------------------- Second batch --------------------
 
-clean_table2 <- function(infile,...) {
+clean_table2 <- function(infile,tag = "Model",...) {
   # these work for a second batch
   # [1] "---- reading infile=Regression_coefficients_Dynamic2.csv --------"
   # [1] "X1"              "Private"         "X3"              "Manufacturing"  
@@ -84,60 +85,60 @@ mysave <- function(object) {
 #! ---------- now process them. A few have additional features. ---------
 
 ### CANADA 
-reg_can_dyn <- clean_table("Regression_coefficients_Dynamic.csv")
+reg_can_dyn <- clean_table("Regression_coefficients_Dynamic.csv","Dynamic")
 mysave(reg_can_dyn)
 
-reg_can_dyn_System_gmm_MA <- clean_table("Regression_coefficients_Dynamic_System_GMM_MA.csv")
+reg_can_dyn_System_gmm_MA <- clean_table("Regression_coefficients_Dynamic_System_GMM_MA.csv","System GMM MA")
 mysave(reg_can_dyn_System_gmm_MA)
 
-reg_can_OLS <- clean_table("Regression_coefficients_OLS.csv")
+reg_can_OLS <- clean_table("Regression_coefficients_OLS.csv","OLS")
 mysave(reg_can_OLS)
 
-reg_can_dyn_gmm <- clean_table("Regression_coefficients_Dynamic_GMM.csv")
+reg_can_dyn_gmm <- clean_table("Regression_coefficients_Dynamic_GMM.csv","GMM")
 mysave(reg_can_dyn_gmm)
 
-reg_can_dyn_System_gmm <- clean_table("Regression_coefficients_Dynamic_System_GMM.csv")
+reg_can_dyn_System_gmm <- clean_table("Regression_coefficients_Dynamic_System_GMM.csv","System GMM")
 mysave(reg_can_dyn_System_gmm)
 
 ## Second batch
-reg_can_dyn2 <- clean_table2("Regression_coefficients_Dynamic2.csv")
-mysave(reg_can_dyn2) 
+reg_can_dyn2 <- clean_table2("Regression_coefficients_Dynamic2.csv","Dynamic)
+mysave(reg_can_dyn2") 
 
-reg_can_dyn2_gmm <- clean_table2("Regression_coefficients_Dynamic2_GMM.csv")
+reg_can_dyn2_gmm <- clean_table2("Regression_coefficients_Dynamic2_GMM.csv","GMM")
 mysave(reg_can_dyn2_gmm)
 
-reg_can_dyn2_System_gmm <- clean_table2("Regression_coefficients_Dynamic2_System_GMM.csv")
+reg_can_dyn2_System_gmm <- clean_table2("Regression_coefficients_Dynamic2_System_GMM.csv","System GMM")
 mysave(reg_can_dyn2_System_gmm)
 
-reg_can_dyn2_System_gmm_MA <- clean_table2("Regression_coefficients_Dynamic2_System_GMM_MA.csv")
-mysave(reg_can_dyn2_System_gmm_MA)
+reg_can_dyn2_System_gmm_MA <- clean_table2("Regression_coefficients_Dynamic2_System_GMM_MA.csv","System GMM MA)
+mysave(reg_can_dyn2_System_gmm_MA")
 
-reg_can_OLS2 <- clean_table2("Regression_coefficients_OLS2.csv")
+reg_can_OLS2 <- clean_table2("Regression_coefficients_OLS2.csv","OLS")
 mysave(reg_can_OLS2)
 
 
 ### Germany - GsynLBD
 
 
-reg_ger_dyn2_System_gmm_MA <- clean_table2("Regression_coefficients_Dynamic2_System_GMM_MA_GsynLBD.csv",col_names=c("_name","Model","Model-se","Model_1","Model_1-se"))
+reg_ger_dyn2_System_gmm_MA <- clean_table2("Regression_coefficients_Dynamic2_System_GMM_MA_GsynLBD.csv","System GMM MA",col_names=c("_name","Universe","Universe-se","Universe_1","Universe_1-se"))
 mysave(reg_ger_dyn2_System_gmm_MA)
 
-reg_ger_dyn2_gmm <- clean_table2("Regression_coefficients_Dynamic2_GMM_GsynLBD.csv",col_names=c("_name","Model","Model-se","Model_1","Model_1-se"))
+reg_ger_dyn2_gmm <- clean_table2("Regression_coefficients_Dynamic2_GMM_GsynLBD.csv","GMM",col_names=c("_name","Universe","Universe-se","Universe_1","Universe_1-se"))
 mysave(reg_ger_dyn2_gmm)
 
-reg_ger_dyn2_System_gmm <- clean_table2("Regression_coefficients_Dynamic2_System_GMM_GsynLBD.csv",col_names=c("_name","Model","Model-se","Model_1","Model_1-se"))
+reg_ger_dyn2_System_gmm <- clean_table2("Regression_coefficients_Dynamic2_System_GMM_GsynLBD.csv","System GMM",col_names=c("_name","Universe","Universe-se","Universe_1","Universe_1-se"))
 mysave(reg_ger_dyn2_System_gmm)
 
-reg_ger_dyn_gmm <- clean_table("Regression_coefficients_Dynamic_GMM_GsynLBD.csv",col_names=c("_name","Model","Model_1"))
+reg_ger_dyn_gmm <- clean_table("Regression_coefficients_Dynamic_GMM_GsynLBD.csv","GMM",col_names=c("_name","Universe","Universe_1"))
 mysave(reg_ger_dyn_gmm)
 
-reg_ger_dyn_System_gmm <- clean_table("Regression_coefficients_Dynamic_System_GMM_GsynLBD.csv",col_names=c("_name","Model","Model_1"))
+reg_ger_dyn_System_gmm <- clean_table("Regression_coefficients_Dynamic_System_GMM_GsynLBD.csv","System GMM",col_names=c("_name","Universe","Universe_1"))
 mysave(reg_ger_dyn_System_gmm)
 
-reg_ger_dyn_System_gmm_MA <- clean_table("Regression_coefficients_Dynamic_System_GMM_MA_GsynLBD.csv",col_names=c("_name","Model","Model_1"))
+reg_ger_dyn_System_gmm_MA <- clean_table("Regression_coefficients_Dynamic_System_GMM_MA_GsynLBD.csv","System GMM MA",col_names=c("_name","Universe","Universe_1"))
 mysave(reg_ger_dyn_System_gmm_MA)
 
-reg_ger_OLS2 <- clean_table2("Regression_coefficients_OLS2_GsynLBD.csv",col_names=c("_name","Model","Model-se","Model_1","Model_1-se"))
+reg_ger_OLS2 <- clean_table2("Regression_coefficients_OLS2_GsynLBD.csv","OLS",col_names=c("_name","Universe","Universe-se","Universe_1","Universe_1-se"))
 mysave(reg_ger_OLS2)
-reg_ger_OLS <- clean_table("Regression_coefficients_OLS_GsynLBD.csv",col_names=c("_name","Model","Model_1"))
+reg_ger_OLS <- clean_table("Regression_coefficients_OLS_GsynLBD.csv","OLS",col_names=c("_name","Universe","Universe_1"))
 mysave(reg_ger_OLS)
