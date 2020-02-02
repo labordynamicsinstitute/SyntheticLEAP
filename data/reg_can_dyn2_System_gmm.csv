@@ -1,89 +1,89 @@
-name,type,sector,value,synthetic
-AR(1) Coefficient,estimate,Private,0.0978,FALSE
-AR(1) Coefficient,stderr,Private,0.0002,FALSE
-AR(1) Coefficient,estimate,Manufacturing,0.1614,FALSE
-AR(1) Coefficient,stderr,Manufacturing,0.0014,FALSE
-AR(1) Coefficient,estimate,Private,0.5111,TRUE
-AR(1) Coefficient,stderr,Private,0.0008,TRUE
-AR(1) Coefficient,estimate,Manufacturing,0.5780,TRUE
-AR(1) Coefficient,stderr,Manufacturing,0.0041,TRUE
-Ln Pay,estimate,Private,0.8854,FALSE
-Ln Pay,stderr,Private,0.0002,FALSE
-Ln Pay,estimate,Manufacturing,0.8161,FALSE
-Ln Pay,stderr,Manufacturing,0.0012,FALSE
-Ln Pay,estimate,Private,0.4562,TRUE
-Ln Pay,stderr,Private,0.0006,TRUE
-Ln Pay,estimate,Manufacturing,0.4022,TRUE
-Ln Pay,stderr,Manufacturing,0.0033,TRUE
-Age 3-4,estimate,Private,-0.0555,FALSE
-Age 3-4,stderr,Private,0.0002,FALSE
-Age 3-4,estimate,Manufacturing,-0.1097,FALSE
-Age 3-4,stderr,Manufacturing,0.0012,FALSE
-Age 3-4,estimate,Private,-0.1828,TRUE
-Age 3-4,stderr,Private,0.0004,TRUE
-Age 3-4,estimate,Manufacturing,-0.3177,TRUE
-Age 3-4,stderr,Manufacturing,0.0028,TRUE
-Age 5-7,estimate,Private,-0.0558,FALSE
-Age 5-7,stderr,Private,0.0002,FALSE
-Age 5-7,estimate,Manufacturing,-0.1201,FALSE
-Age 5-7,stderr,Manufacturing,0.0013,FALSE
-Age 5-7,estimate,Private,-0.1860,TRUE
-Age 5-7,stderr,Private,0.0005,TRUE
-Age 5-7,estimate,Manufacturing,-0.3408,TRUE
-Age 5-7,stderr,Manufacturing,0.0031,TRUE
-Age 8-12,estimate,Private,-0.0548,FALSE
-Age 8-12,stderr,Private,0.0002,FALSE
-Age 8-12,estimate,Manufacturing,-0.1298,FALSE
-Age 8-12,stderr,Manufacturing,0.0014,FALSE
-Age 8-12,estimate,Private,-0.1875,TRUE
-Age 8-12,stderr,Private,0.0005,TRUE
-Age 8-12,estimate,Manufacturing,-0.3583,TRUE
-Age 8-12,stderr,Manufacturing,0.0036,TRUE
-Age 13 or more,estimate,Private,-0.0524,FALSE
-Age 13 or more,stderr,Private,0.0002,FALSE
-Age 13 or more,estimate,Manufacturing,-0.1317,FALSE
-Age 13 or more,stderr,Manufacturing,0.0016,FALSE
-Age 13 or more,estimate,Private,-0.1943,TRUE
-Age 13 or more,stderr,Private,0.0006,TRUE
-Age 13 or more,estimate,Manufacturing,-0.3747,TRUE
-Age 13 or more,stderr,Manufacturing,0.0041,TRUE
-N,estimate,Private,15708195,FALSE
-N,stderr,Private,NA,FALSE
-N,estimate,Manufacturing,1015293,FALSE
-N,stderr,Manufacturing,NA,FALSE
-N,estimate,Private,13573225,TRUE
-N,stderr,Private,NA,TRUE
-N,estimate,Manufacturing,959764,TRUE
-N,stderr,Manufacturing,NA,TRUE
-m2,estimate,Private,-11.4300,FALSE
-m2,stderr,Private,NA,FALSE
-m2,estimate,Manufacturing,1.3900,FALSE
-m2,stderr,Manufacturing,NA,FALSE
-m2,estimate,Private,-41.6000,TRUE
-m2,stderr,Private,NA,TRUE
-m2,estimate,Manufacturing,-7.6700,TRUE
-m2,stderr,Manufacturing,NA,TRUE
-Sargan test,estimate,Private,7.7e+04,FALSE
-Sargan test,stderr,Private,NA,FALSE
-Sargan test,estimate,Manufacturing,6.3e+03,FALSE
-Sargan test,stderr,Manufacturing,NA,FALSE
-Sargan test,estimate,Private,1.8e+04,TRUE
-Sargan test,stderr,Private,NA,TRUE
-Sargan test,estimate,Manufacturing,1.7e+03,TRUE
-Sargan test,stderr,Manufacturing,NA,TRUE
-df of Sargan Test,estimate,Private,274.0000,FALSE
-df of Sargan Test,stderr,Private,NA,FALSE
-df of Sargan Test,estimate,Manufacturing,274.0000,FALSE
-df of Sargan Test,stderr,Manufacturing,NA,FALSE
-df of Sargan Test,estimate,Private,274.0000,TRUE
-df of Sargan Test,stderr,Private,NA,TRUE
-df of Sargan Test,estimate,Manufacturing,274.0000,TRUE
-df of Sargan Test,stderr,Manufacturing,NA,TRUE
-P value of Sargan test,estimate,Private,0.0000,FALSE
-P value of Sargan test,stderr,Private,NA,FALSE
-P value of Sargan test,estimate,Manufacturing,0.0000,FALSE
-P value of Sargan test,stderr,Manufacturing,NA,FALSE
-P value of Sargan test,estimate,Private,0.0000,TRUE
-P value of Sargan test,stderr,Private,NA,TRUE
-P value of Sargan test,estimate,Manufacturing,0.0000,TRUE
-P value of Sargan test,stderr,Manufacturing,NA,TRUE
+name,type,sector,value,synthetic,model,country
+AR(1) Coefficient,estimate,Private,0.0978,FALSE,System GMM,Canada
+AR(1) Coefficient,stderr,Private,0.0002,FALSE,System GMM,Canada
+AR(1) Coefficient,estimate,Manufacturing,0.1614,FALSE,System GMM,Canada
+AR(1) Coefficient,stderr,Manufacturing,0.0014,FALSE,System GMM,Canada
+AR(1) Coefficient,estimate,Private,0.5111,TRUE,System GMM,Canada
+AR(1) Coefficient,stderr,Private,0.0008,TRUE,System GMM,Canada
+AR(1) Coefficient,estimate,Manufacturing,0.5780,TRUE,System GMM,Canada
+AR(1) Coefficient,stderr,Manufacturing,0.0041,TRUE,System GMM,Canada
+Ln Pay,estimate,Private,0.8854,FALSE,System GMM,Canada
+Ln Pay,stderr,Private,0.0002,FALSE,System GMM,Canada
+Ln Pay,estimate,Manufacturing,0.8161,FALSE,System GMM,Canada
+Ln Pay,stderr,Manufacturing,0.0012,FALSE,System GMM,Canada
+Ln Pay,estimate,Private,0.4562,TRUE,System GMM,Canada
+Ln Pay,stderr,Private,0.0006,TRUE,System GMM,Canada
+Ln Pay,estimate,Manufacturing,0.4022,TRUE,System GMM,Canada
+Ln Pay,stderr,Manufacturing,0.0033,TRUE,System GMM,Canada
+Age 3-4,estimate,Private,-0.0555,FALSE,System GMM,Canada
+Age 3-4,stderr,Private,0.0002,FALSE,System GMM,Canada
+Age 3-4,estimate,Manufacturing,-0.1097,FALSE,System GMM,Canada
+Age 3-4,stderr,Manufacturing,0.0012,FALSE,System GMM,Canada
+Age 3-4,estimate,Private,-0.1828,TRUE,System GMM,Canada
+Age 3-4,stderr,Private,0.0004,TRUE,System GMM,Canada
+Age 3-4,estimate,Manufacturing,-0.3177,TRUE,System GMM,Canada
+Age 3-4,stderr,Manufacturing,0.0028,TRUE,System GMM,Canada
+Age 5-7,estimate,Private,-0.0558,FALSE,System GMM,Canada
+Age 5-7,stderr,Private,0.0002,FALSE,System GMM,Canada
+Age 5-7,estimate,Manufacturing,-0.1201,FALSE,System GMM,Canada
+Age 5-7,stderr,Manufacturing,0.0013,FALSE,System GMM,Canada
+Age 5-7,estimate,Private,-0.1860,TRUE,System GMM,Canada
+Age 5-7,stderr,Private,0.0005,TRUE,System GMM,Canada
+Age 5-7,estimate,Manufacturing,-0.3408,TRUE,System GMM,Canada
+Age 5-7,stderr,Manufacturing,0.0031,TRUE,System GMM,Canada
+Age 8-12,estimate,Private,-0.0548,FALSE,System GMM,Canada
+Age 8-12,stderr,Private,0.0002,FALSE,System GMM,Canada
+Age 8-12,estimate,Manufacturing,-0.1298,FALSE,System GMM,Canada
+Age 8-12,stderr,Manufacturing,0.0014,FALSE,System GMM,Canada
+Age 8-12,estimate,Private,-0.1875,TRUE,System GMM,Canada
+Age 8-12,stderr,Private,0.0005,TRUE,System GMM,Canada
+Age 8-12,estimate,Manufacturing,-0.3583,TRUE,System GMM,Canada
+Age 8-12,stderr,Manufacturing,0.0036,TRUE,System GMM,Canada
+Age 13 or more,estimate,Private,-0.0524,FALSE,System GMM,Canada
+Age 13 or more,stderr,Private,0.0002,FALSE,System GMM,Canada
+Age 13 or more,estimate,Manufacturing,-0.1317,FALSE,System GMM,Canada
+Age 13 or more,stderr,Manufacturing,0.0016,FALSE,System GMM,Canada
+Age 13 or more,estimate,Private,-0.1943,TRUE,System GMM,Canada
+Age 13 or more,stderr,Private,0.0006,TRUE,System GMM,Canada
+Age 13 or more,estimate,Manufacturing,-0.3747,TRUE,System GMM,Canada
+Age 13 or more,stderr,Manufacturing,0.0041,TRUE,System GMM,Canada
+N,estimate,Private,15708195,FALSE,System GMM,Canada
+N,stderr,Private,NA,FALSE,System GMM,Canada
+N,estimate,Manufacturing,1015293,FALSE,System GMM,Canada
+N,stderr,Manufacturing,NA,FALSE,System GMM,Canada
+N,estimate,Private,13573225,TRUE,System GMM,Canada
+N,stderr,Private,NA,TRUE,System GMM,Canada
+N,estimate,Manufacturing,959764,TRUE,System GMM,Canada
+N,stderr,Manufacturing,NA,TRUE,System GMM,Canada
+m2,estimate,Private,-11.4300,FALSE,System GMM,Canada
+m2,stderr,Private,NA,FALSE,System GMM,Canada
+m2,estimate,Manufacturing,1.3900,FALSE,System GMM,Canada
+m2,stderr,Manufacturing,NA,FALSE,System GMM,Canada
+m2,estimate,Private,-41.6000,TRUE,System GMM,Canada
+m2,stderr,Private,NA,TRUE,System GMM,Canada
+m2,estimate,Manufacturing,-7.6700,TRUE,System GMM,Canada
+m2,stderr,Manufacturing,NA,TRUE,System GMM,Canada
+Sargan test,estimate,Private,7.7e+04,FALSE,System GMM,Canada
+Sargan test,stderr,Private,NA,FALSE,System GMM,Canada
+Sargan test,estimate,Manufacturing,6.3e+03,FALSE,System GMM,Canada
+Sargan test,stderr,Manufacturing,NA,FALSE,System GMM,Canada
+Sargan test,estimate,Private,1.8e+04,TRUE,System GMM,Canada
+Sargan test,stderr,Private,NA,TRUE,System GMM,Canada
+Sargan test,estimate,Manufacturing,1.7e+03,TRUE,System GMM,Canada
+Sargan test,stderr,Manufacturing,NA,TRUE,System GMM,Canada
+df of Sargan Test,estimate,Private,274.0000,FALSE,System GMM,Canada
+df of Sargan Test,stderr,Private,NA,FALSE,System GMM,Canada
+df of Sargan Test,estimate,Manufacturing,274.0000,FALSE,System GMM,Canada
+df of Sargan Test,stderr,Manufacturing,NA,FALSE,System GMM,Canada
+df of Sargan Test,estimate,Private,274.0000,TRUE,System GMM,Canada
+df of Sargan Test,stderr,Private,NA,TRUE,System GMM,Canada
+df of Sargan Test,estimate,Manufacturing,274.0000,TRUE,System GMM,Canada
+df of Sargan Test,stderr,Manufacturing,NA,TRUE,System GMM,Canada
+P value of Sargan test,estimate,Private,0.0000,FALSE,System GMM,Canada
+P value of Sargan test,stderr,Private,NA,FALSE,System GMM,Canada
+P value of Sargan test,estimate,Manufacturing,0.0000,FALSE,System GMM,Canada
+P value of Sargan test,stderr,Manufacturing,NA,FALSE,System GMM,Canada
+P value of Sargan test,estimate,Private,0.0000,TRUE,System GMM,Canada
+P value of Sargan test,stderr,Private,NA,TRUE,System GMM,Canada
+P value of Sargan test,estimate,Manufacturing,0.0000,TRUE,System GMM,Canada
+P value of Sargan test,stderr,Manufacturing,NA,TRUE,System GMM,Canada
