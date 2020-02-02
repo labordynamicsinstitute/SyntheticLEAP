@@ -5,15 +5,34 @@
 
 The CanSynLBD and LEAP generally provide comparable inferences on aggregate means and correlations. For example, Figures \ref{tab:Can:GrossEmploymentPrivate} and \ref{tab:Can:GrossEmploymentManufacturing} show that gross employment levels for each year in the CanSynLBD are very close to those in the LEAP. However, the manufacturing sector shows closer patterns than the private sector.\footnote{The private sector comprises all industries including the manufacturing sector except the public sector  (NAICS 61, 62, and 91)} We find similar results for total payroll (Figures \ref{tab:Can:TotalPayrollPrivate} and  \ref{tab:Can:TotalPayrollManufacturing}) .
 
+\begin{figure} [H]
+\centering
+\label{tab:Can:GrossEmploymentPrivate}
+\includegraphics[height=2.8in, width=.7\linewidth]{graphs/Gross_employment_level_by_year_private_bw.pdf} 
+\caption{Alternate graph} 
+\begin{minipage}{0.48\linewidth}
+{\footnotesize To be computed in R, or redone in Stata using GPH files. \par}
+\end{minipage}
+\end{figure}
+
 \todo{Why is manufacturing always below, but overall employment crosses? Which industries are driving that?} \todo{JA: I checked before, but I could not able to identify any specific reason.}
 \begin{figure} [H]
 \centering
-\caption{Gross employment level by year (private)} \label{tab:Can:GrossEmploymentPrivate}
+\begin{subfigure}[h]{0.48\linewidth}
+\label{tab:Can:GrossEmploymentPrivate}
 \includegraphics[height=2.8in, width=.7\linewidth]{graphs/Gross_employment_level_by_year_private_bw.pdf} 
-\begin{minipage}{0.85\textwidth}
-{\footnotesize Note: \CanTableNote \par}
-\end{minipage}
+\caption{Gross employment level by year (private)} %\begin{minipage}{0.85\textwidth}
+%{\footnotesize Note: \CanTableNote \par}
+%\end{minipage}
+\caption{Private Sector}
+\end{subfigure}
+\hfill
+\begin{subfigure}[h]{0.48\linewidth}
+\includegraphics[width=\linewidth]{graphs/Gross_employment_level_by_year_manufacturing_bw.pdf}
+\caption{Manufacturing}
+\end{subfigure}%
 \end{figure}
+
 
 \begin{figure}
 \begin{subfigure}[h]{0.48\linewidth}
@@ -30,14 +49,15 @@ The CanSynLBD and LEAP generally provide comparable inferences on aggregate mean
 
 
 
-\begin{figure} [H]
-\centering
-\caption{Gross employment level by year (manufacturing)} \label{tab:Can:GrossEmploymentManufacturing}
-\includegraphics[height=2.8in, width=.7\linewidth]{graphs/Gross_employment_level_by_year_manufacturing_bw.pdf} 
-\begin{minipage}{0.85\textwidth}
-{\footnotesize Note: \CanTableNote  \par}
-\end{minipage}
-\end{figure}
+%\begin{figure} [H]
+%\centering
+%\caption{Gross employment level by year (manufacturing)} %\label{tab:Can:GrossEmploymentManufacturing}
+%\includegraphics[height=2.8in, width=.7\linewidth]{graphs/Gross_employment_level_by_year_manufacturing_bw.pdf} 
+
+%\begin{minipage}{0.85\textwidth}
+%{\footnotesize Note: \CanTableNote  \par}
+%\end{minipage}
+%\end{figure}
 
 
 \begin{figure} [H]
@@ -99,7 +119,7 @@ To assess how well the synthetic data capture entity dynamics, we also compute e
  \end{tablenotes}
  \end{threeparttable}
 \end{table}
-
+\todo{LV: Do we want to graph the entry/exit rates, or only the divergence?}
 \begin{figure} [H]
 \centering
 \caption{Divergence of exit and entry rate between LEAP and CanSynLBD} \label{Divergence}
