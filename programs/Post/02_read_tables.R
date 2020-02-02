@@ -30,9 +30,10 @@ clean_table <- function(infile,...) {
     filter(!is.na.data.frame(`_name`)) %>%
     select(-`_name`) %>% 
     pivot_longer(-c("name","type"),names_to = "sector",values_to = "_parameter") %>%
-    mutate(parameter = str_replace_all(`_parameter`,"[=\"*()]","")) %>%
+    mutate(value = str_replace_all(`_parameter`,"[=\"*()]",""),
+           synthetic=if_else(str_detect(sector,"_1"),TRUE,FALSE),
+           sector=str_squish(str_replace(sector,"_1"," "))) %>%
     select(-`_parameter`) %>%
-    pivot_wider(names_from = type, values_from = parameter) %>%
     filter(name!="* p<0.1") %>% filter(name!="Standard errors in parentheses")
 }
 
@@ -60,11 +61,12 @@ clean_table2 <- function(infile,...) {
     filter(!is.na.data.frame(`_name`)) %>%
     select(-`_name`) %>% 
     pivot_longer(-c("name","type"),names_to = "sector",values_to = "_parameter") %>%
-    mutate(parameter = str_replace_all(`_parameter`,"[=\"*()]",""),
+    mutate(value = str_replace_all(`_parameter`,"[=\"*()]",""),
            type=if_else(str_detect(sector,"-se"),"stderr","estimate"),
-           sector=str_squish(str_replace(sector,"-se"," "))) %>%
+           sector=str_squish(str_replace(sector,"-se"," ")),
+           synthetic=if_else(str_detect(sector,"_1"),TRUE,FALSE),
+           sector=str_squish(str_replace(sector,"_1"," "))) %>%
     select(-`_parameter`) %>%
-    pivot_wider(names_from = type, values_from = parameter) %>%
     filter(name!="* p<0.1") %>% filter(name!="Standard errors in parentheses")
 }
 
