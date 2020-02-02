@@ -1,29 +1,29 @@
-name,type,sector,value,synthetic
-AR(1) Coefficient,estimate,Model,0.4430,FALSE
-AR(1) Coefficient,estimate,Model,0.4143,TRUE
-AR(1) Coefficient,stderr,Model,0.0007,FALSE
-AR(1) Coefficient,stderr,Model,0.0008,TRUE
-Ln Pay,estimate,Model,0.4629,FALSE
-Ln Pay,estimate,Model,0.5143,TRUE
-Ln Pay,stderr,Model,0.0006,FALSE
-Ln Pay,stderr,Model,0.0007,TRUE
-Age 3-4,estimate,Model,-0.0695,FALSE
-Age 3-4,estimate,Model,-0.0642,TRUE
-Age 3-4,stderr,Model,0.0017,FALSE
-Age 3-4,stderr,Model,0.0016,TRUE
-Age 5-7,estimate,Model,-0.1066,FALSE
-Age 5-7,estimate,Model,-0.0891,TRUE
-Age 5-7,stderr,Model,0.0017,FALSE
-Age 5-7,stderr,Model,0.0016,TRUE
-Age 8-12,estimate,Model,-0.1324,FALSE
-Age 8-12,estimate,Model,-0.1109,TRUE
-Age 8-12,stderr,Model,0.0017,FALSE
-Age 8-12,stderr,Model,0.0016,TRUE
-Age 13 or more,estimate,Model,-0.1880,FALSE
-Age 13 or more,estimate,Model,-0.1600,TRUE
-Age 13 or more,stderr,Model,0.0016,FALSE
-Age 13 or more,stderr,Model,0.0015,TRUE
-N,estimate,Model,848871,FALSE
-N,estimate,Model,966084,TRUE
-R-sq,estimate,Model,0.9167,FALSE
-R-sq,estimate,Model,0.8968,TRUE
+name,type,sector,value,synthetic,model
+AR(1) Coefficient,estimate,Universe,0.4430,FALSE,OLS
+AR(1) Coefficient,estimate,Universe,0.4143,TRUE,OLS
+AR(1) Coefficient,stderr,Universe,0.0007,FALSE,OLS
+AR(1) Coefficient,stderr,Universe,0.0008,TRUE,OLS
+Ln Pay,estimate,Universe,0.4629,FALSE,OLS
+Ln Pay,estimate,Universe,0.5143,TRUE,OLS
+Ln Pay,stderr,Universe,0.0006,FALSE,OLS
+Ln Pay,stderr,Universe,0.0007,TRUE,OLS
+Age 3-4,estimate,Universe,-0.0695,FALSE,OLS
+Age 3-4,estimate,Universe,-0.0642,TRUE,OLS
+Age 3-4,stderr,Universe,0.0017,FALSE,OLS
+Age 3-4,stderr,Universe,0.0016,TRUE,OLS
+Age 5-7,estimate,Universe,-0.1066,FALSE,OLS
+Age 5-7,estimate,Universe,-0.0891,TRUE,OLS
+Age 5-7,stderr,Universe,0.0017,FALSE,OLS
+Age 5-7,stderr,Universe,0.0016,TRUE,OLS
+Age 8-12,estimate,Universe,-0.1324,FALSE,OLS
+Age 8-12,estimate,Universe,-0.1109,TRUE,OLS
+Age 8-12,stderr,Universe,0.0017,FALSE,OLS
+Age 8-12,stderr,Universe,0.0016,TRUE,OLS
+Age 13 or more,estimate,Universe,-0.1880,FALSE,OLS
+Age 13 or more,estimate,Universe,-0.1600,TRUE,OLS
+Age 13 or more,stderr,Universe,0.0016,FALSE,OLS
+Age 13 or more,stderr,Universe,0.0015,TRUE,OLS
+N,estimate,Universe,848871,FALSE,OLS
+N,estimate,Universe,966084,TRUE,OLS
+R-sq,estimate,Universe,0.9167,FALSE,OLS
+R-sq,estimate,Universe,0.8968,TRUE,OLS

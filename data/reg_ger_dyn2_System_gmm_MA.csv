@@ -1,45 +1,45 @@
 name,type,sector,value,synthetic
-AR(1) Coefficient,estimate,Model,0.3701,FALSE
-AR(1) Coefficient,stderr,Model,0.0060,FALSE
-AR(1) Coefficient,estimate,Model,0.5268,TRUE
-AR(1) Coefficient,stderr,Model,0.0048,TRUE
-Ln Pay,estimate,Model,0.5349,FALSE
-Ln Pay,stderr,Model,0.0041,FALSE
-Ln Pay,estimate,Model,0.4202,TRUE
-Ln Pay,stderr,Model,0.0036,TRUE
-Age 3-4,estimate,Model,-0.0594,FALSE
-Age 3-4,stderr,Model,0.0015,FALSE
-Age 3-4,estimate,Model,-0.0831,TRUE
-Age 3-4,stderr,Model,0.0013,TRUE
-Age 5-7,estimate,Model,-0.0922,FALSE
-Age 5-7,stderr,Model,0.0018,FALSE
-Age 5-7,estimate,Model,-0.1105,TRUE
-Age 5-7,stderr,Model,0.0015,TRUE
-Age 8-12,estimate,Model,-0.1252,FALSE
-Age 8-12,stderr,Model,0.0019,FALSE
-Age 8-12,estimate,Model,-0.1351,TRUE
-Age 8-12,stderr,Model,0.0016,TRUE
-Age 13 or more,estimate,Model,-0.1850,FALSE
-Age 13 or more,stderr,Model,0.0019,FALSE
-Age 13 or more,estimate,Model,-0.1802,TRUE
-Age 13 or more,stderr,Model,0.0017,TRUE
-N,estimate,Model,848871,FALSE
-N,stderr,Model,NA,FALSE
-N,estimate,Model,966084,TRUE
-N,stderr,Model,NA,TRUE
-m2,estimate,Model,19.0300,FALSE
-m2,stderr,Model,NA,FALSE
-m2,estimate,Model,-11.6900,TRUE
-m2,stderr,Model,NA,TRUE
-Sargan test,estimate,Model,3.1e+03,FALSE
-Sargan test,stderr,Model,NA,FALSE
-Sargan test,estimate,Model,2.5e+03,TRUE
-Sargan test,stderr,Model,NA,TRUE
-df of Sargan Test,estimate,Model,494.0000,FALSE
-df of Sargan Test,stderr,Model,NA,FALSE
-df of Sargan Test,estimate,Model,494.0000,TRUE
-df of Sargan Test,stderr,Model,NA,TRUE
-P value of Sargan test,estimate,Model,0.0000,FALSE
-P value of Sargan test,stderr,Model,NA,FALSE
-P value of Sargan test,estimate,Model,0.0000,TRUE
-P value of Sargan test,stderr,Model,NA,TRUE
+AR(1) Coefficient,estimate,Universe,0.3701,FALSE
+AR(1) Coefficient,stderr,Universe,0.0060,FALSE
+AR(1) Coefficient,estimate,Universe,0.5268,TRUE
+AR(1) Coefficient,stderr,Universe,0.0048,TRUE
+Ln Pay,estimate,Universe,0.5349,FALSE
+Ln Pay,stderr,Universe,0.0041,FALSE
+Ln Pay,estimate,Universe,0.4202,TRUE
+Ln Pay,stderr,Universe,0.0036,TRUE
+Age 3-4,estimate,Universe,-0.0594,FALSE
+Age 3-4,stderr,Universe,0.0015,FALSE
+Age 3-4,estimate,Universe,-0.0831,TRUE
+Age 3-4,stderr,Universe,0.0013,TRUE
+Age 5-7,estimate,Universe,-0.0922,FALSE
+Age 5-7,stderr,Universe,0.0018,FALSE
+Age 5-7,estimate,Universe,-0.1105,TRUE
+Age 5-7,stderr,Universe,0.0015,TRUE
+Age 8-12,estimate,Universe,-0.1252,FALSE
+Age 8-12,stderr,Universe,0.0019,FALSE
+Age 8-12,estimate,Universe,-0.1351,TRUE
+Age 8-12,stderr,Universe,0.0016,TRUE
+Age 13 or more,estimate,Universe,-0.1850,FALSE
+Age 13 or more,stderr,Universe,0.0019,FALSE
+Age 13 or more,estimate,Universe,-0.1802,TRUE
+Age 13 or more,stderr,Universe,0.0017,TRUE
+N,estimate,Universe,848871,FALSE
+N,stderr,Universe,NA,FALSE
+N,estimate,Universe,966084,TRUE
+N,stderr,Universe,NA,TRUE
+m2,estimate,Universe,19.0300,FALSE
+m2,stderr,Universe,NA,FALSE
+m2,estimate,Universe,-11.6900,TRUE
+m2,stderr,Universe,NA,TRUE
+Sargan test,estimate,Universe,3.1e+03,FALSE
+Sargan test,stderr,Universe,NA,FALSE
+Sargan test,estimate,Universe,2.5e+03,TRUE
+Sargan test,stderr,Universe,NA,TRUE
+df of Sargan Test,estimate,Universe,494.0000,FALSE
+df of Sargan Test,stderr,Universe,NA,FALSE
+df of Sargan Test,estimate,Universe,494.0000,TRUE
+df of Sargan Test,stderr,Universe,NA,TRUE
+P value of Sargan test,estimate,Universe,0.0000,FALSE
+P value of Sargan test,stderr,Universe,NA,FALSE
+P value of Sargan test,estimate,Universe,0.0000,TRUE
+P value of Sargan test,stderr,Universe,NA,TRUE

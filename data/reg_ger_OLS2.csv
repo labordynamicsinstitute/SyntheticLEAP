@@ -1,33 +1,33 @@
 name,type,sector,value,synthetic
-AR(1) Coefficient,estimate,Model,0.4430,FALSE
-AR(1) Coefficient,stderr,Model,0.0007,FALSE
-AR(1) Coefficient,estimate,Model,0.4143,TRUE
-AR(1) Coefficient,stderr,Model,0.0008,TRUE
-Ln Pay,estimate,Model,0.4629,FALSE
-Ln Pay,stderr,Model,0.0006,FALSE
-Ln Pay,estimate,Model,0.5143,TRUE
-Ln Pay,stderr,Model,0.0007,TRUE
-Age 3-4,estimate,Model,-0.0695,FALSE
-Age 3-4,stderr,Model,0.0017,FALSE
-Age 3-4,estimate,Model,-0.0642,TRUE
-Age 3-4,stderr,Model,0.0016,TRUE
-Age 5-7,estimate,Model,-0.1066,FALSE
-Age 5-7,stderr,Model,0.0017,FALSE
-Age 5-7,estimate,Model,-0.0891,TRUE
-Age 5-7,stderr,Model,0.0016,TRUE
-Age 8-12,estimate,Model,-0.1324,FALSE
-Age 8-12,stderr,Model,0.0017,FALSE
-Age 8-12,estimate,Model,-0.1109,TRUE
-Age 8-12,stderr,Model,0.0016,TRUE
-Age 13 or more,estimate,Model,-0.1880,FALSE
-Age 13 or more,stderr,Model,0.0016,FALSE
-Age 13 or more,estimate,Model,-0.1600,TRUE
-Age 13 or more,stderr,Model,0.0015,TRUE
-N,estimate,Model,848871,FALSE
-N,stderr,Model,NA,FALSE
-N,estimate,Model,966084,TRUE
-N,stderr,Model,NA,TRUE
-R-sq,estimate,Model,0.9167,FALSE
-R-sq,stderr,Model,NA,FALSE
-R-sq,estimate,Model,0.8968,TRUE
-R-sq,stderr,Model,NA,TRUE
+AR(1) Coefficient,estimate,Universe,0.4430,FALSE
+AR(1) Coefficient,stderr,Universe,0.0007,FALSE
+AR(1) Coefficient,estimate,Universe,0.4143,TRUE
+AR(1) Coefficient,stderr,Universe,0.0008,TRUE
+Ln Pay,estimate,Universe,0.4629,FALSE
+Ln Pay,stderr,Universe,0.0006,FALSE
+Ln Pay,estimate,Universe,0.5143,TRUE
+Ln Pay,stderr,Universe,0.0007,TRUE
+Age 3-4,estimate,Universe,-0.0695,FALSE
+Age 3-4,stderr,Universe,0.0017,FALSE
+Age 3-4,estimate,Universe,-0.0642,TRUE
+Age 3-4,stderr,Universe,0.0016,TRUE
+Age 5-7,estimate,Universe,-0.1066,FALSE
+Age 5-7,stderr,Universe,0.0017,FALSE
+Age 5-7,estimate,Universe,-0.0891,TRUE
+Age 5-7,stderr,Universe,0.0016,TRUE
+Age 8-12,estimate,Universe,-0.1324,FALSE
+Age 8-12,stderr,Universe,0.0017,FALSE
+Age 8-12,estimate,Universe,-0.1109,TRUE
+Age 8-12,stderr,Universe,0.0016,TRUE
+Age 13 or more,estimate,Universe,-0.1880,FALSE
+Age 13 or more,stderr,Universe,0.0016,FALSE
+Age 13 or more,estimate,Universe,-0.1600,TRUE
+Age 13 or more,stderr,Universe,0.0015,TRUE
+N,estimate,Universe,848871,FALSE
+N,stderr,Universe,NA,FALSE
+N,estimate,Universe,966084,TRUE
+N,stderr,Universe,NA,TRUE
+R-sq,estimate,Universe,0.9167,FALSE
+R-sq,stderr,Universe,NA,FALSE
+R-sq,estimate,Universe,0.8968,TRUE
+R-sq,stderr,Universe,NA,TRUE
