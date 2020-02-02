@@ -11,32 +11,131 @@ basedir <- here::here() # will find base of git repo
 datadir <- file.path(basedir,"data")
 tabledir <- file.path(basedir,"tables")
 
+#!-------------- FIRST BATCH ------------------
+
 clean_table <- function(infile,...) {
-  
-mytable <- read_csv(file.path(tabledir,infile),...)
-# clean names
-names(mytable)[1] <- "_name"
-names(mytable) <- str_replace_all(names(mytable),"[=\"]","")
-mytable %>% 
-  mutate(name = str_replace_all(`_name`,"[=\"]",""),type = if_else(name == "","estimate","stderr")) %>%
-  mutate(name= if_else(name=="",lag(name,1),name)) %>% 
-  select(-`_name`) %>% 
-  pivot_longer(-c("name","type"),names_to = "sector",values_to = "_parameter") %>%
-  mutate(parameter = str_replace_all(`_parameter`,"[=\"*()]","")) %>%
-  select(-`_parameter`) %>%
-  pivot_wider(names_from = type, values_from = parameter) %>%
-  filter(name!="* p<0.1") %>% filter(name!="Standard errors in parentheses")
+  # these work for a first batch
+  # [1] "---- reading infile=Regression_coefficients_Dynamic.csv --------"
+  # [1] "=\"\""                "=\"Private\""         "=\"Manufacturing\""  
+  # [4] "=\"Private\"_1"       "=\"Manufacturing\"_1"
+  mytable <- read_csv(file.path(tabledir,infile),...)
+  # clean names
+  print(paste0("---- reading infile=",infile," --------"))
+  print(names(mytable))
+  names(mytable)[1] <- "_name"
+  names(mytable) <- str_replace_all(names(mytable),"[=\"]","")
+  mytable %>% 
+    mutate(name = str_replace_all(`_name`,"[=\"]",""),type = if_else(name == "","stderr","estimate")) %>%
+    mutate(name= if_else(name=="",lag(name,1),name)) %>% 
+    filter(!is.na.data.frame(`_name`)) %>%
+    select(-`_name`) %>% 
+    pivot_longer(-c("name","type"),names_to = "sector",values_to = "_parameter") %>%
+    mutate(parameter = str_replace_all(`_parameter`,"[=\"*()]","")) %>%
+    select(-`_parameter`) %>%
+    pivot_wider(names_from = type, values_from = parameter) %>%
+    filter(name!="* p<0.1") %>% filter(name!="Standard errors in parentheses")
 }
 
-# aux function - consistent saving
+
+#!-------------------- Second batch --------------------
+
+clean_table2 <- function(infile,...) {
+  # these work for a second batch
+  # [1] "---- reading infile=Regression_coefficients_Dynamic2.csv --------"
+  # [1] "X1"              "Private"         "X3"              "Manufacturing"  
+  # [5] "X5"              "Private_1"       "X7"              "Manufacturing_1"
+  # [9] "X9" 
+  mytable <- read_csv(file.path(tabledir,infile),...)
+  # clean names
+  print(paste0("---- reading infile=",infile," --------"))
+  print(names(mytable))
+  names(mytable)[1] <- "_name"
+  names(mytable) <- str_replace_all(names(mytable),"[=\"]","")
+  for (x in seq(3,length(names(mytable)),2)) {
+    names(mytable)[x] <- paste0(names(mytable)[x-1],"-se")
+  }
+  mytable %>% 
+    mutate(name = str_replace_all(`_name`,"[=\"]",""),type = if_else(name == "","stderr","estimate")) %>%
+    mutate(name= if_else(name=="",lag(name,1),name)) %>% 
+    filter(!is.na.data.frame(`_name`)) %>%
+    select(-`_name`) %>% 
+    pivot_longer(-c("name","type"),names_to = "sector",values_to = "_parameter") %>%
+    mutate(parameter = str_replace_all(`_parameter`,"[=\"*()]",""),
+           type=if_else(str_detect(sector,"-se"),"stderr","estimate"),
+           sector=str_squish(str_replace(sector,"-se"," "))) %>%
+    select(-`_parameter`) %>%
+    pivot_wider(names_from = type, values_from = parameter) %>%
+    filter(name!="* p<0.1") %>% filter(name!="Standard errors in parentheses")
+}
+
+
+#!------------ aux function - consistent saving -----------
 mysave <- function(object) {
   name=deparse(substitute(object))
+  print(paste0("  ---> saving as ",name))
+  print(names(object))
   saveRDS(object,file.path(datadir,paste0(name,".Rds")))
   write_csv(object,file.path(datadir,paste0(name,".csv")))
-}
-# now process them. A few have additional features.
-reg_dyn_gmm_can <- clean_table("Regression_coefficients_Dynamic_GMM.csv")
-mysave(reg_dyn_gmm_can)
 
-reg_dyn_gmm_ger <- clean_table("Regression_coefficients_Dynamic_GMM_GsynLBD.csv",col_names=c("_name","Model","Model_1"))
-mysave(reg_dyn_gmm_ger)
+}
+
+#! ---------- now process them. A few have additional features. ---------
+
+### CANADA 
+reg_can_dyn <- clean_table("Regression_coefficients_Dynamic.csv")
+mysave(reg_can_dyn)
+
+reg_can_dyn_System_gmm_MA <- clean_table("Regression_coefficients_Dynamic_System_GMM_MA.csv")
+mysave(reg_can_dyn_System_gmm_MA)
+
+reg_can_OLS <- clean_table("Regression_coefficients_OLS.csv")
+mysave(reg_can_OLS)
+
+reg_can_dyn_gmm <- clean_table("Regression_coefficients_Dynamic_GMM.csv")
+mysave(reg_can_dyn_gmm)
+
+reg_can_dyn_System_gmm <- clean_table("Regression_coefficients_Dynamic_System_GMM.csv")
+mysave(reg_can_dyn_System_gmm)
+
+## Second batch
+reg_can_dyn2 <- clean_table2("Regression_coefficients_Dynamic2.csv")
+mysave(reg_can_dyn2) 
+
+reg_can_dyn2_gmm <- clean_table2("Regression_coefficients_Dynamic2_GMM.csv")
+mysave(reg_can_dyn2_gmm)
+
+reg_can_dyn2_System_gmm <- clean_table2("Regression_coefficients_Dynamic2_System_GMM.csv")
+mysave(reg_can_dyn2_System_gmm)
+
+reg_can_dyn2_System_gmm_MA <- clean_table2("Regression_coefficients_Dynamic2_System_GMM_MA.csv")
+mysave(reg_can_dyn2_System_gmm_MA)
+
+reg_can_OLS2 <- clean_table2("Regression_coefficients_OLS2.csv")
+mysave(reg_can_OLS2)
+
+
+### Germany - GsynLBD
+
+
+reg_ger_dyn2_System_gmm_MA <- clean_table2("Regression_coefficients_Dynamic2_System_GMM_MA_GsynLBD.csv",col_names=c("_name","Model","Model-se","Model_1","Model_1-se"))
+mysave(reg_ger_dyn2_System_gmm_MA)
+
+reg_ger_dyn2_gmm <- clean_table2("Regression_coefficients_Dynamic2_GMM_GsynLBD.csv",col_names=c("_name","Model","Model-se","Model_1","Model_1-se"))
+mysave(reg_ger_dyn2_gmm)
+
+reg_ger_dyn2_System_gmm <- clean_table2("Regression_coefficients_Dynamic2_System_GMM_GsynLBD.csv",col_names=c("_name","Model","Model-se","Model_1","Model_1-se"))
+mysave(reg_ger_dyn2_System_gmm)
+
+reg_ger_dyn_gmm <- clean_table("Regression_coefficients_Dynamic_GMM_GsynLBD.csv",col_names=c("_name","Model","Model_1"))
+mysave(reg_ger_dyn_gmm)
+
+reg_ger_dyn_System_gmm <- clean_table("Regression_coefficients_Dynamic_System_GMM_GsynLBD.csv",col_names=c("_name","Model","Model_1"))
+mysave(reg_ger_dyn_System_gmm)
+
+reg_ger_dyn_System_gmm_MA <- clean_table("Regression_coefficients_Dynamic_System_GMM_MA_GsynLBD.csv",col_names=c("_name","Model","Model_1"))
+mysave(reg_ger_dyn_System_gmm_MA)
+
+reg_ger_OLS2 <- clean_table2("Regression_coefficients_OLS2_GsynLBD.csv",col_names=c("_name","Model","Model-se","Model_1","Model_1-se"))
+mysave(reg_ger_OLS2)
+reg_ger_OLS <- clean_table("Regression_coefficients_OLS_GsynLBD.csv",col_names=c("_name","Model","Model_1"))
+mysave(reg_ger_OLS)
