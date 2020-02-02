@@ -99,8 +99,8 @@ mysave(reg_can_dyn2_gmm)
 reg_can_dyn2_System_gmm <- clean_table2("Regression_coefficients_Dynamic2_System_GMM.csv","System GMM")
 mysave(reg_can_dyn2_System_gmm)
 
-reg_can_dyn2_System_gmm_MA <- clean_table2("Regression_coefficients_Dynamic2_System_GMM_MA.csv","System GMM MA)
-mysave(reg_can_dyn2_System_gmm_MA")
+reg_can_dyn2_System_gmm_MA <- clean_table2("Regression_coefficients_Dynamic2_System_GMM_MA.csv","System GMM MA")
+mysave(reg_can_dyn2_System_gmm_MA)
 
 
 #! ----- Germany - GsynLBD ----
