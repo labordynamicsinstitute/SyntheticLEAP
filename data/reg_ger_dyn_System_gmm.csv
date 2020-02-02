@@ -1,0 +1,35 @@
+name,type,sector,value,synthetic
+AR(1) Coefficient,estimate,Model,0.1883,FALSE
+AR(1) Coefficient,estimate,Model,0.6140,TRUE
+AR(1) Coefficient,stderr,Model,0.0021,FALSE
+AR(1) Coefficient,stderr,Model,0.0027,TRUE
+Ln Pay,estimate,Model,0.6599,FALSE
+Ln Pay,estimate,Model,0.3553,TRUE
+Ln Pay,stderr,Model,0.0014,FALSE
+Ln Pay,stderr,Model,0.0020,TRUE
+Age 3-4,estimate,Model,-0.0292,FALSE
+Age 3-4,estimate,Model,-0.0934,TRUE
+Age 3-4,stderr,Model,0.0011,FALSE
+Age 3-4,stderr,Model,0.0013,TRUE
+Age 5-7,estimate,Model,-0.0512,FALSE
+Age 5-7,estimate,Model,-0.1266,TRUE
+Age 5-7,stderr,Model,0.0011,FALSE
+Age 5-7,stderr,Model,0.0014,TRUE
+Age 8-12,estimate,Model,-0.0791,FALSE
+Age 8-12,estimate,Model,-0.1545,TRUE
+Age 8-12,stderr,Model,0.0011,FALSE
+Age 8-12,stderr,Model,0.0015,TRUE
+Age 13 or more,estimate,Model,-0.1400,FALSE
+Age 13 or more,estimate,Model,-0.2012,TRUE
+Age 13 or more,stderr,Model,0.0011,FALSE
+Age 13 or more,stderr,Model,0.0015,TRUE
+N,estimate,Model,848871,FALSE
+N,estimate,Model,966084,TRUE
+m2,estimate,Model,19.4900,FALSE
+m2,estimate,Model,-8.8300,TRUE
+Sargan test,estimate,Model,4.5e+03,FALSE
+Sargan test,estimate,Model,2.8e+03,TRUE
+df of Sargan Test,estimate,Model,526.0000,FALSE
+df of Sargan Test,estimate,Model,526.0000,TRUE
+P value of Sargan test,estimate,Model,0.0000,FALSE
+P value of Sargan test,estimate,Model,0.0000,TRUE

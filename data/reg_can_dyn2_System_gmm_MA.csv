@@ -1,0 +1,89 @@
+name,type,sector,value,synthetic
+AR(1) Coefficient,estimate,Private,0.2005,FALSE
+AR(1) Coefficient,stderr,Private,0.0007,FALSE
+AR(1) Coefficient,estimate,Manufacturing,0.2821,FALSE
+AR(1) Coefficient,stderr,Manufacturing,0.0040,FALSE
+AR(1) Coefficient,estimate,Private,0.4850,TRUE
+AR(1) Coefficient,stderr,Private,0.0012,TRUE
+AR(1) Coefficient,estimate,Manufacturing,0.5737,TRUE
+AR(1) Coefficient,stderr,Manufacturing,0.0059,TRUE
+Ln Pay,estimate,Private,0.8044,FALSE
+Ln Pay,stderr,Private,0.0005,FALSE
+Ln Pay,estimate,Manufacturing,0.7135,FALSE
+Ln Pay,stderr,Manufacturing,0.0034,FALSE
+Ln Pay,estimate,Private,0.4760,TRUE
+Ln Pay,stderr,Private,0.0009,TRUE
+Ln Pay,estimate,Manufacturing,0.4056,TRUE
+Ln Pay,stderr,Manufacturing,0.0046,TRUE
+Age 3-4,estimate,Private,-0.1245,FALSE
+Age 3-4,stderr,Private,0.0005,FALSE
+Age 3-4,estimate,Manufacturing,-0.2033,FALSE
+Age 3-4,stderr,Manufacturing,0.0032,FALSE
+Age 3-4,estimate,Private,-0.1716,TRUE
+Age 3-4,stderr,Private,0.0006,TRUE
+Age 3-4,estimate,Manufacturing,-0.3158,TRUE
+Age 3-4,stderr,Manufacturing,0.0037,TRUE
+Age 5-7,estimate,Private,-0.1328,FALSE
+Age 5-7,stderr,Private,0.0005,FALSE
+Age 5-7,estimate,Manufacturing,-0.2264,FALSE
+Age 5-7,stderr,Manufacturing,0.0035,FALSE
+Age 5-7,estimate,Private,-0.1733,TRUE
+Age 5-7,stderr,Private,0.0006,TRUE
+Age 5-7,estimate,Manufacturing,-0.3389,TRUE
+Age 5-7,stderr,Manufacturing,0.0043,TRUE
+Age 8-12,estimate,Private,-0.1383,FALSE
+Age 8-12,stderr,Private,0.0006,FALSE
+Age 8-12,estimate,Manufacturing,-0.2454,FALSE
+Age 8-12,stderr,Manufacturing,0.0039,FALSE
+Age 8-12,estimate,Private,-0.1731,TRUE
+Age 8-12,stderr,Private,0.0007,TRUE
+Age 8-12,estimate,Manufacturing,-0.3560,TRUE
+Age 8-12,stderr,Manufacturing,0.0051,TRUE
+Age 13 or more,estimate,Private,-0.1441,FALSE
+Age 13 or more,stderr,Private,0.0006,FALSE
+Age 13 or more,estimate,Manufacturing,-0.2586,FALSE
+Age 13 or more,stderr,Manufacturing,0.0042,FALSE
+Age 13 or more,estimate,Private,-0.1774,TRUE
+Age 13 or more,stderr,Private,0.0008,TRUE
+Age 13 or more,estimate,Manufacturing,-0.3717,TRUE
+Age 13 or more,stderr,Manufacturing,0.0058,TRUE
+N,estimate,Private,15708195,FALSE
+N,stderr,Private,NA,FALSE
+N,estimate,Manufacturing,1015293,FALSE
+N,stderr,Manufacturing,NA,FALSE
+N,estimate,Private,13573225,TRUE
+N,stderr,Private,NA,TRUE
+N,estimate,Manufacturing,959764,TRUE
+N,stderr,Manufacturing,NA,TRUE
+m2,estimate,Private,8.2000,FALSE
+m2,stderr,Private,NA,FALSE
+m2,estimate,Manufacturing,7.0600,FALSE
+m2,stderr,Manufacturing,NA,FALSE
+m2,estimate,Private,-40.0300,TRUE
+m2,stderr,Private,NA,TRUE
+m2,estimate,Manufacturing,-6.6400,TRUE
+m2,stderr,Manufacturing,NA,TRUE
+Sargan test,estimate,Private,2.8e+04,FALSE
+Sargan test,stderr,Private,NA,FALSE
+Sargan test,estimate,Manufacturing,2.3e+03,FALSE
+Sargan test,stderr,Manufacturing,NA,FALSE
+Sargan test,estimate,Private,1.7e+04,TRUE
+Sargan test,stderr,Private,NA,TRUE
+Sargan test,estimate,Manufacturing,1.3e+03,TRUE
+Sargan test,stderr,Manufacturing,NA,TRUE
+df of Sargan Test,estimate,Private,251.0000,FALSE
+df of Sargan Test,stderr,Private,NA,FALSE
+df of Sargan Test,estimate,Manufacturing,251.0000,FALSE
+df of Sargan Test,stderr,Manufacturing,NA,FALSE
+df of Sargan Test,estimate,Private,251.0000,TRUE
+df of Sargan Test,stderr,Private,NA,TRUE
+df of Sargan Test,estimate,Manufacturing,251.0000,TRUE
+df of Sargan Test,stderr,Manufacturing,NA,TRUE
+P value of Sargan test,estimate,Private,0.0000,FALSE
+P value of Sargan test,stderr,Private,NA,FALSE
+P value of Sargan test,estimate,Manufacturing,0.0000,FALSE
+P value of Sargan test,stderr,Manufacturing,NA,FALSE
+P value of Sargan test,estimate,Private,0.0000,TRUE
+P value of Sargan test,stderr,Private,NA,TRUE
+P value of Sargan test,estimate,Manufacturing,0.0000,TRUE
+P value of Sargan test,stderr,Manufacturing,NA,TRUE

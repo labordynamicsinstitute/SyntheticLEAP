@@ -1,0 +1,65 @@
+name,type,sector,value,synthetic
+AR(1) Coefficient,estimate,Private,0.06,FALSE
+AR(1) Coefficient,stderr,Private,0.0002,FALSE
+AR(1) Coefficient,estimate,Manufacturing,0.09,FALSE
+AR(1) Coefficient,stderr,Manufacturing,0.0011,FALSE
+AR(1) Coefficient,estimate,Private,0.31,TRUE
+AR(1) Coefficient,stderr,Private,0.0010,TRUE
+AR(1) Coefficient,estimate,Manufacturing,0.41,TRUE
+AR(1) Coefficient,stderr,Manufacturing,0.0028,TRUE
+Ln Pay,estimate,Private,0.96,FALSE
+Ln Pay,stderr,Private,0.0001,FALSE
+Ln Pay,estimate,Manufacturing,0.95,FALSE
+Ln Pay,stderr,Manufacturing,0.0005,FALSE
+Ln Pay,estimate,Private,0.50,TRUE
+Ln Pay,stderr,Private,0.0003,TRUE
+Ln Pay,estimate,Manufacturing,0.42,TRUE
+Ln Pay,stderr,Manufacturing,0.0009,TRUE
+Age 3-4,estimate,Private,-0.03,FALSE
+Age 3-4,stderr,Private,0.0002,FALSE
+Age 3-4,estimate,Manufacturing,-0.07,FALSE
+Age 3-4,stderr,Manufacturing,0.0013,FALSE
+Age 3-4,estimate,Private,-0.11,TRUE
+Age 3-4,stderr,Private,0.0006,TRUE
+Age 3-4,estimate,Manufacturing,-0.20,TRUE
+Age 3-4,stderr,Manufacturing,0.0028,TRUE
+Age 5-7,estimate,Private,-0.03,FALSE
+Age 5-7,stderr,Private,0.0003,FALSE
+Age 5-7,estimate,Manufacturing,-0.08,FALSE
+Age 5-7,stderr,Manufacturing,0.0017,FALSE
+Age 5-7,estimate,Private,-0.12,TRUE
+Age 5-7,stderr,Private,0.0007,TRUE
+Age 5-7,estimate,Manufacturing,-0.19,TRUE
+Age 5-7,stderr,Manufacturing,0.0037,TRUE
+Age 8-12,estimate,Private,-0.03,FALSE
+Age 8-12,stderr,Private,0.0004,FALSE
+Age 8-12,estimate,Manufacturing,-0.10,FALSE
+Age 8-12,stderr,Manufacturing,0.0020,FALSE
+Age 8-12,estimate,Private,-0.11,TRUE
+Age 8-12,stderr,Private,0.0009,TRUE
+Age 8-12,estimate,Manufacturing,-0.17,TRUE
+Age 8-12,stderr,Manufacturing,0.0043,TRUE
+Age 13 or more,estimate,Private,-0.03,FALSE
+Age 13 or more,stderr,Private,0.0005,FALSE
+Age 13 or more,estimate,Manufacturing,-0.09,FALSE
+Age 13 or more,stderr,Manufacturing,0.0024,FALSE
+Age 13 or more,estimate,Private,-0.11,TRUE
+Age 13 or more,stderr,Private,0.0011,TRUE
+Age 13 or more,estimate,Manufacturing,-0.17,TRUE
+Age 13 or more,stderr,Manufacturing,0.0050,TRUE
+N,estimate,Private,13429873,FALSE
+N,stderr,Private,NA,FALSE
+N,estimate,Manufacturing,900220,FALSE
+N,stderr,Manufacturing,NA,FALSE
+N,estimate,Private,11643922,TRUE
+N,stderr,Private,NA,TRUE
+N,estimate,Manufacturing,854897,TRUE
+N,stderr,Manufacturing,NA,TRUE
+R-sq,estimate,Private,NA,FALSE
+R-sq,stderr,Private,NA,FALSE
+R-sq,estimate,Manufacturing,NA,FALSE
+R-sq,stderr,Manufacturing,NA,FALSE
+R-sq,estimate,Private,NA,TRUE
+R-sq,stderr,Private,NA,TRUE
+R-sq,estimate,Manufacturing,NA,TRUE
+R-sq,stderr,Manufacturing,NA,TRUE
