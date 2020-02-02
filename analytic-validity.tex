@@ -48,25 +48,6 @@ To assess how well the synthetic data capture entity dynamics, we also compute e
 
 Figures~\ref{FirmSharePrivate} and \ref{FirmShareManufacturing} plot the share of firms by two-digit industry and year for both the Canadian synthetic  and confidential data. If only contemporaneous features (employment, payroll), and birth and death of the synthetic entities were the same, all observations would be on the 45 degree line. The figures show some divergence of the within-industry distribution across time. 
 
-\begin{figure} [H]
-\centering
-\caption{Share of firms by NAICS two-digit and year (private)} \label{FirmSharePrivate}
-\includegraphics[height=2.8in, width=.7\linewidth]{graphs/Share_of_firms_by_NAICS_two-digit_and_year_private_bw.pdf} 
-\begin{minipage}{0.85\textwidth}
-{\footnotesize Note: \CanTableNote \par}
-\end{minipage}
-\end{figure}
-
-
-\vspace{-15.5pt}
-\begin{figure} [H]
-\centering
-\caption{Share of firms by NAICS two-digit and year (manufacturing)} \label{FirmShareManufacturing}
-\includegraphics[height=2.8in, width=.7\linewidth]{graphs/Share_of_firms_by_NAICS_two-digit_and_year_Manufacturing_bw.pdf} 
-\begin{minipage}{0.85\textwidth}
-{\footnotesize Note: \CanTableNote \par}
-\end{minipage}
-\end{figure}
 
 Given a distribution of entities alive, we can also compute the share of observed characteristics across time and industry. Shares of a variable $X$ are computed as a fraction of the sum of $X$ across \textit{all} years and industries:
 
@@ -77,46 +58,24 @@ x_{its} = X_{its}/\sum_{i} \sum_{t} X_{its},
 
 where $i$ are two-digit industries, $t$ are  years in-sample, $s$ indicates whether it is in the synthetic or confidential data, and $X_{its}$ is the sum of the variable of interest $X$ for industry $i$ and year $t$ in  dataset $s$.
 
+\todo{Also consolidate graphs here}
+\begin{figure} [H]
+\centering
+\label{tab:all:shares}
+\includegraphics[width=.8\linewidth]{graphs/Figure3-placeholder.png} 
+\caption{Alternate graph} 
+\begin{minipage}{0.48\linewidth}
+{\footnotesize To be computed in R, or redone in Stata using GPH files. Detailed data are in the appendix. \par}
+\end{minipage}
+\end{figure}
+
+
 Figures~\ref{EmploymentSharePrivate} and \ref{EmploymentShareManufacturing} plot the share of employment by two-digit industry and year for both  CanSynLBD and the LEAP database. 
 Employment shares  do not cluster along the 45-degree line. However, this hides significant differences between sectors. For instance,  the share of employment for the manufacturing sector does show stronger clustering along the 45-degree line.
 
-\begin{figure} [H]
-\centering
-\caption{Share of employment by NAICS two-digit and year (private)} \label{EmploymentSharePrivate}
-\includegraphics[height=2.8in, width=.7\linewidth]{graphs/Share_of_employment_by_NAICS_two-digit_and_year_private_bw.pdf} 
-\begin{minipage}{0.85\textwidth}
-{\footnotesize Note: \CanTableNote \par}
-\end{minipage}
-\end{figure}
-\vspace{-15.5pt}
-\begin{figure} [H]
-\centering
-\caption{Share of employment by NAICS two-digit and year (manufacturing)} \label{EmploymentShareManufacturing}
-\includegraphics[height=2.8in, width=.7\linewidth]{graphs/Share_of_employment_by_NAICS_two-digit_and_year_Manufacturing_bw.pdf} 
-\begin{minipage}{0.85\textwidth}
-{\footnotesize Note: \CanTableNote \par}
-\end{minipage}
-\end{figure}
-
+\
 Figures~\ref{PayrollSharePrivate} and~\ref{PayrollShareManufacturing} plot the share of \textit{payroll} by two-digit industry and year for both CanSynLBD and LEAP database. In general, shares do not cluster along the 45-degree line, though a focus on  the manufacturing sector again shows stronger clustering along the 45-degree line.
 
-\begin{figure} [H]
-\centering
-\caption{Share of payroll by NAICS two-digit and year (private)} \label{PayrollSharePrivate}
-\includegraphics[height=2.8in, width=.7\linewidth]{graphs/Share_of_payroll_by_NAICS_two-digit_and_year_private_bw.pdf} 
-\begin{minipage}{0.85\textwidth}
-{\footnotesize Note: \CanTableNote \par}
-\end{minipage}
-\end{figure}
-\vspace{-15.5pt}
-\begin{figure} [H]
-\centering
-\caption{Share of payroll by NAICS two-digit and year (manufacturing)} \label{PayrollShareManufacturing}
-\includegraphics[height=2.8in, width=.7\linewidth]{graphs/Share_of_payroll_by_NAICS_two-digit_and_year_Manufacturing_bw.pdf} 
-\begin{minipage}{0.85\textwidth}
-{\footnotesize Note: \CanTableNote \par}
-\end{minipage}
-\end{figure}
 
 \subsection{pMSE}
 
