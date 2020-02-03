@@ -9,6 +9,29 @@ Panels a and b of Figure~\ref{tab:all:characteristics}
 show that gross employment levels for each year in the CanSynLBD are very close to those in the LEAP. However, the manufacturing sector shows closer patterns than the private sector.\footnote{The private sector comprises all industries including the manufacturing sector except the public sector  (NAICS 61, 62, and 91)} We find similar results for total payroll (Panels c and d of Figure~\ref{tab:all:characteristics}).
   %Figures \ref{tab:Can:TotalPayrollPrivate} and  \ref{tab:Can:TotalPayrollManufacturing}) .
 
+\begin{figure}
+\begin{subfigure}[h]{0.48\linewidth}
+\includegraphics[trim=0 40 0 0,clip, width=\linewidth]{graphs/Gross_employment_level_by_year_private_bw.pdf}
+%\caption{CanSynLBD}
+\end{subfigure}
+\hfill
+\begin{subfigure}[h]{0.48\linewidth}
+\includegraphics[trim=0 40 0 0,clip,width=\linewidth]{graphs/Gross_employment_level_by_year_bw_GsynLBD.pdf}
+%\caption{GSynLBD}
+\end{subfigure}\\
+\begin{subfigure}[h]{0.48\linewidth}
+\includegraphics[trim=0 -20 0 0,clip,width=\linewidth]{graphs/Total_payroll_by_year_private_bw.pdf}
+\caption{CanSynLBD}
+\end{subfigure}
+\hfill
+\begin{subfigure}[h]{0.48\linewidth}
+\includegraphics[trim=0 -20 0 0,clip,width=\linewidth]{graphs/Total_payroll_by_year_bw_GsynLBD.pdf}
+\caption{GSynLBD}
+\end{subfigure}%
+\caption{Gross employment level (upper panels) and total payroll (lower panels) by year}
+\end{figure}
+
+
 \begin{figure} [H]
 \centering
 \label{tab:all:characteristics}
@@ -25,11 +48,56 @@ show that gross employment levels for each year in the CanSynLBD are very close 
 One of the most important applications of LEAP is to generate statistics that describe job flows. Following \cite{DavisHaltiwangerSchuh}, the job creation is defined as the sum of all employment gains from expanding firms from year $t-1$ to year $t$ including entry firms. The job destruction rate is defined as the sum of all employment losses from contracting firms from year $t-1$ to year $t$ including exiting firms. Net job creation is the job creation rate minus the job destruction rate. Figures \ref{JobCreationPrivate} and \ref{JobCreationManufacturing} show the job creation rates from the CanSynLBD compared againg those of the LEAP. These figures show that the manufacturing sector has closer pattern than the private sector. We find a similar patterns for net job creation rates (Panels x and y of Figures \ref{NetJobCreationPrivate} and  \ref{NetJobCreationManufacturing}).
 
 
+\begin{figure}
+\begin{subfigure}[h]{0.48\linewidth}
+\includegraphics[trim=0 40 0 0,clip, width=\linewidth]{graphs/Job_creation_rate_by_year_private_bw.pdf}
+%\caption{CanSynLBD}
+\end{subfigure}
+\hfill
+\begin{subfigure}[h]{0.48\linewidth}
+\includegraphics[trim=0 40 0 0,clip,width=\linewidth]{graphs/Job_creation_rate_by_year_bw_GsynLBD.pdf}
+%\caption{GSynLBD}
+\end{subfigure}\\
+\begin{subfigure}[h]{0.48\linewidth}
+\includegraphics[trim=0 -20 0 0,clip,width=\linewidth]{graphs/Net_job_creation_rate_by_year_private_bw.pdf}
+\caption{CanSynLBD}
+\end{subfigure}
+\hfill
+\begin{subfigure}[h]{0.48\linewidth}
+\includegraphics[trim=0 -20 0 0,clip,width=\linewidth]{graphs/Net_job_creation_rate_by_year_bw_GsynLBD.pdf}
+\caption{GSynLBD}
+\end{subfigure}%
+\caption{Job creation rates (upper panels) and net job creation rates (lower panels) by year}
+\end{figure}
+
 
 \subsection{Entity Dynamics}
 To assess how well the synthetic data capture entity dynamics, we also compute entry and exit rates  by year. Table \ref{tab:Can:FirmDynamics} shows that those rates for CanSynLBD are similar to LEAP database. To show further those rates are similar, we compute the divergence of entry rate as the entry rate of CanSynLBD net the entry rate of LEAP as well as the divergence of exit rate as the exit rate of CanSynLBD net the exit rate of LEAP (see Figure \ref{Divergence}).
 
 \todo{Also consolidate graphs here}
+
+\begin{figure}
+\begin{subfigure}[h]{0.48\linewidth}
+\includegraphics[trim=0 40 0 0,clip, width=\linewidth]{graphs/Job_creation_rate_by_year_private_bw.pdf}
+%\caption{CanSynLBD}
+\end{subfigure}
+\hfill
+\begin{subfigure}[h]{0.48\linewidth}
+\includegraphics[trim=0 40 0 0,clip,width=\linewidth]{graphs/sha}
+%\caption{GSynLBD}
+\end{subfigure}\\
+\begin{subfigure}[h]{0.48\linewidth}
+\includegraphics[trim=0 -20 0 0,clip,width=\linewidth]{graphs/Net_job_creation_rate_by_year_private_bw.pdf}
+\caption{CanSynLBD}
+\end{subfigure}
+\hfill
+\begin{subfigure}[h]{0.48\linewidth}
+\includegraphics[trim=0 -20 0 0,clip,width=\linewidth]{graphs/Net_job_creation_rate_by_year_bw_GsynLBD.pdf}
+\caption{GSynLBD}
+\end{subfigure}%
+\caption{Job creation rates (upper panels) and net job creation rates (lower panels) by year}
+\end{figure}
+
 \begin{figure} [H]
 \centering
 \label{tab:Can:FirmDynamics}
