@@ -3,6 +3,7 @@
 /* Originally created 2018-02-16 */
 /* stores pathnames, other configuration */
 
-global gphdir "../stata-graphs"
-global data "../data"
+global basedir "../.."
+global gphdir "${basedir}/stata-graphs"
+global data "${basedir}/data"
 
