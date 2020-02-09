@@ -1,40 +1,40 @@
 \clearpage
 
-\appendix{Supplementary Graphs}
+\appendix{\LARGE{Appendix}}
 
-\section{Appendix Figures}
+\section{Figures for the manufcaturing Sector in Canada}
 \label{sec:appendix_figures}
 
 \todo{Why is manufacturing always below, but overall employment crosses? Which industries are driving that?} \todo{JA: I checked before, but I could not able to identify any specific reason.}
-\begin{figure} [H]
+\begin{figure}[H]
 \centering
 \begin{subfigure}[h]{0.48\linewidth}
 \label{tab:Can:GrossEmploymentPrivate}
-\includegraphics[height=2.8in, width=.7\linewidth]{graphs/Gross_employment_level_by_year_private_bw.pdf} 
-\caption{Gross employment level by year (private)} %\begin{minipage}{0.85\textwidth}
+\includegraphics[width=\linewidth]{graphs/Gross_employment_level_by_year_manufacturing_bw.pdf} 
+\caption{Gross employment level by year} %\begin{minipage}{0.85\textwidth}
 %{\footnotesize Note: \CanTableNote \par}
 %\end{minipage}
-\caption{Private Sector}
 \end{subfigure}
 \hfill
 \begin{subfigure}[h]{0.48\linewidth}
-\includegraphics[width=\linewidth]{graphs/Gross_employment_level_by_year_manufacturing_bw.pdf}
-\caption{Manufacturing}
+\includegraphics[width=\linewidth]{graphs/Total_payroll_by_year_manufacturing_bw.pdf}
+\caption{Total payroll}
 \end{subfigure}%
+\caption{Entity characteristics for the manufacturing sector in Canada by year.}\label{fig:entity_chracteristics_manufac}
 \end{figure}
 
 
-\begin{figure}
+\begin{figure}[H]
 \begin{subfigure}[h]{0.48\linewidth}
-\includegraphics[width=\linewidth]{graphs/Gross_employment_level_by_year_private_bw.pdf}
-\caption{CanSynLBD}
+\includegraphics[width=\linewidth]{graphs/Job_creation_rate_by_year_Manufacturing_bw.pdf}
+\caption{Job creation rates}
 \end{subfigure}
 \hfill
 \begin{subfigure}[h]{0.48\linewidth}
-\includegraphics[width=\linewidth]{graphs/Gross_employment_level_by_year_bw_GsynLBD.pdf}
-\caption{GSynLBD}
+\includegraphics[width=\linewidth]{graphs/Job_destruction_rate_by_year_Manufacturing_bw.pdf}
+\caption{Job destruction rates}
 \end{subfigure}%
-\caption{Gross employment level by year}
+\caption{Dynamics of job flows for the manufacturing sector in Canada by year.}\label{fig:job_flows_manufac}
 \end{figure}
 
 
@@ -50,133 +50,150 @@
 %\end{figure}
 
 
-\begin{figure} [H]
+%\begin{figure} [H]
+%\centering
+%\caption{Total payroll by year (private)} \label{tab:Can:TotalPayrollPrivate}
+%\includegraphics[height=2.8in, width=.7\linewidth]{graphs/Total_payroll_by_year_private_bw.pdf} 
+%\begin{minipage}{0.85\textwidth}
+%{\footnotesize Note: \CanTableNote \par}
+%\end{minipage}
+%\end{figure}
+%\begin{figure} [H]
+%\centering
+%\caption{Total payroll by year (manufacturing)} \label{tab:Can:TotalPayrollManufacturing}
+%\includegraphics[height=2.8in, width=.7\linewidth]{graphs/Total_payroll_by_year_manufacturing_bw.pdf} 
+%\begin{minipage}{0.85\textwidth}
+%{\footnotesize Note: \CanTableNote \par}
+%\end{minipage}
+%\end{figure}
+
+
+
+
+%\begin{figure} [H]
+%\centering
+%\caption{Job creation rate by year (private)} \label{JobCreationPrivate}
+%\includegraphics[height=2.8in, width=.7\linewidth]{graphs/Job_creation_rate_by_year_private_bw.pdf} 
+%\begin{minipage}{0.85\textwidth}
+%{\footnotesize Note: \CanTableNote \par}
+%\end{minipage}
+%\end{figure}
+
+%\begin{figure} [H]
+%\centering
+%\caption{Job creation rate  by year (manufacturing)} %\label{JobCreationManufacturing}
+%\includegraphics[height=2.8in, width=.7\linewidth]{graphs/Job_creation_rate_by_year_Manufacturing_bw.pdf} 
+%\begin{minipage}{0.85\textwidth}
+%{\footnotesize Note: \CanTableNote \par}
+%\end{minipage}
+%\end{figure}
+
+%\todo{LV regraph, dropping last year} \todo{JA: Should we mention this in the text including reasons if we drop the last year here?}
+%\begin{figure} [H]
+%\centering
+%\caption{Net job creation rate by year (private)} \label{NetJobCreationPrivate}
+%\includegraphics[height=2.8in, width=.7\linewidth]{graphs/Net_job_creation_rate_by_year_private_bw.pdf} 
+%\begin{minipage}{0.85\textwidth}
+%{\footnotesize Note: \CanTableNote \par}
+%5\end{minipage}
+%\end{figure}
+%\begin{figure} [H]
+%\centering
+%\caption{Net job creation rate  by year (manufacturing)} \label{NetJobCreationManufacturing}
+%\includegraphics[height=2.8in, width=.7\linewidth]{graphs/Net_job_creation_rate_by_year_Manufacturing_bw.pdf} 
+%\begin{minipage}{0.85\textwidth}
+%{\footnotesize Note: $LEAP$ is the Longitudinal Employment Analysis Program and $CanSynLBD$ is the Canadian synthetic database based on LEAP. In this graph, we use 2015 vintage of LEAP for the manufacturing sector and drop last year observation of each firm. \par}
+%\end{minipage}
+%\end{figure}
+
+%\todo{LV: Do we want to graph the entry/exit rates, or only the divergence?}
+%\begin{figure} [H]
+%\centering
+%\caption{Divergence of exit and entry rate between LEAP and CanSynLBD} \label{Divergence}
+%\includegraphics[height=2.8in, width=.7\linewidth]{graphs/Divergence_of_exit_and_entry_rate_between_LEAP_and_CanSynLBD_bw.pdf} 
+%\begin{minipage}{0.85\textwidth}
+%{\footnotesize Note: \CanTableNote  We calculate the divergence of entry rate as the entry rate of CanSynLBD net the entry rate of LEAP and the divergence of exit rate as the exit rate of CanSynLBD net the exit rate of LEAP. \par}
+%\end{minipage}
+%\end{figure}
+
+\begin{figure}[H]
 \centering
-\caption{Total payroll by year (private)} \label{tab:Can:TotalPayrollPrivate}
-\includegraphics[height=2.8in, width=.7\linewidth]{graphs/Total_payroll_by_year_private_bw.pdf} 
-\begin{minipage}{0.85\textwidth}
-{\footnotesize Note: \CanTableNote \par}
-\end{minipage}
-\end{figure}
-\begin{figure} [H]
-\centering
-\caption{Total payroll by year (manufacturing)} \label{tab:Can:TotalPayrollManufacturing}
-\includegraphics[height=2.8in, width=.7\linewidth]{graphs/Total_payroll_by_year_manufacturing_bw.pdf} 
-\begin{minipage}{0.85\textwidth}
-{\footnotesize Note: \CanTableNote \par}
-\end{minipage}
-\end{figure}
-
-
-
-
-\begin{figure} [H]
-\centering
-\caption{Job creation rate by year (private)} \label{JobCreationPrivate}
-\includegraphics[height=2.8in, width=.7\linewidth]{graphs/Job_creation_rate_by_year_private_bw.pdf} 
-\begin{minipage}{0.85\textwidth}
-{\footnotesize Note: \CanTableNote \par}
-\end{minipage}
-\end{figure}
-
-\begin{figure} [H]
-\centering
-\caption{Job creation rate  by year (manufacturing)} \label{JobCreationManufacturing}
-\includegraphics[height=2.8in, width=.7\linewidth]{graphs/Job_creation_rate_by_year_Manufacturing_bw.pdf} 
-\begin{minipage}{0.85\textwidth}
-{\footnotesize Note: \CanTableNote \par}
-\end{minipage}
-\end{figure}
-
-\todo{LV regraph, dropping last year} \todo{JA: Should we mention this in the text including reasons if we drop the last year here?}
-\begin{figure} [H]
-\centering
-\caption{Net job creation rate by year (private)} \label{NetJobCreationPrivate}
-\includegraphics[height=2.8in, width=.7\linewidth]{graphs/Net_job_creation_rate_by_year_private_bw.pdf} 
-\begin{minipage}{0.85\textwidth}
-{\footnotesize Note: \CanTableNote \par}
-\end{minipage}
-\end{figure}
-\begin{figure} [H]
-\centering
-\caption{Net job creation rate  by year (manufacturing)} \label{NetJobCreationManufacturing}
-\includegraphics[height=2.8in, width=.7\linewidth]{graphs/Net_job_creation_rate_by_year_Manufacturing_bw.pdf} 
-\begin{minipage}{0.85\textwidth}
-{\footnotesize Note: $LEAP$ is the Longitudinal Employment Analysis Program and $CanSynLBD$ is the Canadian synthetic database based on LEAP. In this graph, we use 2015 vintage of LEAP for the manufacturing sector and drop last year observation of each firm. \par}
-\end{minipage}
-\end{figure}
-
-\todo{LV: Do we want to graph the entry/exit rates, or only the divergence?}
-\begin{figure} [H]
-\centering
-\caption{Divergence of exit and entry rate between LEAP and CanSynLBD} \label{Divergence}
-\includegraphics[height=2.8in, width=.7\linewidth]{graphs/Divergence_of_exit_and_entry_rate_between_LEAP_and_CanSynLBD_bw.pdf} 
-\begin{minipage}{0.85\textwidth}
-{\footnotesize Note: \CanTableNote  We calculate the divergence of entry rate as the entry rate of CanSynLBD net the entry rate of LEAP and the divergence of exit rate as the exit rate of CanSynLBD net the exit rate of LEAP. \par}
-\end{minipage}
-\end{figure}
-
-
-\begin{figure} [H]
-\centering
-\caption{Share of firms by NAICS two-digit and year (private)} \label{FirmSharePrivate}
-\includegraphics[height=2.8in, width=.7\linewidth]{graphs/Share_of_firms_by_NAICS_two-digit_and_year_private_bw.pdf} 
-\begin{minipage}{0.85\textwidth}
-{\footnotesize Note: \CanTableNote \par}
-\end{minipage}
-\end{figure}
-
-
-\vspace{-15.5pt}
-\begin{figure} [H]
-\centering
-\caption{Share of firms by NAICS two-digit and year (manufacturing)} \label{FirmShareManufacturing}
-\includegraphics[height=2.8in, width=.7\linewidth]{graphs/Share_of_firms_by_NAICS_two-digit_and_year_Manufacturing_bw.pdf} 
-\begin{minipage}{0.85\textwidth}
-{\footnotesize Note: \CanTableNote \par}
-\end{minipage}
+\begin{subfigure}[h]{0.5\linewidth}
+\includegraphics[trim=0 10 0 0,clip, width=\linewidth]{graphs/Share_of_firms_by_NAICS_two-digit_and_year_Manufacturing_bw.pdf}
+%\caption{CanSynLBD}
+\end{subfigure}\\
+\begin{subfigure}[h]{0.5\linewidth}
+\includegraphics[trim=0 10 0 -20,clip,width=\linewidth]{graphs/Share_of_employment_by_NAICS_two-digit_and_year_Manufacturing_bw.pdf}
+%\caption{CanSynLBD}
+\end{subfigure}\\
+\begin{subfigure}[h]{0.5\linewidth}
+\includegraphics[trim=0 0 0 -20,clip,width=\linewidth]{graphs/Share_of_payroll_by_NAICS_two-digit_and_year_Manufacturing_bw.pdf}
+\end{subfigure}
+\caption{Share of entities (upper panel), share of employment (middle panel), and share of payroll (lower panel) by year and industry for the Canadian manufacturing sector.}\label{fig:FirmShare_manufac}
 \end{figure}
 
 
 
-\begin{figure} [H]
-\centering
-\caption{Share of employment by NAICS two-digit and year (private)} \label{EmploymentSharePrivate}
-\includegraphics[height=2.8in, width=.7\linewidth]{graphs/Share_of_employment_by_NAICS_two-digit_and_year_private_bw.pdf} 
-\begin{minipage}{0.85\textwidth}
-{\footnotesize Note: \CanTableNote \par}
-\end{minipage}
-\end{figure}
-\vspace{-15.5pt}
-\begin{figure} [H]
-\centering
-\caption{Share of employment by NAICS two-digit and year (manufacturing)} \label{EmploymentShareManufacturing}
-\includegraphics[height=2.8in, width=.7\linewidth]{graphs/Share_of_employment_by_NAICS_two-digit_and_year_Manufacturing_bw.pdf} 
-\begin{minipage}{0.85\textwidth}
-{\footnotesize Note: \CanTableNote \par}
-\end{minipage}
-\end{figure}
+%\begin{figure} [H]
+%\centering
+%\caption{Share of firms by NAICS two-digit and year (private)} \label{FirmSharePrivate}
+%\includegraphics[height=2.8in, width=.7\linewidth]{graphs/Share_of_firms_by_NAICS_two-digit_and_year_private_bw.pdf} 
+%\begin{minipage}{0.85\textwidth}
+%{\footnotesize Note: \CanTableNote \par}
+%\end{minipage}
+%\end{figure}
+
+
+%\vspace{-15.5pt}
+%\begin{figure} [H]
+%\centering
+%\caption{Share of firms by NAICS two-digit and year (manufacturing)} \label{FirmShareManufacturing}
+%\includegraphics[height=2.8in, width=.7\linewidth]{graphs/Share_of_firms_by_NAICS_two-digit_and_year_Manufacturing_bw.pdf} 
+%\begin{minipage}{0.85\textwidth}
+%{\footnotesize Note: \CanTableNote \par}
+%\end{minipage}
+%\end{figure}
+
+
+
+%\begin{figure} [H]
+%\centering
+%\caption{Share of employment by NAICS two-digit and year (private)} \label{EmploymentSharePrivate}
+%\includegraphics[height=2.8in, width=.7\linewidth]{graphs/Share_of_employment_by_NAICS_two-digit_and_year_private_bw.pdf} 
+%\begin{minipage}{0.85\textwidth}
+%{\footnotesize Note: \CanTableNote \par}
+%\end{minipage}
+%\end{figure}
+%\vspace{-15.5pt}
+%\begin{figure} [H]
+%\centering
+%\caption{Share of employment by NAICS two-digit and year (manufacturing)} \label{EmploymentShareManufacturing}
+%\includegraphics[height=2.8in, width=.7\linewidth]{graphs/Share_of_employment_by_NAICS_two-digit_and_year_Manufacturing_bw.pdf} 
+%\begin{minipage}{0.85\textwidth}
+%{\footnotesize Note: \CanTableNote \par}
+%5\end{minipage}
+%\end{figure}
 
 
 
 
-\begin{figure} [H]
-\centering
-\caption{Share of payroll by NAICS two-digit and year (private)} \label{PayrollSharePrivate}
-\includegraphics[height=2.8in, width=.7\linewidth]{graphs/Share_of_payroll_by_NAICS_two-digit_and_year_private_bw.pdf} 
-\begin{minipage}{0.85\textwidth}
-{\footnotesize Note: \CanTableNote \par}
-\end{minipage}
-\end{figure}
-\vspace{-15.5pt}
-\begin{figure} [H]
-\centering
-\caption{Share of payroll by NAICS two-digit and year (manufacturing)} \label{PayrollShareManufacturing}
-\includegraphics[height=2.8in, width=.7\linewidth]{graphs/Share_of_payroll_by_NAICS_two-digit_and_year_Manufacturing_bw.pdf} 
-\begin{minipage}{0.85\textwidth}
-{\footnotesize Note: \CanTableNote \par}
-\end{minipage}
-\end{figure}
+%\begin{figure} [H]
+%\centering
+%\caption{Share of payroll by NAICS two-digit and year (private)} \label{PayrollSharePrivate}
+%\includegraphics[height=2.8in, width=.7\linewidth]{graphs/Share_of_payroll_by_NAICS_two-digit_and_year_private_bw.pdf} 
+%\begin{minipage}{0.85\textwidth}
+%{\footnotesize Note: \CanTableNote \par}
+%\end{minipage}
+%\end{figure}
+%\vspace{-15.5pt}
+%\begin{figure} [H]
+%\centering
+%\caption{Share of payroll by NAICS two-digit and year (manufacturing)} \label{PayrollShareManufacturing}
+%\includegraphics[height=2.8in, width=.7\linewidth]{graphs/Share_of_payroll_by_NAICS_two-digit_and_year_Manufacturing_bw.pdf} 
+%\begin{minipage}{0.85\textwidth}
+%{\footnotesize Note: \CanTableNote \par}
+%\end{minipage}
+%\end{figure}
 
 
 
@@ -200,48 +217,48 @@
 \section{Appendix Tables}
 \label{sec:appendix_tables}
 
-\begin{table}[H]
-  \centering
-\begin{threeparttable}
- \caption{Entry and exit rates by year (LEAP)} \label{tab:Can:FirmDynamics} \medskip
-\renewcommand{\arraystretch}{1}
-\begin{tabular}{l|c c| c c| c c}
-\toprule
-&\multicolumn{2}{c|}{\textbf{LEAP}} &  \multicolumn{2}{c|}{\textbf{CanSynLBD}}&  \multicolumn{2}{c}{\textbf{Divergence}}\\
-\textbf{Year}&\textbf{Entry Rate}&\textbf{Exit Rate}&\textbf{Entry Rate}&\textbf{Exit Rate} &\textbf{Entry Rate}&\textbf{Exit Rate}\\
-\midrule
-\input{tables/Entry_and_exit_rate_by_year}
-   \bottomrule
-  \end{tabular} 
-\begin{tablenotes}
-\small
-\item Note: \CanTableNote  We calculate the divergence of entry rate as the entry rate of CanSynLBD net of the entry rate of LEAP and the divergence of exit rate as the exit rate of CanSynLBD net of the exit rate of LEAP. Private sector only.
- \end{tablenotes}
- \end{threeparttable}
-\end{table}
+%\begin{table}[H]
+%  \centering
+%\begin{threeparttable}
+% \caption{Entry and exit rates by year (LEAP)} \label{tab:Can:FirmDynamics} \medskip
+%\renewcommand{\arraystretch}{1}
+%\begin{tabular}{l|c c| c c| c c}
+%\toprule
+%&\multicolumn{2}{c|}{\textbf{LEAP}} &  \multicolumn{2}{c|}{\textbf{CanSynLBD}}&  \multicolumn{2}{c}{\textbf{Divergence}}\\
+%\textbf{Year}&\textbf{Entry Rate}&\textbf{Exit Rate}&\textbf{Entry Rate}&\textbf{Exit Rate} &\textbf{Entry Rate}&\textbf{Exit Rate}\\
+%\midrule
+%\input{tables/Entry_and_exit_rate_by_year}
+%   \bottomrule
+%  \end{tabular} 
+%\begin{tablenotes}
+%\small
+%\item Note: \CanTableNote  We calculate the divergence of entry rate as the entry rate of CanSynLBD net of the entry rate of LEAP and the divergence of exit rate as the exit rate of CanSynLBD net of the exit rate of LEAP. Private sector only.
+% \end{tablenotes}
+% \end{threeparttable}
+%\end{table}
 
-\begin{table}[H]
-  \centering
-\begin{threeparttable}
- \caption{Entry and exit rates by year (GLBD)} \label{tab:DE:FirmDynamics} \medskip
-\renewcommand{\arraystretch}{1}
-\begin{tabular}{l|c c| c c| c c}
-\toprule
-&\multicolumn{2}{c|}{\textbf{GLBD}} &  \multicolumn{2}{c|}{\textbf{GSynLBD}}&  \multicolumn{2}{c}{\textbf{Divergence}}\\
-\textbf{Year}&\textbf{Entry Rate}&\textbf{Exit Rate}&\textbf{Entry Rate}&\textbf{Exit Rate} &\textbf{Entry Rate}&\textbf{Exit Rate}\\
-\midrule
-\input{tables/Entry_and_exit_rate_by_year_GsynLBD.tex}
-   \bottomrule
-  \end{tabular} 
-\begin{tablenotes}
-\small
-\item Note: We calculate the divergence of entry rate as the entry rate of GSynLBD net of the entry rate of GLBD and the divergence of exit rate as the exit rate of GSynLBD net of the exit rate of GLBD.
- \end{tablenotes}
- \end{threeparttable}
-\end{table}
+%\begin{table}[H]
+%  \centering
+%\begin{threeparttable}
+% \caption{Entry and exit rates by year (GLBD)} \label{tab:DE:FirmDynamics} \medskip
+%\renewcommand{\arraystretch}{1}
+%\begin{tabular}{l|c c| c c| c c}
+%\toprule
+%&\multicolumn{2}{c|}{\textbf{GLBD}} &  \multicolumn{2}{c|}{\textbf{GSynLBD}}&  \multicolumn{2}{c}{\textbf{Divergence}}\\
+%\textbf{Year}&\textbf{Entry Rate}&\textbf{Exit Rate}&\textbf{Entry Rate}&\textbf{Exit Rate} &\textbf{Entry Rate}&\textbf{Exit Rate}\\
+%\midrule
+%\input{tables/Entry_and_exit_rate_by_year_GsynLBD.tex}
+%   \bottomrule
+ % \end{tabular} 
+%\begin{tablenotes}
+%\small
+%\item Note: We calculate the divergence of entry rate as the entry rate of GSynLBD net of the entry rate of GLBD and the divergence of exit rate as the exit rate of GSynLBD net of the exit rate of GLBD.
+% \end{tablenotes}
+% \end{threeparttable}
+%\end{table}
 
 
-\section{$pMSE$}
+\subsection{$pMSE$}
 \label{sec:pmse_tables}
 
 \begin{table}[H]
@@ -285,7 +302,7 @@
 
 
 
-\section{Regression analysis tables}
+\subsection{Regression analysis tables}
 \label{sec:regression_tables}
 
 \begin{table}[H]

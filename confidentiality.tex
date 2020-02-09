@@ -1,9 +1,10 @@
 
-In this section, we estimate the probability that the synthetic birth year equals the true birth year, conditional on the synthetic birth year. Tables~\ref{tab:Can:ProbabilityPrivate} and \ref{tab:Can:ProbabilityManufacturing} show that these probabilities are quite low except for the first year.\todo{BD: Are we worried about this?} \todo{JA: Somebody asked me when I presented at StatCan.} The probability for the first year is higher because of censoring and lack of previous information.
+To evaluate the risk of disclosure, we use a measure proposed for evaluating the disclosure risks of the SynLBD \citep{KinneyEtAl2011}: For each industry, we estimate the probability that the synthetic birth year equals the true birth year, conditional on the synthetic birth year. Tables~\ref{tab:Can:ProbabilityPrivate} and \ref{tab:GLBD:Probability} show that these probabilities are quite low except for the first year. Entry rates in the first year are much larger than in any other year due to censoring. It is therefore to be expected that there is a high probability that the entry year of the synthetic record matches that of the original record if the synthetic entry year is the first year observed in the data. For the German data, we see another spike in the match rates for the years 1991 and 1992. These are the years in which data from Eastern Germany were added to the database successively. Thus, the increase in match rates can be attributed to increased entry rates in those two years. 
+\todo{BD: Are we worried about this?} \todo{JA: Somebody asked me when I presented at StatCan.} The probability for the first year is higher because of censoring and lack of previous information.
 
 \begin{table}[H]
 \centering\footnotesize
-\caption{Observed entity births given synthetic births (private)} \label{tab:Can:ProbabilityPrivate} \medskip
+\caption{Observed entity births given synthetic births for LEAP.} \label{tab:Can:ProbabilityPrivate} \medskip
 \renewcommand{\arraystretch}{1}
 \begin{tabular}{c c| c c c}
 \toprule
@@ -18,24 +19,24 @@ In this section, we estimate the probability that the synthetic birth year equal
 %Note:
 \end{table}
 
-\begin{table}[H]
-\centering\footnotesize
-\caption{Observed entity births given synthetic births (manufacturing)} \label{tab:Can:ProbabilityManufacturing} \medskip
-\renewcommand{\arraystretch}{1}
-\begin{tabular}{c c| c c c}
-\toprule
-\multicolumn{2}{c|}{\textbf{Birth Year}} &  \multicolumn{3}{c}{\textbf{\% of Births over NAICS}}\\
-\textbf{Synthetic}&\textbf{Actual}&\textbf{Minimum}&\textbf{Mean}&\textbf{Maximum}\\
-\midrule
-\input{tables/Observed_firm_births_given_synthetic_births_manufacturing}
-\bottomrule
-\end{tabular} 
-\\
-\justify
+%\begin{table}[H]
+%\centering\footnotesize
+%\caption{Observed entity births given synthetic births %(manufacturing)} \label{tab:Can:ProbabilityManufacturing} \medskip
+%\renewcommand{\arraystretch}{1}
+%\begin{tabular}{c c| c c c}
+%\toprule
+%\multicolumn{2}{c|}{\textbf{Birth Year}} &  \multicolumn{3}{c}{\textbf{\% of Births over NAICS}}\\
+%\textbf{Synthetic}&\textbf{Actual}&\textbf{Minimum}&\textbf{Mean}&\textbf{Maximum}\\
+%\midrule
+%\input{tables/Observed_firm_births_given_synthetic_births_manufacturing}
+%\bottomrule
+%\end{tabular} 
+%\\
+%\justify
 %Note:
-\end{table}
+%\end{table}
 
-\begin{table}[H]
+\begin{table}[H]\label{tab:GLBD:Probability}
 \centering\footnotesize
 \caption{Observed entity births given synthetic births (GLBD)} \label{ProbabilityManufacturing} \medskip
 \renewcommand{\arraystretch}{1}
@@ -52,11 +53,11 @@ In this section, we estimate the probability that the synthetic birth year equal
 %Note:
 \end{table}
 
-\begin{figure} [H]
-\centering
-\caption{The difference between first and last year given synthetic first year} \label{SyntheticFirstYear}
-\includegraphics[height=2.8in, width=.7\linewidth]{graphs/The_difference_between_first_and_last_year_given_synthetic_first_year_bw.pdf} 
-\begin{minipage}{0.85\textwidth}
+%\begin{figure} [H]
+%\centering
+%\caption{The difference between first and last year given synthetic first year} \label{SyntheticFirstYear}
+%\includegraphics[height=2.8in, width=.7\linewidth]{graphs/The_difference_between_first_and_last_year_given_synthetic_first_year_bw.pdf} 
+%\begin{minipage}{0.85\textwidth}
 %{\footnotesize Note:  \par}
-\end{minipage}
-\end{figure}
+%\end{minipage}
+%\end{figure}
