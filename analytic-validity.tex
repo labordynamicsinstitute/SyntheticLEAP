@@ -195,8 +195,11 @@ We find that the share of entities is well preserved for both data sources, but 
 
 \subsection{pMSE}
 
+\input{tables/table_pmse_corrected}
 
-To compute the $pMSE$, we estimate Equation (\ref{pMSE}) using logit models. The estimated $pMSE$ is 0.0121 for the Canadian data (0.0041 when looking only at the manufacturing sector) and 0.0013 for the German data. These numbers are difficult to interpret on an absolute scale, but the fact that they are all close to zero seems to imply that the measure indicates a high level of analytical validity. However, as pointed out by \citet{Woo_Reiter_Oganian_Karr_2009}, the value of the $pMSE$ depends on the model specification of the propensity score model. Including more predictors or interaction terms in the model will typically lead to an increase in the $pMSE$. This was also confirmed by \citet{Snoke_RSSA2018}, who showed that under the assumption that both datasets come from the same data generating process, the expected value of the $pMSE$ is $(k-1)(1-c)^2c/N$, where $k$ is the number of parameters included in the propensity model, $c$ is the proportion of synthetic records in the stacked dataset and $N$ is the number of records in the stacked dataset. Thus, adding complexity to the propensity score model will generally lead to an increase in the $pMSE$ even if the synthesis model is perfect. The findings of \citet{Snoke_RSSA2018} also illustrate that it is not meaningful to compare the $pMSE$ from the Canadian data to the $pMSE$ from the German data or to the $pMSE$ of the manufacturing sector as the sizes of the datasets are substantially different. 
+To compute the $pMSE$, we estimate Equation (\ref{pMSE}) using logit models. The estimated $pMSE$ is 0.0121 for the Canadian data (0.0041 when looking only at the manufacturing sector) and 0.0013 for the German data (see Table~\ref{tab:pmse}). While these numbers may seem small, \citet{Snoke_RSSA2018} provide an appropriate expected value, and Table~\ref{tab:pmse} reports quite large numbers, suggesting that the synthetic data do not have very high analytical validity.
+
+%These numbers are difficult to interpret on an absolute scale, but the fact that they are all close to zero seems to imply that the measure indicates a high level of analytical validity. However, as pointed out by \citet{Woo_Reiter_Oganian_Karr_2009}, the value of the $pMSE$ depends on the model specification of the propensity score model. Including more predictors or interaction terms in the model will typically lead to an increase in the $pMSE$. This was also confirmed by \citet{Snoke_RSSA2018}, who showed that under the assumption that both datasets come from the same data generating process, the expected value of the $pMSE$ is $(k-1)(1-c)^2c/N$, where $k$ is the number of parameters included in the propensity model, $c$ is the proportion of synthetic records in the stacked dataset and $N$ is the number of records in the stacked dataset. Thus, adding complexity to the propensity score model will generally lead to an increase in the $pMSE$ even if the synthesis model is perfect. The findings of \citet{Snoke_RSSA2018} also illustrate that it is not meaningful to compare the $pMSE$ from the Canadian data to the $pMSE$ from the German data or to the $pMSE$ of the manufacturing sector as the sizes of the datasets are substantially different. 
 %=NTTable~\ref{tab:pMSE_regression} shows the results from the estimation of $pMSE$ for the Canadian data.
 %\todo{BD: Are those coefficients or marginal effects? Does it make sense to show coefficients? Or are we interested only in the last row? If we are interested in the coefficient, why is there no discussion of those?} 
 %\todo{Those are coefficients. I think we are interested in the last row.} 
@@ -209,34 +212,36 @@ To compute the $pMSE$, we estimate Equation (\ref{pMSE}) using logit models. The
 \subsection{Regression Analysis}
 
 \todo{Need to expand the regression discussion: only one generic model, many others possible, reference to the Singapore presentation by Lars}
-To assess how well the synthetic data perform in a more complex model, we estimate four models similar to what users of the data (mostly economists) would use them for. These allow us to assess whether the synthetic data capture variability in economic growth due to industry and firm age.
-The base model is  dynamic panel data model for the evolution of employment:
+To assess how well the synthetic data perform in a more complex model, we estimate a dynamic panel data model for the evolution of employment, using four variants suggested by the economics literature. 
+These allow us to assess whether the synthetic data capture variability in economic growth due to industry and firm age - the key variables in the data. 
+
+The base variant is an OLS specification:
 
 \begin{eqnarray}	
 \label{eq:OLS}
-Emp_{et} & = & \alpha + \theta Emp_{e,t-1} + \lambda Pay_{et} + Age_{et}^{T}\beta + \lambda_t + \alpha_i + \epsilon_{et}
+Emp_{et} & = & \beta_0 + \theta Emp_{e,t-1} + \lambda Pay_{et} + Age_{et}^{T}\beta + \lambda_t + \alpha_i + \epsilon_{et}
 \end{eqnarray}
 where $Emp_{et}$ is log employment of entity $e$ in year $t$, $Emp_{e,t-1}$ is its one year lag, $Pay_{et}$ is the logarithm of payroll of entity $e$ in year $t$, $Age_{et}$ is a vector of dummy variables for age of entity $e$ in year $t$, $\lambda_t$ is the year fixed effect, $\alpha_i$ is an unobserved time-invariant industry-specific effect, and $\epsilon_{et}$ is the disturbance term of entity $e$ in year $t$. 
-
-\todo{adjust for german analysis}
-We estimate the model separately on confidential and synthetic data for the private sector (and for Canada, for the manufacturing sector). We find that the CansynLBD data provides similar predictions to LEAP data (Tables  \ref{OLS}).\todo{compute overlap interval} \todo{JA: @Lars, I think you mentioned once that you would like to calculate this. I could calculate using the method explained in the appendix.}
-
 
 
 As $Emp_{e,t-1}$ is correlated with $\alpha_{i}$ because $Emp_{e,t-1}$ is a function of $\alpha_{i}$, \todo{This may need to be explained for non-economists - why is lagged employment of firm e a function of industry effect alpha i?}
 OLS estimators are biased and inconsistent. 
-To take this endogeneity bias into account, we use the estimation method from \textcite{RePEc:oup:restud:v:58:y:1991:i:2:p:277-297.} and find similar predictions (Table \ref{Dynamic - GMM}). To check the validity of the model, we use two tests. First, to test for autocorrelation, we use the test $m2$ by \textcite{RePEc:oup:restud:v:58:y:1991:i:2:p:277-297.}. In the table, we report the $z$ test statistic for $m2$ test for zero autocorrelation in the  first-differenced errors of order two. Second, we use the Sargan test to verify the validity of instrument subsets (shown in the last three rows in the table).
+To take this endogeneity bias into account,  \textcite{RePEc:oup:restud:v:58:y:1991:i:2:p:277-297.} suggest a generalized method of moments (GMM) method, and tests to assess the  validity of the model.  To test for autocorrelation, we compute the  $m2$ test  for zero autocorrelation in the  first-differenced errors of order two. The Sargan test is used to verify the validity of instrument subsets. Both tests are computed for each country and industry.
 
-We furthermore estimate the model using the system GMM  method proposed by \textcite{RePEc:eee:econom:v:68:y:1995:i:1:p:29-51} and \textcite{RePEc:eee:econom:v:87:y:1998:i:1:p:115-143} and find similar predictions as before (detailed results in Table~\ref{Dynamic - system GMM}). 
-
-We also estimate above dynamic panel data model with a first-order moving average using appropriate instruments for both level and difference equation as proposed by \textcite{RePEc:eee:econom:v:68:y:1995:i:1:p:29-51} and \textcite{RePEc:eee:econom:v:87:y:1998:i:1:p:115-143}:
+We furthermore estimate the model using the system GMM  method proposed by \textcite{RePEc:eee:econom:v:68:y:1995:i:1:p:29-51} and \textcite{RePEc:eee:econom:v:87:y:1998:i:1:p:115-143}, as well as a variant specifying a first-order moving average using appropriate instruments for both level and difference equation  \parencite{RePEc:eee:econom:v:68:y:1995:i:1:p:29-51,RePEc:eee:econom:v:87:y:1998:i:1:p:115-143}:
 
 \todo{@ JA: $\alpha$ is used twice - not clear - please verify - I have added subscripts}
 \begin{eqnarray}	
-Emp_{et}&=&\alpha_i +\theta Emp_{e,t-1}+\lambda Pay_{et}+Age_{et}^{T}\beta+\lambda_t+\alpha_i+\epsilon_{et}+\gamma\epsilon_{e,t-1}
+Emp_{et}&=&\beta_{0,e} +\theta Emp_{e,t-1}+\lambda Pay_{et}+Age_{et}^{T}\beta+\lambda_t+\alpha_i+\epsilon_{et}+\gamma\epsilon_{e,t-1}
 \end{eqnarray}
 
-Table~\ref{Dynamic - system GMM with MA(1)} shows that the CansynLBD provides similar predictions to the LEAP.
+
+We estimate the model separately on confidential and synthetic data for the private sector (and for Canada, for the manufacturing sector). The estimation results are reported in the Appendix. Generally, we find that the estimated coefficients are different, though of the same sign. Only a small number of models show coefficients that are similar (with a positive confidence interval overlap $J_{k,m}$). The key coefficients - lagged employment and pay - are never close. The mean and median $J_{k,m}$ are negative for all models. , We find that the CansynLBD data provides similar predictions to LEAP data (Tables  \ref{OLS}).\todo{compute overlap interval} \todo{JA: @Lars, I think you mentioned once that you would like to calculate this. I could calculate using the method explained in the appendix.}
+
+%(Table \ref{Dynamic - GMM}).
+% and find similar predictions as before (detailed results in Table~\ref{Dynamic - system GMM}). 
+
+%Table~\ref{Dynamic - system GMM with MA(1)} shows that the CansynLBD provides similar predictions to the LEAP.
 
 \todo{Also consolidate graphs here}
 \begin{figure} [H]
