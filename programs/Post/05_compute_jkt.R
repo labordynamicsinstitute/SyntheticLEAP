@@ -5,6 +5,11 @@
 
 source(here::here("programs","Post","config.R"),echo=TRUE)
 
+library(stringi)
+library(RColorBrewer)
+
+test <- FALSE
+
 graph_regs_wide <- readRDS(file.path(datadir,paste0("graph_regs_wide",".Rds")))
 
 # Compute upper and lower bound of intervals (approximate)
@@ -50,4 +55,15 @@ graph_regs_jkt %>%
   theme(legend.title = element_blank()) + labs(x = element_blank(),y="Standardized estimate") +
   facet_grid(. ~ sector_country) -> fig.estimates5
 ggsave(file.path(figuredir,"fig.estimates5.png"),plot = fig.estimates5,width = 8,units="in",height = 2)
+
+# output the table
+
+library(stargazer)
+
+stargazer(graph_regs_jkt_summary,summary=FALSE,
+          title = "Summary of Confidence Interval Overlaps",
+          label = "tab:jkm",
+          rownames=FALSE,out=file.path(tabledir,"table_jkm.tex"))
+
+
 

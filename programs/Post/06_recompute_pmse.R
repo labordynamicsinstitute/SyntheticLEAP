@@ -5,6 +5,7 @@
 
 source(here::here("programs","Post","config.R"),echo=TRUE)
 
+test <- FALSE
 
 clean_pmse <- function(infile,countryval = "Canada",...) {
   # these work for a second batch
