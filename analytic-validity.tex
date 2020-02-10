@@ -76,7 +76,7 @@ The results for the manufacturing sector in Canada included in Figure \ref{fig:j
 
 \subsection{Entity Dynamics}
 
-\begin{figure}[t]
+\begin{figure}[th]
 \begin{subfigure}[h]{0.48\linewidth}
 \includegraphics[trim=0 40 0 0,clip, width=\linewidth]{graphs/Entry_rate_bw_private.pdf}
 %\caption{CanSynLBD}
@@ -95,7 +95,7 @@ The results for the manufacturing sector in Canada included in Figure \ref{fig:j
 \includegraphics[trim=0 0 0 -20,clip,width=\linewidth]{graphs/Exit_rate_bw_GsynLBD.pdf}
 \caption{GSynLBD}
 \end{subfigure}
-\caption{Entry rates (upper panels) and exit rates (lower panels) by year.}\label{fig:FirmDynamics}
+\caption{Entry rates (upper panels) and exit rates (lower panels) by year.\label{fig:FirmDynamics}}
 \end{figure}
 
 To assess how well the synthetic data capture entity dynamics, we also compute entry and exit rates, i.e. how many new entities appear in the data and how many cease to exist relative to the population of entities in a specific year. Figure \ref{fig:FirmDynamics} shows that those rates are very well preserved for both data sources. Only the re-unification spike in the entry rates in the German data is not preserved correctly. While the original data show a large spike in entry rates for 1993, because this was the year when detailed information about Eastern German establishments was integrated for the first time, the synthetic data shows increased entry rates in the two previous years. We speculate that this occurs as the establishments were successively integrated into the data starting in 1991, but for many of them no information regarding payroll and number of employees was reported in the first two years. Thus, they exist in the original data, but the establishment size is reported as missing. Such a combination is not possible in the synthetic data. Whenever an establishment exists, it has to have a positive number of employees. Since entry rates are computed by looking at whether the establishment information changed from missing to a positive value, most of the Eastern German establishments only exist from 1993 on-wards in the original data, but from 1991 in the synthetic data.
@@ -103,7 +103,7 @@ The second spike in the entry rate in the German data in 1999 occurs, as margina
 %To show further those rates are similar, we compute the divergence of entry rate as the entry rate of CanSynLBD net the entry rate of LEAP as well as the divergence of exit rate as the exit rate of CanSynLBD net the exit rate of LEAP (see Figure \ref{Divergence}).
 
 
-
+\FloatBarrier
 
 
 \subsection{Distribution of variables across time and industry}
@@ -255,3 +255,5 @@ We estimate the model separately on confidential and synthetic data for the priv
 {\footnotesize For details on the estimated coefficients, see the Appendix. \par}
 \end{minipage}
 \end{figure}
+
+\clearpage
