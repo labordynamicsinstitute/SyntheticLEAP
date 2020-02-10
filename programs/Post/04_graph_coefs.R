@@ -37,7 +37,8 @@ graph_regs %>%
 # Two variants
 # - Normalized, for graphing
 tmp_graph_regs %>%
-  mutate(norm_estimate = (estimate - conf_estimate)) %>%
+  mutate(norm_estimate = (estimate - conf_estimate),
+         std_estimate = abs(norm_estimate )/ conf_stderr) %>%
   mutate(model_name = stri_join(model, sector,sep=", "),
          sector_country = stri_join(country, sector, sep=", ")) %>%
   dplyr::select(-conf_stderr) %>%
@@ -46,6 +47,7 @@ tmp_graph_regs %>%
 # - Wide, for table
 tmp_graph_regs %>%
   filter(synthetic == TRUE) -> graph_regs_wide
+mysave(graph_regs_wide)
 
 # Now describe graphically the results
 graph_regs_normalized %>%
@@ -95,4 +97,20 @@ graph_regs_normalized %>%
   theme(legend.title = element_blank()) + labs(x = element_blank(),y="Normalized estimate") +
   facet_grid(. ~ sector_country)  -> fig.estimates3
 ggsave(file.path(figuredir,"fig.estimates3.png"),plot = fig.estimates3,width = 8,units="in",height = 2)
+
+# Now describe graphically the results - standardized
+graph_regs_normalized %>%
+  filter(name %in% c("AR(1) Coefficient","Ln Pay")) %>%
+  filter(sector != "Private") %>%
+  filter(synthetic == TRUE) %>%
+  ggplot(aes(model, std_estimate)) + 
+  coord_flip() +
+  geom_hline(yintercept=0, lty=2, lwd=1, colour="grey50") +
+  geom_point(aes(color=as.factor(name),shape=as.factor(name)),size=2) +
+  scale_color_manual(values = brewer.pal(n = 4,name="Paired")) +
+  scale_shape_manual(values=c(16,17,15,18))+
+  theme_bw() + 
+  theme(legend.title = element_blank()) + labs(x = element_blank(),y="Standardized estimate") +
+  facet_grid(. ~ sector_country)  -> fig.estimates4
+ggsave(file.path(figuredir,"fig.estimates4.png"),plot = fig.estimates4,width = 8,units="in",height = 2)
 
