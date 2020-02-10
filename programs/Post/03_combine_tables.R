@@ -4,6 +4,10 @@
 
 source(here::here("programs","Post","config.R"),echo=TRUE)
 
+# Set test to TRUE for testing (no saving)
+
+test <- FALSE
+
 # function comes from purrr
 
 allfiles <- list.files(path = datadir,

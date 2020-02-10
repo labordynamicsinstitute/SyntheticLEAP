@@ -4,6 +4,9 @@
 
 source(here::here("programs","Post","config.R"),echo=TRUE)
 
+# For testing, set test to TRUE
+test <- FALSE
+
 #!-------------- FIRST BATCH ------------------
 
 clean_table <- function(infile,tag = "Model",countryval = "Canada",...) {
@@ -26,7 +29,8 @@ clean_table <- function(infile,tag = "Model",countryval = "Canada",...) {
     mutate(value = str_replace_all(`_parameter`,"[=\"*()]",""),
            synthetic=if_else(str_detect(sector,"_1"),TRUE,FALSE),
            sector=str_squish(str_replace(sector,"_1"," ")),
-           model=tag,country=countryval) %>%
+           model=tag,
+           country=countryval) %>%
     select(-`_parameter`) %>%
     filter(name!="* p<0.1") %>% filter(name!="Standard errors in parentheses")
 }
@@ -60,7 +64,8 @@ clean_table2 <- function(infile,tag = "Model", countryval = "Canada",...) {
            sector=str_squish(str_replace(sector,"-se"," ")),
            synthetic=if_else(str_detect(sector,"_1"),TRUE,FALSE),
            sector=str_squish(str_replace(sector,"_1"," ")),
-           model=tag,country=countryval) %>%
+           model=tag,
+           country=countryval) %>%
     select(-`_parameter`) %>%
     filter(name!="* p<0.1") %>% filter(name!="Standard errors in parentheses")
 }
@@ -90,8 +95,8 @@ clean_table2 <- function(infile,tag = "Model", countryval = "Canada",...) {
 reg_can_OLS2 <- clean_table2("Regression_coefficients_OLS2.csv","OLS")
 mysave(reg_can_OLS2)
 
-reg_can_dyn2 <- clean_table2("Regression_coefficients_Dynamic2.csv","Dynamic)
-mysave(reg_can_dyn2") 
+#reg_can_dyn2 <- clean_table2("Regression_coefficients_Dynamic2.csv","Dynamic")
+#mysave(reg_can_dyn2) 
 
 reg_can_dyn2_gmm <- clean_table2("Regression_coefficients_Dynamic2_GMM.csv","GMM")
 mysave(reg_can_dyn2_gmm)

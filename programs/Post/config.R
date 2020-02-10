@@ -10,13 +10,19 @@ library(here)
 basedir <- here::here() # will find base of git repo
 datadir <- file.path(basedir,"data")
 tabledir <- file.path(basedir,"tables")
+figuredir <- file.path(basedir,"r-graphs")
 
 #!------------ aux function - consistent saving -----------
 mysave <- function(object) {
   name=deparse(substitute(object))
-  print(paste0("  ---> saving as ",name))
+  print("---------- Saving -------------")
   print(names(object))
-  saveRDS(object,file.path(datadir,paste0(name,".Rds")))
-  write_csv(object,file.path(datadir,paste0(name,".csv")))
+  if ( test ) {
+    print(" !! Only testing - no files saved !!")
+  } else {
+    print(paste0("  ---> saving as ",name))
+    saveRDS(object,file.path(datadir,paste0(name,".Rds")))
+    write_csv(object,file.path(datadir,paste0(name,".csv")))
+  }
   
 }
