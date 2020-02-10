@@ -31,10 +31,10 @@ mysave(graph_regs_jkt)
 # summarize it
 graph_regs_jkt %>%
   group_by(name) %>%
-  summarize(mean_jkt = mean(Jkt,na.rm=TRUE),
-            median_jkt = median(Jkt,na.rm=TRUE),
-            max_jkt=max(Jkt,na.rm=TRUE)) %>%
-  filter(!is.na(mean_jkt)) -> graph_regs_jkt_summary
+  summarize(Mean = mean(Jkt,na.rm=TRUE),
+            Median = median(Jkt,na.rm=TRUE),
+            Maximum=max(Jkt,na.rm=TRUE)) %>%
+  filter(!is.na(mean)) -> graph_regs_jkt_summary
 mysave(graph_regs_jkt_summary)
 
 graph_regs_jkt_summary
@@ -60,9 +60,16 @@ ggsave(file.path(figuredir,"fig.estimates5.png"),plot = fig.estimates5,width = 8
 
 library(stargazer)
 
-stargazer(graph_regs_jkt_summary,summary=FALSE,
+graph_regs_jkt_summary %>%
+  mutate(Mean = round(Mean,3),
+         Median = round(Median,3),
+         Maximum = round(Maximum,3)) %>%
+  rename(`Regressor` = name) -> table_regs_jkt_summary
+
+stargazer(table_regs_jkt_summary,summary=FALSE,
           title = "Summary of Confidence Interval Overlaps",
           label = "tab:jkm",
+          digits = 3,
           rownames=FALSE,out=file.path(tabledir,"table_jkm.tex"))
 
 
