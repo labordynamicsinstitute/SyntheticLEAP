@@ -34,7 +34,7 @@ graph_regs_jkt %>%
   summarize(Mean = mean(Jkt,na.rm=TRUE),
             Median = median(Jkt,na.rm=TRUE),
             Maximum=max(Jkt,na.rm=TRUE)) %>%
-  filter(!is.na(mean)) -> graph_regs_jkt_summary
+  filter(!is.na(Mean)) -> graph_regs_jkt_summary
 mysave(graph_regs_jkt_summary)
 
 graph_regs_jkt_summary
