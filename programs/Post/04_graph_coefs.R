@@ -65,7 +65,7 @@ graph_regs_normalized %>%
   theme_bw() + 
   theme(legend.title = element_blank()) + labs(x = element_blank(),y="Normalized estimate") +
   facet_grid(. ~ sector_country)  -> fig.estimates1
-ggsave(file.path(figuredir,"fig.estimates1.png"),plot = fig.estimates1,width = 8,units="in",height = 2)
+ggsave(file.path(figuredir,"fig_estimates1.png"),plot = fig.estimates1,width = 8,units="in",height = 2)
 
 
 # Now describe graphically the results - ALTERNATe
@@ -80,7 +80,7 @@ graph_regs_normalized %>%
   theme_bw() + 
   theme(legend.title = element_blank()) + labs(x = element_blank(),y="Normalized estimate") +
   facet_grid(. ~ sector_country)  -> fig.estimates2
-ggsave(file.path(figuredir,"fig.estimates2.png"),plot = fig.estimates2,width = 8,units="in",height = 2)
+ggsave(file.path(figuredir,"fig_estimates2.png"),plot = fig.estimates2,width = 8,units="in",height = 2)
 
 
 # Now describe graphically the results - ALTERNATe
@@ -96,7 +96,7 @@ graph_regs_normalized %>%
   theme_bw() + 
   theme(legend.title = element_blank()) + labs(x = element_blank(),y="Normalized estimate") +
   facet_grid(. ~ sector_country)  -> fig.estimates3
-ggsave(file.path(figuredir,"fig.estimates3.png"),plot = fig.estimates3,width = 8,units="in",height = 2)
+ggsave(file.path(figuredir,"fig_estimates3.png"),plot = fig.estimates3,width = 8,units="in",height = 2)
 
 # Now describe graphically the results - standardized
 graph_regs_normalized %>%
@@ -112,5 +112,5 @@ graph_regs_normalized %>%
   theme_bw() + 
   theme(legend.title = element_blank()) + labs(x = element_blank(),y="Standardized estimate") +
   facet_grid(. ~ sector_country)  -> fig.estimates4
-ggsave(file.path(figuredir,"fig.estimates4.png"),plot = fig.estimates4,width = 8,units="in",height = 2)
+ggsave(file.path(figuredir,"fig_estimates4.png"),plot = fig.estimates4,width = 8,units="in",height = 2)
 

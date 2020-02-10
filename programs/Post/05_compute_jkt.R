@@ -54,7 +54,7 @@ graph_regs_jkt %>%
   theme_bw() + 
   theme(legend.title = element_blank()) + labs(x = element_blank(),y="Standardized estimate") +
   facet_grid(. ~ sector_country) -> fig.estimates5
-ggsave(file.path(figuredir,"fig.estimates5.png"),plot = fig.estimates5,width = 8,units="in",height = 2)
+ggsave(file.path(figuredir,"fig_estimates5.png"),plot = fig.estimates5,width = 8,units="in",height = 2)
 
 # output the table
 
