@@ -236,11 +236,11 @@ Emp_{et}&=&\beta_{0,e} +\theta Emp_{e,t-1}+\lambda Pay_{et}+Age_{et}^{T}\beta+\l
 \end{eqnarray}
 
 
-We estimate the model separately on confidential and synthetic data for the private sector (and for Canada, for the manufacturing sector). The estimation results are reported in the Appendix. Generally, we find that the estimated coefficients are different, though of the same sign. Only a small number of models show coefficients that are similar (with a positive confidence interval overlap $J_{k,m}$). The key coefficients - lagged employment and pay - are never close. The mean and median $J_{k,m}$ are negative for all models (Table~\ref{tab:jkm}).
+We estimate the model separately on confidential and synthetic data for the private sector (and for Canada, for the manufacturing sector). The estimation results are reported in the Appendix. Only a small number of models show coefficients that are similar (with a positive confidence interval overlap $J_{k,m}$). Generally, we find that the estimated coefficients are different, though of the same sign.  Figure~\ref{fig:estimates3} plots the normalized coefficients for the key coefficients ($\theta_{synth}-\theta_{conf}$ and $lambda_{synth}-\lambda_{conf}$). Confidence interval overlaps are not plotted, because they are too small.  The key coefficients  are never close. The mean and median $J_{k,m}$ are negative for all models (Table~\ref{tab:jkm}).
+
+\input{tables/table_jkm}
 
 
-
-, We find that the CansynLBD data provides similar predictions to LEAP data (Tables  \ref{OLS}).\todo{compute overlap interval} \todo{JA: @Lars, I think you mentioned once that you would like to calculate this. I could calculate using the method explained in the appendix.}
 
 %(Table \ref{Dynamic - GMM}).
 % and find similar predictions as before (detailed results in Table~\ref{Dynamic - system GMM}). 
@@ -250,10 +250,10 @@ We estimate the model separately on confidential and synthetic data for the priv
 \todo{Also consolidate graphs here}
 \begin{figure} [H]
 \centering
-\label{tab:all:estimates}
-\includegraphics[width=.8\linewidth]{graphs/Figure4-placeholder.png} 
-\caption{Alternate graph} 
+\label{fig:estimates3}
+\includegraphics[width=.8\linewidth]{r-graphs/fig.estimates3.png}
+\caption{Normalized estimates for pay and lagged employment} 
 \begin{minipage}{0.48\linewidth}
-{\footnotesize To be computed in R. Detailed data are in the appendix. \par}
+{\footnotesize For details on the estimated coefficients, see the Appendix. \par}
 \end{minipage}
 \end{figure}
