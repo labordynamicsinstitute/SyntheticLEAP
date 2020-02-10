@@ -33,24 +33,32 @@ In order to assess the outcomes of the experiment, we inspect analytical validit
 
 To provide a more comprehensive measure of  quality of the synthetic data relative to the confidential data, we compute the $pMSE$ \parencite[propensity score mean-squared error,][]{Woo_Reiter_Oganian_Karr_2009,SnokeSlavkovic2018,Snoke_RSSA2018}: the mean-squared error of the predicted probabilities (i.e., propensity scores) for those two databases. Specifically, $pMSE$ is a metric to assess how well we are able to discern the high distributional similarity between synthetic data and confidential data. 
 
-We follow  \textcite{SnokeSlavkovic2018} to calculate the $pMSE$. This method involved the following steps: 
+We follow  \textcite{Woo_Reiter_Oganian_Karr_2009} and \textcite{SnokeSlavkovic2018} to calculate the $pMSE$, using the following algorithm:  
 \todo{This notation clashes with the earlier one. We need to consolidate notation. I've replaced "it" with "et" (entity) reserving the "i" for industry}
 \begin{enumerate}
     \item Append the $n_1$ rows of the confidential database $X$ to the $n_2$ rows of the synthetic database $X^s$ to create $X^{comb}$ with $N=n_1 + n_2$ rows.
     \item Create a variable $I_{et}$ denoting membership of an observation for entity $e$ in the component databases,  $I_{et}=\{1: X^{comb}_{et} \in X^s\}$. $I_{et}$ takes on values of $1$ for the synthetic database and $0$ for the confidential database. 
     \item Fit the following model to predict $I$
     \begin{eqnarray}	
-        I_{et} & = &\alpha + \beta_{1} Emp_{et} + \beta_{2} Pay_{et} + Age_{et}^{T}\beta_{3} + \lambda_t + \alpha_i + \epsilon_{et} \label{pMSE}
+        I_{et} & = &\beta_0 + \beta_{1} Emp_{et} + \beta_{2} Pay_{et} + Age_{et}^{T}\beta_{3} + \lambda_t + \alpha_i + \epsilon_{et} \label{pMSE}
      \end{eqnarray}
          where $Emp_{et}$ is  log employment  of entity $e$ in year $t$, $Pay_{et}$ is  log payroll of entity $e$ in year $t$, $Age_{et}$ is a vector of age classes of entity $e$ in year $t$, $\lambda_t$ is a year fixed effect, $\alpha_i$ is an unobserved time-invariant industry-specific effect, and $\epsilon_{et}$ is the disturbance term of entity $e$ in year $t$. 
-    \item Calculate the predicted probabilities, $\hat{I}_{it}$
-    \item Compute the $pMSE=\frac{1}{N}\sum_{i=1}^N(\hat{p}_i - n_1/N)^2$
+    \item Calculate the predicted probabilities, $\hat{p}_{et}$
+    \item Compute  $pMSE=\frac{1}{NT}\sum_{t=1}^T\sum_{e=1}^N(\hat{p}_{et} - n_1/N)^2$
 \end{enumerate}
-If $n_1 = n_2$, $pMSE$ = 0 means every $\hat{p}_i = 0.5$, and the two databases are distributionally indistinguishable and we can conclude that the analytical validity is high, as the variables included in the propensity model cannot predict the data source.
+If $n_1 = n_2$, $pMSE$ = 0 means every $\hat{p}_i = 0.5$, and the two databases are distributionally indistinguishable, suggesting  high analytical validity. \textcite{Snoke_RSSA2018} suggest to normalize the $pMSE$ by its theoretical mean and standard deviation \parencite[Equation 1]{Snoke_RSSA2018}:
 
+$$
+E[pMSE] = (k-1)(1-c)^2 \frac{c}{N}
+$$
+and
+$$
+StDev[pMSE] = \sqrt{2(k-1)}(1-c)^2 \frac{c}{N}
+$$
+where $c = \frac{n_2}{N}$, and $k$ are the number of parameters in the propensity model. 
 
 For a more complex assessment, we compute a dynamic panel data model of economic (employment) growth on each dataset. We then assess fit of the model in two ways. \todo{What is the other assessment you had in mind?} First, analytic validity --- statistical precision --- can be assessed using confidence interval overlap measures   \citep{tas2006}. \todo{Do we compute them? If not, we should drop this. If we want we could include a short discussion why CIO is not a helpful measure here}
-We compute the \emph{interval overlap measure} $J_{k,m}$ for parameter $k$ in model $m$. Consider the overlap of confidence intervals $(L,U)$ for $\beta_{k,m}$ (estimated from the confidential data) and $(L^{*},U^{*})$ for $\beta_{k,m}^*$ (from the synthetic data). Let $L^{over} = \max (L,L^{*} )$ and $U^{over} = \min (U,U^{*})$. Then the average overlap in confidence intervals is
+We compute the \emph{interval overlap measure} $J_{k,m}$ for parameter $k$ in model $m$. Consider the overlap of confidence intervals $(L,U)$ for $\beta_{k,m}$ (estimated from the confidential data) and $(L^{*},U^{*})$ for $\beta_{k,m}^*$ (from the synthetic data). Let $L^{over} = \max (L,L^{*} )$ and $U^{over} = \min (U,U^{*})$. Then the confidence interval  overlap  is computed as
 $$
 J_{k,m}^{*} = \frac{1}{2} \left [ \frac{U^{over} - L^{over}}{U-L} + \frac{U^{over} - L^{over}}{U^*-L ^*}        \right ]
 $$

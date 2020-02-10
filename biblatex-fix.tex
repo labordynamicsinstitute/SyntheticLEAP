@@ -31,4 +31,12 @@
 \AtEveryBibitem{%
   \clearlist{language}%
   \clearlist{isbn}
+  \iffieldundef{url}{}
+      {\iffieldundef{doi}{}
+        {\clearlist{url}}
+      }
+  \iffieldundef{eprint}{}
+      {\iffieldundef{doi}{}
+        {\clearlist{eprint}}
+      }
 }
