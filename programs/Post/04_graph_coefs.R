@@ -63,7 +63,7 @@ graph_regs_normalized %>%
   scale_color_manual(values = c("#B2DF8A","#1F78B4")) +
   scale_shape_manual(values=c(16,17,15,18))+
   theme_bw() + 
-  theme(legend.title = element_blank()) + labs(x = element_blank(),y="Normalized estimate") +
+  theme(legend.title = element_blank()) + labs(x = element_blank(),y = element_blank()) +
   facet_grid(. ~ sector_country)  -> fig.estimates1
 ggsave(file.path(figuredir,"fig_estimates1.png"),plot = fig.estimates1,width = 8,units="in",height = 2)
 
@@ -78,7 +78,7 @@ graph_regs_normalized %>%
   scale_color_manual(values = c("#B2DF8A","#1F78B4")) +
   scale_shape_manual(values=c(16,17,15,18))+
   theme_bw() + 
-  theme(legend.title = element_blank()) + labs(x = element_blank(),y="Normalized estimate") +
+  theme(legend.title = element_blank()) + labs(x = element_blank(),y=element_blank()) +
   facet_grid(. ~ sector_country)  -> fig.estimates2
 ggsave(file.path(figuredir,"fig_estimates2.png"),plot = fig.estimates2,width = 8,units="in",height = 2)
 
@@ -94,7 +94,7 @@ graph_regs_normalized %>%
   scale_color_manual(values = brewer.pal(n = 4,name="Paired")) +
   scale_shape_manual(values=c(16,17,15,18))+
   theme_bw() + 
-  theme(legend.title = element_blank()) + labs(x = element_blank(),y="Normalized estimate") +
+  theme(legend.title = element_blank()) + labs(x = element_blank(),y=element_blank()) +
   facet_grid(. ~ sector_country)  -> fig.estimates3
 ggsave(file.path(figuredir,"fig_estimates3.png"),plot = fig.estimates3,width = 8,units="in",height = 2)
 
