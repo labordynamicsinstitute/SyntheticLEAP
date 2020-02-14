@@ -3,67 +3,16 @@
 
 \subsection{Entity Characteristics}
 
-\begin{figure}[t]
-\begin{subfigure}[h]{0.48\linewidth}
-\includegraphics[trim=0 40 0 0,clip, width=\linewidth]{graphs/Gross_employment_level_by_year_private_bw.pdf}
-%\caption{CanSynLBD}
-\end{subfigure}
-\hfill
-\begin{subfigure}[h]{0.48\linewidth}
-\includegraphics[trim=0 40 0 0,clip,width=\linewidth]{graphs/Gross_employment_level_by_year_bw_GsynLBD.pdf}
-%\caption{GSynLBD}
-\end{subfigure}\\
-\begin{subfigure}[h]{0.48\linewidth}
-\includegraphics[trim=0 0 0 -20,clip,width=\linewidth]{graphs/Total_payroll_by_year_private_bw.pdf}
-\caption{CanSynLBD}
-\end{subfigure}
-\hfill
-\begin{subfigure}[h]{0.48\linewidth}
-\includegraphics[trim=0 0 0 -20,clip,width=\linewidth]{graphs/Total_payroll_by_year_bw_GsynLBD.pdf}
-\caption{GSynLBD}
-\end{subfigure}%
-\caption{Gross employment level (upper panels) and total payroll (lower panels) by year.}\label{fig:entity_chracteristics}
-\end{figure}
+\input{figure_analytics.tex}
 
 Figure \ref{fig:entity_chracteristics} shows a comparison between the synthetic data and the original data for gross employment level (upper panels) and total payroll (lower panels) by year for the Canadian (left panels) and the German (right panels) case. While the general trends are preserved for both data sources, the results for the German synthetic data resemble the trends from the original data more closely. For the Canadian data the positive trends over time are generally overestimated. Looking only at the manufacturing sector in Canada (see Figure \ref{fig:entity_chracteristics_manufac} in the Appendix), we find that the general trends are better preserved. However, the absolute numbers are always underestimated in the synthetic data.
 \todo{Move the footnote to an earlier section, in which we describe in general terms, which parts of the data have been synthesized}\footnote{The private sector comprises all industries including the manufacturing sector except the public sector  (NAICS 61, 62, and 91)} 
 
 
 
-%\begin{figure} [H]
-%\centering
-%\label{tab:all:characteristics}
-%\includegraphics[width=.8\linewidth]{graphs/Figure1-placeholder.png} 
-%\caption{Alternate graph} 
-%\begin{minipage}{0.48\linewidth}
-%{\footnotesize To be computed in R, or redone in Stata using GPH files. \par}
-%\end{minipage}
-%\end{figure}
-
-
 \subsection{Dynamics of Job Flows}
 
-\begin{figure}[t]
-\begin{subfigure}[h]{0.48\linewidth}
-\includegraphics[trim=0 40 0 0,clip, width=\linewidth]{graphs/Job_creation_rate_by_year_private_bw.pdf}
-%\caption{CanSynLBD}
-\end{subfigure}
-\hfill
-\begin{subfigure}[h]{0.48\linewidth}
-\includegraphics[trim=0 40 0 0,clip,width=\linewidth]{graphs/Job_creation_rate_by_year_bw_GsynLBD.pdf}
-%\caption{GSynLBD}
-\end{subfigure}\\
-\begin{subfigure}[h]{0.48\linewidth}
-\includegraphics[trim=0 0 0 -20,clip,width=\linewidth]{graphs/Job_destruction_rate_by_year_private_bw.pdf}
-\caption{CanSynLBD}
-\end{subfigure}
-\hfill
-\begin{subfigure}[h]{0.48\linewidth}
-\includegraphics[trim=0 0 0 -20,clip,width=\linewidth]{graphs/Job_destruction_by_year_bw_GsynLBD.pdf}
-\caption{GSynLBD}
-\end{subfigure}%
-\caption{Job creation rates (upper panels) and job destruction rates (lower panels) by year.}\label{fig:job_flows}
-\end{figure}
+\input{figure-dynamics.tex}
 
 Key statistics commonly computed from business registers such as the LEAP or the BHP include job flows over time. Following \citet{DavisHaltiwangerSchuh}, job creation is defined as the sum of all employment gains from expanding firms from year $t-1$ to year $t$ including entry firms. The job destruction rate is defined as the sum of all employment losses from contracting firms from year $t-1$ to year $t$ including exiting firms. Figure \ref{fig:job_flows} depicts these job creation (upper panels) and destruction rates (lower panels) for the Canadian (left panels) and German case (right panels). The findings are similar to the findings in the previous section. The general patterns are preserved for both data sources, but the the trends align more closely for the German data. Even the substantial increase in job creations in 1993, which can be attributed to the integration of the data from Eastern Germany after reunification, is preserved in the synthetic data. Still, there seems to be a small but systematic overestimation of job creation and destruction rates in both synthetic data sources. The substantial deviation in the job destruction rate in the last year of CanSynLBD is an artefact, which requires further investigation. 
 \todo{Is there an explanation for this artefact?}
@@ -76,27 +25,7 @@ The results for the manufacturing sector in Canada included in Figure \ref{fig:j
 
 \subsection{Entity Dynamics}
 
-\begin{figure}[th]
-\begin{subfigure}[h]{0.48\linewidth}
-\includegraphics[trim=0 40 0 0,clip, width=\linewidth]{graphs/Entry_rate_bw_private.pdf}
-%\caption{CanSynLBD}
-\end{subfigure}
-\hfill
-\begin{subfigure}[h]{0.48\linewidth}
-\includegraphics[trim=0 40 0 0,clip,width=\linewidth]{graphs/Entry_rate_bw_GsynLBD.pdf}
-%\caption{GSynLBD}
-\end{subfigure}\\
-\begin{subfigure}[h]{0.48\linewidth}
-\includegraphics[trim=0 0 0 -20,clip,width=\linewidth]{graphs/Exit_rate_bw_private.pdf}
-\caption{CanSynLBD}
-\end{subfigure}
-\hfill
-\begin{subfigure}[h]{0.48\linewidth}
-\includegraphics[trim=0 0 0 -20,clip,width=\linewidth]{graphs/Exit_rate_bw_GsynLBD.pdf}
-\caption{GSynLBD}
-\end{subfigure}
-\caption{Entry rates (upper panels) and exit rates (lower panels) by year.\label{fig:FirmDynamics}}
-\end{figure}
+\input{figure_entity_dynamics.tex}
 
 To assess how well the synthetic data capture entity dynamics, we also compute entry and exit rates, i.e. how many new entities appear in the data and how many cease to exist relative to the population of entities in a specific year. Figure \ref{fig:FirmDynamics} shows that those rates are very well preserved for both data sources. Only the re-unification spike in the entry rates in the German data is not preserved correctly. While the original data show a large spike in entry rates for 1993, because this was the year when detailed information about Eastern German establishments was integrated for the first time, the synthetic data shows increased entry rates in the two previous years. We speculate that this occurs as the establishments were successively integrated into the data starting in 1991, but for many of them no information regarding payroll and number of employees was reported in the first two years. Thus, they exist in the original data, but the establishment size is reported as missing. Such a combination is not possible in the synthetic data. Whenever an establishment exists, it has to have a positive number of employees. Since entry rates are computed by looking at whether the establishment information changed from missing to a positive value, most of the Eastern German establishments only exist from 1993 on-wards in the original data, but from 1991 in the synthetic data.
 The second spike in the entry rate in the German data in 1999 occurs, as marginally employed had to be reported for the first time in this year. Thus, all establishments that only have marginally employed employees are also included in the BHP from 1999 on-wards.
@@ -116,7 +45,11 @@ x_{its} = X_{its}/\sum_{i} \sum_{t} X_{its},
 where $i$ is the index for the industry (aggregated to the two digit level for the Canadian data), $t$ is the index for the year and $s$ denotes the data source (original or synthetic). $X_{its}=\sum_j X_{itsj}, j=1,\ldots,n_{it}$ is the variable of interest aggregated at the industry level and $n_{it}$ is the number of entities in industry $i$ at time point $t$. For example $X_{its}$ could be the total payroll in 1999 for a specific industry in the original data. To compute the statistic provided in Equation (\ref{eq:share_employment}), this number is then divided by the total payroll aggregated across all industries and years.
 Figure \ref{fig:FirmShare} plots the results from the original data against the results from the synthetic data for the variables \textit{number of entities}, \textit{employment}, and \textit{payroll}. If the information is well preserved, all points should be close to the 45 degree line. 
 
-We find that the share of entities is well preserved for both data sources, but share of employment and share of payroll vary more in the Canadian data with an upward bias for the larger shares. Of course, it should be noted that the German data are only aggregated over two industries whereas the Canadian data contains XX\todo{do we have this number?} different industry codes on the two digit level. This implies that the results for the Canadian data evaluate the utility at a much more detailed level and thus lower analytical validity compared to the German results is to be expected. The results for Canada improve, when looking only at the manufacturing sector (see Figure \ref{fig:FirmShare_manufac} in the Appendix).
+We find that the share of entities is well preserved for both data sources, but share of employment and share of payroll vary more in the Canadian data with an upward bias for the larger shares. 
+It should be noted that the German data shown here and elsewhere in this paper only contain data from two industries, whereas the Canadian data contains nearly all \todo{do we have this number?} available industry codes at the two digit level. Thus, results from Canada are expected to be more diverse. 
+%This suggests that the results for the Canadian data evaluate the utility at a much more granular level. 
+% and thus lower analytical validity compared to the German results is to be expected. 
+When only considering the Canadian manufacturing sector (see Figure \ref{fig:FirmShare_manufac} in the Appendix), less bias is present.
 
 %We inspect this distribution in the Canadian data, by industry, in the following figures.\footnote{Since the German data was only generated for a very small number of industries, we skip this step for Germany.} 
 
@@ -133,64 +66,10 @@ We find that the share of entities is well preserved for both data sources, but 
 
 %where $i$ are two-digit industries, $t$ are  years in-sample, $s$ indicates whether it is in the synthetic or confidential data, and $X_{its}$ is the sum of the variable of interest $X$ for industry $i$ and year $t$ in  dataset $s$.
 
-\begin{figure}
-\begin{subfigure}[h]{0.48\linewidth}
-\includegraphics[trim=0 10 0 0,clip, width=\linewidth]{graphs/Share_of_firms_by_NAICS_two-digit_and_year_private_bw.pdf}
-%\caption{CanSynLBD}
-\end{subfigure}[t]
-\hfill
-\begin{subfigure}[h]{0.48\linewidth}
-\includegraphics[trim=0 10 0 0,clip,width=\linewidth]{graphs/Share_of_firms_by_NAICS_and_year_bw_GsynLBD.pdf}
-%\caption{GSynLBD}
-\end{subfigure}\\
-\begin{subfigure}[h]{0.48\linewidth}
-\includegraphics[trim=0 10 0 -20,clip,width=\linewidth]{graphs/Share_of_employment_by_NAICS_two-digit_and_year_private_bw.pdf}
-%\caption{CanSynLBD}
-\end{subfigure}
-\hfill
-\begin{subfigure}[h]{0.48\linewidth}
-\includegraphics[trim=0 10 0 -20,clip,width=\linewidth]{graphs/Share_of_employment_by_NAICS_and_year_bw_GsynLBD.pdf}
-%\caption{GSynLBD}
-\end{subfigure}\\
-\begin{subfigure}[h]{0.48\linewidth}
-\includegraphics[trim=0 0 0 -20,clip,width=\linewidth]{graphs/Share_of_payroll_by_NAICS_two-digit_and_year_private_bw.pdf}
-\caption{CanSynLBD}
-\end{subfigure}
-\hfill
-\begin{subfigure}[h]{0.48\linewidth}
-\includegraphics[trim=0 0 0 -20,clip,width=\linewidth]{graphs/Share_of_payroll_by_NAICS_and_year_bw_GsynLBD.pdf}
-\caption{GSynLBD}
-\end{subfigure}%
-\caption{Share of entities (upper panels), share of employment (middle panels), and share of payroll (lower panels) by year and industry.}\label{fig:FirmShare}
-\end{figure}
-
-%\begin{figure} [H]
-%\centering
-%\label{tab:Can:FirmDynamics}
-%\includegraphics[width=.8\linewidth]{graphs/Figure2-placeholder.png} 
-%\caption{Alternate graph} 
-%\begin{minipage}{0.48\linewidth}
-%{\footnotesize To be computed in R, or redone in Stata using %GPH files. Detailed data are in the appendix. \par}
-%\end{minipage}
-%\end{figure}
-
-%\todo{Also consolidate graphs here}
-%\%begin{figure} [H]
-%\centering
-%\label{tab:all:shares}
-%\includegraphics[width=.8\linewidth]{graphs/Figure3-placeholder.png} 
-%\caption{Alternate graph} 
-%\begin{minipage}{0.48\linewidth}
-%{\footnotesize To be computed in R, or redone in Stata using GPH files. Detailed data are in the appendix. \par}
-%\end{minipage}
-%\end{figure}
+\input{figure_vars_over_time.tex}
 
 
-%Figures~\ref{EmploymentSharePrivate} and \ref{EmploymentShareManufacturing} plot the share of employment by two-digit industry and year for both  CanSynLBD and the LEAP database. 
-%Employment shares  do not cluster along the 45-degree line. However, this hides significant differences between sectors. For instance,  the share of employment for the manufacturing sector does show stronger clustering along the 45-degree line.
 
-
-%Figures~\ref{PayrollSharePrivate} and~\ref{PayrollShareManufacturing} plot the share of \textit{payroll} by two-digit industry and year for both CanSynLBD and LEAP database. In general, shares do not cluster along the 45-degree line, though a focus on  the manufacturing sector again shows stronger clustering along the 45-degree line.
 
 
 \subsection{pMSE}
@@ -248,13 +127,6 @@ We estimate the model separately on confidential and synthetic data for the priv
 
 %Table~\ref{Dynamic - system GMM with MA(1)} shows that the CansynLBD provides similar predictions to the LEAP.
 
-\begin{figure} [H]
-\centering
-\includegraphics[width=\linewidth]{r-graphs/fig_estimates3.png}
-\caption{Normalized estimates for pay and lagged employment\label{fig:estimates3}} 
-\begin{minipage}{0.48\linewidth}
-{\footnotesize For details on the estimated coefficients, see the Appendix. \par}
-\end{minipage}
-\end{figure}
+\input{figure_conf_overlap.tex}
 
 \clearpage
