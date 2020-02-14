@@ -111,7 +111,11 @@ We estimate the model separately on confidential and synthetic data for the priv
 %At this point, we can only speculate about the causes of this phenomenon. 
 One potential explanation could be that the model is poorly identified because of multicollinearity generating a ridge for the estimated coefficients. The estimated coefficients would be highly unstable in this case even in the original data and thus it would not be surprising to find substantial differences between the coefficients from the original data and the coefficients from the synthetic data. Better understanding this phenomenon will be an interesting area of future research.
 
-While the coefficients are biased with respect to coefficients obtained from the confidential data, specification tests such as  the $m2$ test for autocorrelation and the Sargan test broadly yield the same conclusion.  For example, the Sargan test rejects the null hypothesis that the overidentifying restrictions are valid, symmetrically in both synthetic and confidential data. Thus, a user basing an estimation strategy on the choice of models in the synthetic data would have chosen the the same models as with the confidential data.
+\input{tables/table_m2_sargan}
+
+While the coefficients are broadly biased with respect to coefficients obtained from the confidential data, specification tests such as  the $m2$ test for autocorrelation and the Sargan test paint a slightly less consistent picture. Table~\ref{tab:m2sargan} shows the two tests for each of the models estimated by country, synthetic status, and model. 
+
+broadly yield the same conclusion.  For example, the Sargan test rejects the null hypothesis that the overidentifying restrictions are valid, symmetrically in both synthetic and confidential data. Thus, a user basing an estimation strategy on the choice of models in the synthetic data would have chosen the the same models as with the confidential data.
 
 
 % \subsection{Confidence Interval Overlap}
