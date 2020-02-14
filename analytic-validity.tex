@@ -96,7 +96,8 @@ Emp_{et} & = & \beta_0 + \theta Emp_{e,t-1} + \eta Pay_{et} + Age_{et}^{T}\beta 
 where $Emp_{et}$ is log employment of entity $e$ in year $t$, $Emp_{e,t-1}$ is its one year lag, $Pay_{et}$ is the logarithm of payroll of entity $e$ in year $t$, $Age_{et}$ is a vector of dummy variables for age of entity $e$ in year $t$, $\lambda_t$ is the year fixed effect, $\alpha_i$ is an unobserved time-invariant industry-specific effect, and $\epsilon_{et}$ is the disturbance term of entity $e$ in year $t$. 
 
 
-As $Emp_{e,t-1}$ is correlated with $\alpha_{i}$ because $Emp_{e,t-1}$ is a function of $\alpha_{i}$, \todo{This may need to be explained for non-economists - why is lagged employment of firm e a function of industry effect alpha i?}
+As $Emp_{e,t-1}$ is correlated with $\alpha_{i}$ because $Emp_{e,t-1}$ is a function of $\alpha_{i}$, 
+%\todo{This may need to be explained for non-economists - why is lagged employment of firm e a function of industry effect alpha i?}
 OLS estimators are biased and inconsistent. 
 To take this endogeneity bias into account,  \textcite{RePEc:oup:restud:v:58:y:1991:i:2:p:277-297.} suggest a generalized method of moments (GMM) estimator, and tests to assess the  validity of the model.  To test for autocorrelation, we compute the  $m2$ test  for zero autocorrelation in the  first-differenced errors of order two. The Sargan test is used to verify the validity of instrument subsets. Both tests are computed for each country and sector.
 
@@ -113,6 +114,10 @@ One potential explanation could be that the model is poorly identified because o
 
 \input{tables/table_m2_sargan}
 
+\begin{center}
+    Table~\ref{tab:m2sargan} about here.
+\end{center}
+
 While the coefficients are broadly biased with respect to coefficients obtained from the confidential data, specification tests such as  the $m2$ test for autocorrelation and the Sargan test paint a slightly less consistent picture. Table~\ref{tab:m2sargan} shows the two tests for each of the models estimated by country, synthetic status, and model. 
 
 broadly yield the same conclusion.  For example, the Sargan test rejects the null hypothesis that the overidentifying restrictions are valid, symmetrically in both synthetic and confidential data. Thus, a user basing an estimation strategy on the choice of models in the synthetic data would have chosen the the same models as with the confidential data.
@@ -124,9 +129,12 @@ broadly yield the same conclusion.  For example, the Sargan test rejects the nul
 
 \input{figure_bias.tex}
 
-\clearpage
 
 \subsection{pMSE}
+
+\begin{center}
+    Table~\ref{tab:pmse} about here.
+\end{center}
 
 \input{tables/table_pmse_corrected}
 
@@ -138,6 +146,5 @@ To compute the $pMSE$, we estimate Equation (\ref{pMSE}) using logit models. The
 %\todo{Those are coefficients. I think we are interested in the last row.} 
 %$pMSE$ is closer to zero for the manufacturing sector than the private sector in both regressions, consistent with our earlier observations for Canada.
 
-%\newpage
 
 %DISCUSSION IS STILL MISSING.\todo{pMSE discussion}
