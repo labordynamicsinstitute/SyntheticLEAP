@@ -1,6 +1,11 @@
 # Config file
 # Does not install libraries!
 # libraries
+mran.date <- "2019-12-01"
+options(repos=paste0("https://cran.microsoft.com/snapshot/",mran.date,"/"))
+
+# install.packages(c("tidyverse","readr","here"))
+
 library(tidyverse)
 library(readr)
 library(here)

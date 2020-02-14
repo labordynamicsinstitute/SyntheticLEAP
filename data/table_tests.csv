@@ -1,0 +1,7 @@
+model,name,Confidential (CDN),Synthetic (CDN),Confidential (GER),Synthetic (GER)
+GMM,m2,-14.5,-27.54,-2.51,-4.13
+GMM,Sargan test,69000,15000,3600,2000
+System GMM MA,m2,8.2,-40.03,19.03,-11.69
+System GMM MA,Sargan test,28000,17000,3100,2500
+System GMM,m2,-11.43,-41.6,19.49,-8.83
+System GMM,Sargan test,77000,18000,4500,2800
