@@ -25,8 +25,7 @@
 \caption{Gross employment level (upper panels) and total payroll (lower panels) by year.}\label{fig:entity_chracteristics}
 \end{figure}
 
-Figure \ref{fig:entity_chracteristics} shows a comparison between the synthetic data and the original data for gross employment level (upper panels) and total payroll (lower panels) by year for the Canadian (left panels) and the German (right panels) case. While the general trends are preserved for both data sources, the results for the German synthetic data resemble the trends from the original data more closely. For the Canadian data the positive trends over time are generally overestimated. Looking only at the manufacturing sector in Canada (see Figure \ref{fig:entity_chracteristics_manufac} in the Appendix), we find that the general trends are better preserved. However, the absolute numbers are always underestimated in the synthetic data.
-\todo{Move the footnote to an earlier section, in which we describe in general terms, which parts of the data have been synthesized}\footnote{The private sector comprises all industries including the manufacturing sector except the public sector  (NAICS 61, 62, and 91)} 
+Figure \ref{fig:entity_chracteristics} shows a comparison between the synthetic data and the original data for gross employment level (upper panels) and total payroll (lower panels) by year for the Canadian (left panels) and the German (right panels) case. While the general trends are preserved for both data sources, the results for the German synthetic data resemble the trends from the original data more closely. For the Canadian data the positive trends over time are generally overestimated. Looking only at the manufacturing sector in Canada (see Figure \ref{fig:entity_chracteristics_manufac} in the Appendix), we find that the general trends are better preserved. However, the absolute numbers are always underestimated in the synthetic data.\footnote{The private sector comprises all industries including the manufacturing sector except the public sector  (NAICS 61, 62, and 91).} 
 
 
 
@@ -193,23 +192,8 @@ We find that the share of entities is well preserved for both data sources, but 
 %Figures~\ref{PayrollSharePrivate} and~\ref{PayrollShareManufacturing} plot the share of \textit{payroll} by two-digit industry and year for both CanSynLBD and LEAP database. In general, shares do not cluster along the 45-degree line, though a focus on  the manufacturing sector again shows stronger clustering along the 45-degree line.
 
 
-\subsection{pMSE}
-
-\input{tables/table_pmse_corrected}
-
-To compute the $pMSE$, we estimate Equation (\ref{pMSE}) using logit models. The estimated $pMSE$ is 0.0121 for the Canadian data (0.0041 when looking only at the manufacturing sector) and 0.0013 for the German data (see Table~\ref{tab:pmse}). While these numbers may seem small, \citet{Snoke_RSSA2018} provide an appropriate expected value, and Table~\ref{tab:pmse} reports quite large numbers, suggesting that the synthetic data do not have very high analytical validity.
-
-%These numbers are difficult to interpret on an absolute scale, but the fact that they are all close to zero seems to imply that the measure indicates a high level of analytical validity. However, as pointed out by \citet{Woo_Reiter_Oganian_Karr_2009}, the value of the $pMSE$ depends on the model specification of the propensity score model. Including more predictors or interaction terms in the model will typically lead to an increase in the $pMSE$. This was also confirmed by \citet{Snoke_RSSA2018}, who showed that under the assumption that both datasets come from the same data generating process, the expected value of the $pMSE$ is $(k-1)(1-c)^2c/N$, where $k$ is the number of parameters included in the propensity model, $c$ is the proportion of synthetic records in the stacked dataset and $N$ is the number of records in the stacked dataset. Thus, adding complexity to the propensity score model will generally lead to an increase in the $pMSE$ even if the synthesis model is perfect. The findings of \citet{Snoke_RSSA2018} also illustrate that it is not meaningful to compare the $pMSE$ from the Canadian data to the $pMSE$ from the German data or to the $pMSE$ of the manufacturing sector as the sizes of the datasets are substantially different. 
-%=NTTable~\ref{tab:pMSE_regression} shows the results from the estimation of $pMSE$ for the Canadian data.
-%\todo{BD: Are those coefficients or marginal effects? Does it make sense to show coefficients? Or are we interested only in the last row? If we are interested in the coefficient, why is there no discussion of those?} 
-%\todo{Those are coefficients. I think we are interested in the last row.} 
-%$pMSE$ is closer to zero for the manufacturing sector than the private sector in both regressions, consistent with our earlier observations for Canada.
 
 %\newpage
-
-%DISCUSSION IS STILL MISSING.\todo{pMSE discussion}
-
-\newpage
 \subsection{Regression Analysis}
 
 \todo{Need to expand the regression discussion: only one generic model, many others possible, reference to the Singapore presentation by Lars}
@@ -220,7 +204,7 @@ The base variant is an OLS specification:
 
 \begin{eqnarray}	
 \label{eq:OLS}
-Emp_{et} & = & \beta_0 + \theta Emp_{e,t-1} + \lambda Pay_{et} + Age_{et}^{T}\beta + \lambda_t + \alpha_i + \epsilon_{et}
+Emp_{et} & = & \beta_0 + \theta Emp_{e,t-1} + \eta Pay_{et} + Age_{et}^{T}\beta + \lambda_t + \alpha_i + \epsilon_{et}
 \end{eqnarray}
 where $Emp_{et}$ is log employment of entity $e$ in year $t$, $Emp_{e,t-1}$ is its one year lag, $Pay_{et}$ is the logarithm of payroll of entity $e$ in year $t$, $Age_{et}$ is a vector of dummy variables for age of entity $e$ in year $t$, $\lambda_t$ is the year fixed effect, $\alpha_i$ is an unobserved time-invariant industry-specific effect, and $\epsilon_{et}$ is the disturbance term of entity $e$ in year $t$. 
 
@@ -233,11 +217,15 @@ We furthermore estimate the model using the system GMM  method proposed by \text
 
 \todo{@ JA: $\alpha$ is used twice - not clear - please verify - I have added subscripts}
 \begin{eqnarray}	
-Emp_{et}&=&\beta_{0,e} +\theta Emp_{e,t-1}+\lambda Pay_{et}+Age_{et}^{T}\beta+\lambda_t+\alpha_i+\epsilon_{et}+\gamma\epsilon_{e,t-1}
+Emp_{et}&=&\beta_{0,e} +\theta Emp_{e,t-1}+\eta Pay_{et}+Age_{et}^{T}\beta+\lambda_t+\alpha_i+\epsilon_{et}+\gamma\epsilon_{e,t-1}
 \end{eqnarray}
 
 
-We estimate the model separately on confidential and synthetic data for the private sector (and for Canada, for the manufacturing sector). The estimation results are reported in the Appendix. Only a small number of models show coefficients that are similar (with a positive confidence interval overlap $J_{k,m}$). Generally, we find that the estimated coefficients are different, though of the same sign.  Figure~\ref{fig:estimates3} plots the normalized coefficients for the key coefficients ($\theta_{synth}-\theta_{conf}$ and $\lambda_{synth}-\lambda_{conf}$). Confidence interval overlaps are not plotted, because they are too small.  The key coefficients  are never close. The mean and median $J_{k,m}$ are negative for all models (Table~\ref{tab:jkm}).
+We estimate the model separately on confidential and synthetic data for the private sector (and for Canada, for the manufacturing sector). The estimation results are reported in the Appendix. We also report the $z$-test statistics, which provide similar conclusion both in the synthetic database and the original database, for the $m2$ test for zero autocorrelation in first-differenced errors for order two. In all our models for both the synthetic database as well as for the original database, the Sargan test rejects the null hypothesis that the overidentifying restrictions are valid. Only a small number of models show coefficients that are similar (with a positive confidence interval overlap $J_{k,m}$). Generally, we find that the estimated coefficients are different, though of the same sign.  Figure~\ref{fig:estimates3} plots the normalized coefficients for the key coefficients ($\theta_{synth}-\theta_{conf}$ and $\lambda_{synth}-\lambda_{conf}$). Confidence interval overlaps are not plotted, because they are too small.  The key coefficients  are never close. The mean and median $J_{k,m}$ are negative for all models (Table~\ref{tab:jkm}).
+
+  
+
+
 
 \input{tables/table_jkm}
 
@@ -258,3 +246,19 @@ We estimate the model separately on confidential and synthetic data for the priv
 \end{figure}
 
 \clearpage
+
+\subsection{pMSE}
+
+\input{tables/table_pmse_corrected}
+
+To compute the $pMSE$, we estimate Equation (\ref{pMSE}) using logit models. The estimated $pMSE$ is 0.0121 for the Canadian data (0.0041 when looking only at the manufacturing sector) and 0.0013 for the German data (see Table~\ref{tab:pmse}). While these numbers may seem small, the $pMSE$ ratio and the standardized $pMSE$ are large indicating that the null hypothesis that the synthetic data and the original data stem from the same data generating process needs to be rejected. Of course, in practice it will be extremely unlikely that this hypothesis holds and given the large sample sizes (about 2 million cases for Germany and the manufacturing sector in Canada and about 34.5 million cases for the full Canadian dataset) this test has very high power. Thus, even small differences between the original and synthetic data will lead to large values for this test statistic.
+
+%These numbers are difficult to interpret on an absolute scale, but the fact that they are all close to zero seems to imply that the measure indicates a high level of analytical validity. However, as pointed out by \citet{Woo_Reiter_Oganian_Karr_2009}, the value of the $pMSE$ depends on the model specification of the propensity score model. Including more predictors or interaction terms in the model will typically lead to an increase in the $pMSE$. This was also confirmed by \citet{Snoke_RSSA2018}, who showed that under the assumption that both datasets come from the same data generating process, the expected value of the $pMSE$ is $(k-1)(1-c)^2c/N$, where $k$ is the number of parameters included in the propensity model, $c$ is the proportion of synthetic records in the stacked dataset and $N$ is the number of records in the stacked dataset. Thus, adding complexity to the propensity score model will generally lead to an increase in the $pMSE$ even if the synthesis model is perfect. The findings of \citet{Snoke_RSSA2018} also illustrate that it is not meaningful to compare the $pMSE$ from the Canadian data to the $pMSE$ from the German data or to the $pMSE$ of the manufacturing sector as the sizes of the datasets are substantially different. 
+%=NTTable~\ref{tab:pMSE_regression} shows the results from the estimation of $pMSE$ for the Canadian data.
+%\todo{BD: Are those coefficients or marginal effects? Does it make sense to show coefficients? Or are we interested only in the last row? If we are interested in the coefficient, why is there no discussion of those?} 
+%\todo{Those are coefficients. I think we are interested in the last row.} 
+%$pMSE$ is closer to zero for the manufacturing sector than the private sector in both regressions, consistent with our earlier observations for Canada.
+
+%\newpage
+
+%DISCUSSION IS STILL MISSING.\todo{pMSE discussion}

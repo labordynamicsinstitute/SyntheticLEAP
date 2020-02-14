@@ -2,6 +2,12 @@
 # Lars Vilhuber
 # 2020-02-09
 
+#adjustments 2020-02-13 by Joerg Drechsler:
+#corrected k, the number of parameters in the propensity model, for Germany
+#corrected c, the fraction of synthetic records, for Germany
+
+#still to do: correct k for Canada
+
 
 source(here::here("programs","Post","config.R"),echo=TRUE)
 
@@ -56,22 +62,40 @@ pmse.both %>%
   filter(name != "indicator") %>%
   summarize(k = n()+1) -> k
 
+
+############begin changes
+
+###use correct k
+
+k %>%
+  mutate(k=if_else(country=="Germany",40,k))-> k
+
+############end changes
+
 pmse.both %>% 
   filter(name == "N") %>%
   mutate(N = as.numeric(value)) %>%
   dplyr::select(-flag,-name,-value) -> N
 
 left_join(pmse,k) %>% left_join(N) %>%
-  mutate(c = 0.5,
+###begin changes
+
+#use correct value for c for Germany
+  mutate(c = if_else(country=="Germany",0.5234779,0.5),
+###end changes
          pMSE.stdev = sqrt(2*(k-1))*(1-c)^2*c/N,
          pMSE.exp = (k-1)*(1-c)^2 * c/N,
-         pMSE.corrected = (pMSE - pMSE.exp)/pMSE.stdev,
+         pMSE.standardized = (pMSE - pMSE.exp)/pMSE.stdev,
          pMSE.ratio = pMSE/pMSE.exp) -> pmse.table
 mysave(pmse.table)
 
+
+
 pmse.table %>%
   filter(model=="logit") %>%
-  select(country,sector,pMSE,pMSE.ratio,pMSE.corrected) -> pmse.logit
+  select(country,sector,pMSE,pMSE.ratio,pMSE.standardized)%>%
+  mutate(pMSE.ratio=round(pMSE.ratio,2),
+	pMSE.standardized=round(pMSE.standardized,2)) -> pmse.logit
 
 library(stargazer)
 
