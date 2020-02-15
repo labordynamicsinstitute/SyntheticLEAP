@@ -14,7 +14,8 @@ graph_regs_wide %>%
   filter(sector %in% c("Private","Universe")) %>%
   dplyr::select(-synthetic,-stderr,-conf_stderr,-sector) %>%
   pivot_wider(names_from=country,values_from=c("estimate","conf_estimate")) %>%
-  select(model,name,
+  arrange(model,name) %>%
+  select(Model = model,Test = name,
          `Confidential (CDN)`=conf_estimate_Canada,`Synthetic (CDN)`=estimate_Canada,
          `Confidential (GER)`=conf_estimate_Germany,`Synthetic (GER)`=estimate_Germany) -> table_tests
 
