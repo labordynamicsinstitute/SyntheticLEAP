@@ -6,12 +6,49 @@
 #corrected k, the number of parameters in the propensity model, for Germany
 #corrected c, the fraction of synthetic records, for Germany
 
-#still to do: correct k for Canada
+#2020-02-15: correct k for Canada
 
 
 source(here::here("programs","Post","config.R"),echo=TRUE)
+library("stringi")
 
 test <- FALSE
+
+# Correction factors
+# c is the fraction of synthetic observations
+# this is not 0.5 because we run pMSE on long data, not wide data
+c.ger <- 0.5234779
+# For Canada, we are not quite certain
+c.can <- 0.5
+
+# Each regression includes industry dummies
+# For Germany, this is the TOTAL number of regressors
+k.ger <- 40
+
+# For Canada, we estimate the k, since we don't actually know the exact number.
+# Somewhat frustrating
+
+first.year.can = 1991
+last.year.can = 2015
+
+# Industries: we count the 4-digit industries minus the exclusions from the NAICS spec
+naics.exclusions.can <- c("61", "62", "91")
+# We only know that about 7% of *employment* failed, 
+# but we will simply use a 7% reduction in the number of industries
+naics.synthesis.failure.can <- 0.07
+
+infile <- "NAICS-SCIAN-2012-Structure-eng.csv"
+naics.can <- read_csv(file.path(datadir,infile))
+
+naics.can %>% 
+  filter(Level == 3) %>%
+  filter(! stri_sub(Code,from=1,length=2) %in% naics.exclusions.can) %>%
+  summarise(k.can = n()) %>% 
+  as.numeric() * (1 - naics.synthesis.failure.can) %>%
+  round(digits = 0)-> k.can
+
+# Correct for time periods
+k.can <- k.can + last.year.can - first.year.can +1
 
 clean_pmse <- function(infile,countryval = "Canada",...) {
   # these work for a second batch
@@ -56,37 +93,46 @@ pmse <- pmse.both %>%
   mutate(pMSE = as.numeric(value)) %>%
   dplyr::select(-name,-flag,-value)
 
+# Compute k
 # the Canadian data did not output the indicator value
 pmse.both %>% 
   group_by(model,country,sector) %>%
   filter(name != "indicator") %>%
   summarize(k = n()+1) -> k
 
-
-############begin changes
-
-###use correct k
-
-k %>%
-  mutate(k=if_else(country=="Germany",40,k))-> k
-
-############end changes
-
 pmse.both %>% 
   filter(name == "N") %>%
   mutate(N = as.numeric(value)) %>%
   dplyr::select(-flag,-name,-value) -> N
 
-left_join(pmse,k) %>% left_join(N) %>%
-###begin changes
+# Adjust k for unreported coefficients 
+print("================= Prior to adjustments ====================")
+k
 
-#use correct value for c for Germany
-  mutate(c = if_else(country=="Germany",0.5234779,0.5),
-###end changes
+left_join(pmse,k) %>% left_join(N) %>%
+  mutate(c = if_else(country=="Germany",c.ger,0.5),
+       pMSE.stdev = sqrt(2*(k-1))*(1-c)^2*c/N,
+       pMSE.exp = (k-1)*(1-c)^2 * c/N,
+       pMSE.standardized = (pMSE - pMSE.exp)/pMSE.stdev,
+       pMSE.ratio = pMSE/pMSE.exp) 
+
+
+
+print("================= After adjustments ====================")
+
+## Adjust k
+k %>%
+  mutate(k=if_else(country=="Germany",k.ger,k)) %>%
+  mutate(k=if_else(country=="Canada",k+k.can,k))-> k
+
+
+left_join(pmse,k) %>% left_join(N) %>%
+  mutate(c = if_else(country=="Germany",c.ger,0.5),
          pMSE.stdev = sqrt(2*(k-1))*(1-c)^2*c/N,
          pMSE.exp = (k-1)*(1-c)^2 * c/N,
          pMSE.standardized = (pMSE - pMSE.exp)/pMSE.stdev,
          pMSE.ratio = pMSE/pMSE.exp) -> pmse.table
+pmse.table
 mysave(pmse.table)
 
 
