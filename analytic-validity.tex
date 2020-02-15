@@ -37,10 +37,14 @@ The second, smaller spike in the entry rate in the German data occurs in 1999. I
 %\clearpage
 
 
-\FloatBarrier
 
+
+
+%\FloatBarrier
 
 \subsection{Distribution of variables across time and industry}
+
+
 
 The \SynLBD{} code  ensures that the total number of entities that ever exist within the considered time frame  match exactly between the original data and the synthetic data. But  each entity's entry and exit date are synthesized, and the total number of entities at any particular point in time may differ, and with it employment and payroll. To investigate how well the information is preserved at any given point in time, we compute the following statistic:
 \begin{equation}
@@ -51,6 +55,8 @@ where $i$ is the index for the industry (aggregated to the two digit level for t
 %For example $X_{its}$ could be the total payroll in 1999 for a specific industry in the original data. 
 To compute the statistic provided in Equation (\ref{eq:share_employment}), this number is then divided by the total payroll aggregated across all industries and years.
 Figure~\ref{fig:FirmShare} plots the results from the original data against the results from the synthetic data for the  number of entities, employment, and {payroll}. If the information is well preserved, all points should be close to the 45 degree line. 
+
+
 
 We find that the share of entities is well preserved for both data sources, but share of employment and share of payroll vary more in the Canadian data with an upward bias for the larger shares. 
 It should be noted that the German data shown here and elsewhere in this paper only contain data from two industries, whereas the Canadian data contains nearly all \todo{do we have this number?} available industry codes at the two digit level. Thus, results from Canada are expected to be more diverse. 
@@ -73,8 +79,8 @@ When only considering the Canadian manufacturing sector (see Figure \ref{fig:Fir
 
 %where $i$ are two-digit industries, $t$ are  years in-sample, $s$ indicates whether it is in the synthetic or confidential data, and $X_{its}$ is the sum of the variable of interest $X$ for industry $i$ and year $t$ in  dataset $s$.
 
-\input{figure_vars_over_time.tex}
 
+\input{figure_vars_over_time.tex}
 
 
 
@@ -83,7 +89,7 @@ When only considering the Canadian manufacturing sector (see Figure \ref{fig:Fir
 %\newpage
 \subsection{Regression Analysis}
 
-\todo{Need to expand the regression discussion: only one generic model, many others possible, reference to the Singapore presentation by Lars}
+%\todo{Need to expand the regression discussion: only one generic model, many others possible, reference to the Singapore presentation by Lars}
 To assess how well the synthetic data perform in a more complex model, we estimate a dynamic panel data model for the evolution of employment, using four variants suggested by the economics literature. 
 These allow us to assess whether the synthetic data capture variability in economic growth due to industry and firm age - the key variables in the data. 
 %
@@ -114,6 +120,9 @@ One potential explanation could be that the model is poorly identified because o
 
 \input{tables/table_m2_sargan}
 
+
+
+
 \begin{center}
     Table~\ref{tab:m2sargan} about here.
 \end{center}
@@ -130,15 +139,18 @@ broadly yield the same conclusion.  For example, the Sargan test rejects the nul
 \input{figure_bias.tex}
 
 
+
+
 \subsection{pMSE}
 
 \begin{center}
     Table~\ref{tab:pmse} about here.
 \end{center}
-
 \input{tables/table_pmse_corrected}
 
 To compute the $pMSE$, we estimate Equation (\ref{pMSE}) using logit models. The estimated $pMSE$ is 0.0121 for the Canadian data (0.0041 for the manufacturing sector) and 0.0013 for the German data (see Table~\ref{tab:pmse}). While these numbers may seem small, the $pMSE$ ratio and the standardized $pMSE$ are large, indicating that the null hypothesis that the synthetic data and the original data stem from the same data generating process should be rejected. Of course, in practice it will be extremely unlikely that this hypothesis holds and given the large sample sizes (about 2 million cases for Germany and the manufacturing sector in Canada and about 34.5 million cases for the full Canadian dataset) this test has very high power. Thus, even small differences between the original and synthetic data will lead to large values for this test statistic.
+
+
 
 %These numbers are difficult to interpret on an absolute scale, but the fact that they are all close to zero seems to imply that the measure indicates a high level of analytical validity. However, as pointed out by \citet{Woo_Reiter_Oganian_Karr_2009}, the value of the $pMSE$ depends on the model specification of the propensity score model. Including more predictors or interaction terms in the model will typically lead to an increase in the $pMSE$. This was also confirmed by \citet{Snoke_RSSA2018}, who showed that under the assumption that both datasets come from the same data generating process, the expected value of the $pMSE$ is $(k-1)(1-c)^2c/N$, where $k$ is the number of parameters included in the propensity model, $c$ is the proportion of synthetic records in the stacked dataset and $N$ is the number of records in the stacked dataset. Thus, adding complexity to the propensity score model will generally lead to an increase in the $pMSE$ even if the synthesis model is perfect. The findings of \citet{Snoke_RSSA2018} also illustrate that it is not meaningful to compare the $pMSE$ from the Canadian data to the $pMSE$ from the German data or to the $pMSE$ of the manufacturing sector as the sizes of the datasets are substantially different. 
 %=NTTable~\ref{tab:pMSE_regression} shows the results from the estimation of $pMSE$ for the Canadian data.
