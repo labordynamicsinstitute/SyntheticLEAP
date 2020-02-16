@@ -23,9 +23,9 @@ all_reg_coeffs %>%
   filter(name %in% c("AR(1) Coefficient","Ln Pay")) %>%
   filter(type %in% c("estimate")) %>%
   pivot_wider(names_from = name,values_from = value) %>%
-  mutate(lr_pay = `Ln Pay` / (1 - `AR(1) Coefficient`)) %>%
+  mutate(Elasticity = `Ln Pay` / (1 - `AR(1) Coefficient`)) %>%
   select(-`Ln Pay`, - `AR(1) Coefficient`) %>%
-  pivot_longer(cols=lr_pay,names_to= "name", values_to = "value") -> lr_pay
+  pivot_longer(cols=Elasticity,names_to= "name", values_to = "value") -> lr_pay
   
 
 # flip the stderr
@@ -102,7 +102,7 @@ ggsave(file.path(figuredir,"fig_estimates2.png"),plot = fig.estimates2,width = 8
 # In the paper, this is Figure 5
 
 graph_regs_normalized %>%
-  filter(name %in% c("AR(1) Coefficient","Ln Pay","lr_pay")) %>%
+  filter(name %in% c("AR(1) Coefficient","Ln Pay","Elasticity")) %>%
   filter(synthetic == TRUE) %>%
   ggplot(aes(model, norm_estimate)) + 
   coord_flip() +
@@ -111,7 +111,8 @@ graph_regs_normalized %>%
   scale_color_manual(values = brewer.pal(n = 4,name="Paired")) +
   scale_shape_manual(values=c(16,17,15,18))+
   theme_bw() + 
-  theme(legend.title = element_blank()) + labs(x = element_blank(),y=element_blank()) +
+  theme(legend.title = element_blank()) +
+  labs(x = element_blank(),y=element_blank()) +
   facet_grid(. ~ sector_country)  -> fig.estimates3
 ggsave(file.path(figuredir,"fig_estimates3.png"),plot = fig.estimates3,width = 8,units="in",height = 2)
 
