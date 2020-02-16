@@ -1,31 +1,31 @@
-\newbibmacro*{doi+eprint+url}{%
-  \iftoggle{bbx:doi}
-    {%
-      \iffieldundef{doi}
-        {}
-        {%
-          \begingroup
-          \edef\URLorDOI{%
-            \detokenize{https://doi.org/}%
-            \thefield{doi}%
-          }%
-          \iffieldequals{url}{\URLorDOI}
-            {\endgroup}
-            {%
-              \endgroup
-              \printfield{doi}%
-            }%  
-        }%
-    }
-    {}%
-  \newunit\newblock
-  \iftoggle{bbx:eprint}
-    {\usebibmacro{eprint}}
-    {}%
-  \newunit\newblock
-  \iftoggle{bbx:url}
-    {\usebibmacro{url+urldate}}
-    {}}
+%\newbibmacro*{doi+eprint+url}{%
+%  \iftoggle{bbx:doi}
+%    {%
+%      \iffieldundef{doi}
+%        {}
+%        {%
+%          \begingroup
+%          \edef\URLorDOI{%
+%            \detokenize{https://doi.org/}%
+%            \thefield{doi}%
+%          }%
+%          \iffieldequals{url}{\URLorDOI}
+%            {\endgroup}
+%            {%
+%              \endgroup
+%              \printfield{doi}%
+%            }%  
+%        }%
+%    }
+%    {}%
+%  \newunit\newblock
+%  \iftoggle{bbx:eprint}
+%    {\usebibmacro{eprint}}
+%    {}%
+%  \newunit\newblock
+%  \iftoggle{bbx:url}
+%    {\usebibmacro{url+urldate}}
+%    {}}
 
 
 \AtEveryBibitem{%
@@ -33,7 +33,7 @@
   \clearlist{isbn}
   \iffieldundef{url}{}
       {\iffieldundef{doi}{}
-        {\clearlist{url}}
+        {\clearlist{url}\clearlist{eprint}}
       }
   \iffieldundef{eprint}{}
       {\iffieldundef{doi}{}

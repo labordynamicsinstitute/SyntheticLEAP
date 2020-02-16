@@ -15,7 +15,7 @@ Figure \ref{fig:entity_chracteristics} shows a comparison between the synthetic 
 
 \input{figure-dynamics.tex}
 
-Key statistics commonly computed from business registers such as the LEAP or the BHP include job flows over time. Following \citet{DavisHaltiwangerSchuh}, job creation is defined as the sum of all employment gains from expanding firms from year $t-1$ to year $t$ including entry firms. The job destruction rate is defined as the sum of all employment losses from contracting firms from year $t-1$ to year $t$ including exiting firms. Figure~\ref{fig:job_flows} depicts  job creation rates (upper panels) and destruction rates (lower panels). The general levels and trends are preserved for both data sources, but the time-series align more closely for the German data. Even the substantial increase in job creations in 1993, which can be attributed to the integration of the data from Eastern Germany after reunification, is remarkably well preserved in the synthetic data. Still, there seems to be a small but systematic overestimation of job creation and destruction rates in both synthetic data sources. The substantial deviation in the job destruction rate in the last year of CanSynLBD is an artefact, which requires further investigation.% 
+Key statistics commonly computed from business registers such as the LEAP or the BHP include job flows over time. Following \citet{DavisHaltiwangerSchuh}, job creation is defined as the sum of all employment gains from expanding firms from year $t-1$ to year $t$ including entry firms. The job destruction rate is defined as the sum of all employment losses from contracting firms from year $t-1$ to year $t$ including exiting firms. Figure~\ref{fig:job_flows} depicts  job creation rates (upper panels) and destruction rates (lower panels). The general levels and trends are preserved for both data sources, but the time-series align more closely for the German data. Even the substantial increase in job creations in 1993, which can be attributed to the integration of the data from Eastern Germany after reunification, is remarkably well preserved in the synthetic data. Still, there seems to be a small but systematic overestimation of job creation and destruction rates in both synthetic data sources. The substantial deviation in the job destruction rate in the last year of CanSynLBD is an artefact  requiring further investigation.% 
 %\todo{Is there an explanation for this artefact?}
 \footnote{The results for the Canadian manufacturing sector are included in Figure \ref{fig:job_flows_manufac} in the Appendix, and are comparable to the results for the entire private sector.}
 %\todo{Should we still include the net job creation rate? I would say no.}
@@ -26,7 +26,6 @@ Key statistics commonly computed from business registers such as the LEAP or the
 
 \subsection{Entity Dynamics}
 
-\input{figure_entity_dynamics.tex}
 
 To assess how well the synthetic data capture entity dynamics, we also compute entry and exit rates, i.e. how many new entities appear in the data and how many cease to exist relative to the population of entities in a specific year.\footnote{As described in Section~\ref{sec:data}, for both countries' data, corrections based on worker flows have been applied, correcting for any bias due to legal reconfiguration of economic entities.} Figure~\ref{fig:FirmDynamics} shows that those rates are very well preserved for both data sources. 
 
@@ -34,13 +33,26 @@ Only the (delayed) re-unification spike in the entry rates in the German data is
 
 The second, smaller spike in the entry rate in the German data occurs in 1999. In that year, employers were required to report  marginally employed workers  for the first time. Some establishments exclusively employ marginally employed workers, and will thus appear for the first time in the data after 1999. The synthetic data preserves this pattern. 
 %To show further those rates are similar, we compute the divergence of entry rate as the entry rate of CanSynLBD net the entry rate of LEAP as well as the divergence of exit rate as the exit rate of CanSynLBD net the exit rate of LEAP (see Figure \ref{Divergence}).
+
+\input{figure_entity_dynamics.tex}
+% alternate, because the other not working...
+
+%\input{figure_analytics.tex}
+%\clearpage
+%\input{figure-dynamics.tex}
+%\clearpage
+%\begin{figure}[ht]
+%   \includegraphics[page=4,trim=0 40 0 0,clip,width=\linewidth]{main_figures_and_tables.pdf}
+%\caption{Entry rates (upper panels) and exit rates (lower panels) by year.\label{fig:FirmDynamics}}
+%\end{figure}
+%
+%
+
 %\clearpage
 
 
 
 
-
-%\FloatBarrier
 
 \subsection{Distribution of variables across time and industry}
 
@@ -59,7 +71,7 @@ Figure~\ref{fig:FirmShare} plots the results from the original data against the 
 
 
 We find that the share of entities is well preserved for both data sources, but share of employment and share of payroll vary more in the Canadian data with an upward bias for the larger shares. 
-It should be noted that the German data shown here and elsewhere in this paper only contain data from two industries, whereas the Canadian data contains nearly all \todo{do we have this number?} available industry codes at the two digit level. Thus, results from Canada are expected to be more diverse. 
+It should be noted that the German data shown here and elsewhere in this paper only contain data from two industries, whereas the Canadian data contains nearly all  available industry codes at the two digit level. Thus, results from Canada are expected to be more diverse. 
 %This suggests that the results for the Canadian data evaluate the utility at a much more granular level. 
 % and thus lower analytical validity compared to the German results is to be expected. 
 When only considering the Canadian manufacturing sector (see Figure \ref{fig:FirmShare_manufac} in the Appendix), less bias is present.
@@ -82,7 +94,7 @@ When only considering the Canadian manufacturing sector (see Figure \ref{fig:Fir
 
 \input{figure_vars_over_time.tex}
 
-
+%\clearpage
 
 
 
@@ -105,50 +117,52 @@ where $Emp_{et}$ is log employment of entity $e$ in year $t$, $Emp_{e,t-1}$ is i
 As $Emp_{e,t-1}$ is correlated with $\alpha_{i}$ because $Emp_{e,t-1}$ is a function of $\alpha_{i}$, 
 %\todo{This may need to be explained for non-economists - why is lagged employment of firm e a function of industry effect alpha i?}
 OLS estimators are biased and inconsistent. 
-To take this endogeneity bias into account,  \textcite{RePEc:oup:restud:v:58:y:1991:i:2:p:277-297.} suggest a generalized method of moments (GMM) estimator, and tests to assess the  validity of the model.  To test for autocorrelation, we compute the  $m2$ test  for zero autocorrelation in the  first-differenced errors of order two. The Sargan test is used to verify the validity of instrument subsets. Both tests are computed for each country and sector.
-
-We furthermore estimate the model using the system GMM  method proposed by \textcite{RePEc:eee:econom:v:68:y:1995:i:1:p:29-51} and \textcite{RePEc:eee:econom:v:87:y:1998:i:1:p:115-143}, as well as a variant specifying a first-order moving average using appropriate instruments for both level and difference equations  \parencite{RePEc:eee:econom:v:68:y:1995:i:1:p:29-51,RePEc:eee:econom:v:87:y:1998:i:1:p:115-143}:
+To take this endogeneity bias into account,  \textcite{RePEc:oup:restud:v:58:y:1991:i:2:p:277-297.} suggest a generalized method of moments (GMM) estimator, and tests to assess the  validity of the model.  
+%
+We also estimate the model using the system GMM  method proposed by \textcite{RePEc:eee:econom:v:68:y:1995:i:1:p:29-51} and \textcite{RePEc:eee:econom:v:87:y:1998:i:1:p:115-143}, as well as a variant specifying a first-order moving average using appropriate instruments for both level and difference equations  \parencite{RePEc:eee:econom:v:68:y:1995:i:1:p:29-51,RePEc:eee:econom:v:87:y:1998:i:1:p:115-143}:
 %
 \begin{eqnarray}	
 Emp_{et}&=&\beta_{0,e} +\theta Emp_{e,t-1}+\eta Pay_{et}+Age_{et}^{T}\beta+\lambda_t+\alpha_i+\epsilon_{et}+\gamma\epsilon_{e,t-1}
 \end{eqnarray}
 
+To test for autocorrelation, \textcite{RePEc:oup:restud:v:58:y:1991:i:2:p:277-297.} suggested various tests. We compute the z-score for the $m2$ test  for zero autocorrelation in the  first-differenced errors of order two. Deviations from zero reject the test. The Sargan test is used to verify the validity of the overidentifying restrictions on the instruments. A high p-value rejects the null that the restrictions are valid.
 
-We estimate the model separately on confidential and synthetic data for the private sector (and for Canada, for the manufacturing sector). Detailed estimation results are reported in the Appendix. Here we  focus on the two regression coefficients of major interest: $\theta$ and $\lambda$, the coefficients for lagged employment and payroll. Figure~\ref{fig:estimates3} plots the bias in the synthetic coefficients, i.e., $\theta_{synth}-\theta_{conf}$ and $\lambda_{synth}-\lambda_{conf}$, for all four models. While the detailed results in the Appendix confirm that all regression coefficients still have the same sign, all estimates plotted in Figure~\ref{fig:estimates3} show substantial bias in all models in all datasets (the OLS model for the German data being the only exception). However, we observe a striking pattern: The biases of the two regression coefficients are always symmetric, i.e. the sum of the biases of $\theta_{synth}$ and $\lambda_{synth}$ is close to zero in all models. 
+An interesting derived effect is to consider the long-run effect of (log) payroll on (log) employment, or the elasticity of employment with respect to payroll. This can be estimated as
+
+$$
+\eta^\star = \frac{\hat{\eta}}{\hat{\theta}}.
+$$
+
+It is important that this model is close, but not identical to the model used to \textit{synthesize} the data. In \SynLBD, $Emp_{et}$ is synthesized as $f(Emp_{e,t-1},X_{et})$ (where $X_{et}$ does not contain $Pay_{et}$), and $Pay_{et} = f(Pay_{e,t-1},Emp_{et},X_{et})$ \citep[pg. 366]{KinneyEtAl2011}. Thus, the model we chose is purposefully not (completely) congenial with the synthesis model, but the synthesis process \SynLBD{} should preserve sufficient serial correlation in the data to be able to estimate these models.
+
+We estimate each model and test statistics separately on confidential and synthetic data for the private sector (and for Canada, for the manufacturing sector). Detailed estimation results are reported in the Appendix. Here we  focus on the two regression coefficients of major interest: $\theta$ and $\eta$, the coefficients for lagged employment and payroll, as well as the elasticity $\eta^\star$. Figure~\ref{fig:estimates3} plots the bias in the synthetic coefficients, i.e., $\theta_{synth}-\theta_{conf}$ and $\eta_{synth}-\eta_{conf}$, for all four models. While the detailed results in the Appendix confirm that all regression coefficients still have the same sign, all estimates plotted in Figure~\ref{fig:estimates3} show substantial bias in all models in all datasets (the OLS model for the German data being the only exception). However, the computed elasticity $\eta^\star$ has very little bias in most models.
+
+
+\input{figure_bias.tex}
+
+However, we observe a striking pattern: The biases of the two regression coefficients are always symmetric, i.e. the sum of the biases of $\theta_{synth}$ and $\eta_{synth}$ is close to zero in all models (and cancel mostly out in the computation of $\eta^\star$). 
 %At this point, we can only speculate about the causes of this phenomenon. 
-One potential explanation could be that the model is poorly identified because of multicollinearity generating a ridge for the estimated coefficients. The estimated coefficients would be highly unstable in this case even in the original data and thus it would not be surprising to find substantial differences between the coefficients from the original data and the coefficients from the synthetic data. Better understanding this phenomenon will be an interesting area of future research.
+This may simply be a feature of the modeling strategy pointed out earlier, which generates serial correlation with a slightly different structure. Another possible explanation could be that the model is poorly identified because of multicollinearity generating a ridge for the estimated coefficients. The estimated coefficients would be highly unstable in this case even in the original data and thus it would not be surprising to find substantial differences between the coefficients from the original data and the coefficients from the synthetic data. Better understanding this phenomenon will be an interesting area of future research.
 
-\input{tables/table_m2_sargan}
-
-
+\input{tables/table_m2_sargan_mod}
 
 
-\begin{center}
-    Table~\ref{tab:m2sargan} about here.
-\end{center}
+Whereas the bias in coefficients is quite consistent across countries and models, specification tests such as  the $m2$ test for autocorrelation and the Sargan test paint a slightly less consistent picture. Table~\ref{tab:m2sargan} shows the two tests for each of the models estimated by country, synthetic status, and model. The Sargan test rejects the null in both countries and for all models, consistently for confidential and synthetic data. But the $m2$ test is of opposite signs for half of the comparisons. 
 
-While the coefficients are broadly biased with respect to coefficients obtained from the confidential data, specification tests such as  the $m2$ test for autocorrelation and the Sargan test paint a slightly less consistent picture. Table~\ref{tab:m2sargan} shows the two tests for each of the models estimated by country, synthetic status, and model. 
-
-broadly yield the same conclusion.  For example, the Sargan test rejects the null hypothesis that the overidentifying restrictions are valid, symmetrically in both synthetic and confidential data. Thus, a user basing an estimation strategy on the choice of models in the synthetic data would have chosen the the same models as with the confidential data.
 
 
 % \subsection{Confidence Interval Overlap}
 %Only a small number of models show coefficients that are similar (with a positive confidence interval overlap $J_{k,m}$). Generally, we find that the estimated coefficients are different, though of the same sign.  Figure~\ref{fig:estimates3} plots the normalized coefficients for the key coefficients ($\theta_{synth}-\theta_{conf}$ and $\lambda_{synth}-\lambda_{conf}$). Confidence interval overlaps are not plotted, because they are too small.  The key coefficients  are never close. The mean and median $J_{k,m}$ are negative for all models (Table~\ref{tab:jkm}).
 %\input{tables/table_jkm}
 
-\input{figure_bias.tex}
-
-
+%\clearpage
 
 
 \subsection{pMSE}
 
-\begin{center}
-    Table~\ref{tab:pmse} about here.
-\end{center}
 \input{tables/table_pmse_corrected}
 
-To compute the $pMSE$, we estimate Equation (\ref{pMSE}) using logit models. The estimated $pMSE$ is 0.0121 for the Canadian data (0.0041 for the manufacturing sector) and 0.0013 for the German data (see Table~\ref{tab:pmse}). While these numbers may seem small, the $pMSE$ ratio and the standardized $pMSE$ are large, indicating that the null hypothesis that the synthetic data and the original data stem from the same data generating process should be rejected. Of course, in practice it will be extremely unlikely that this hypothesis holds and given the large sample sizes (about 2 million cases for Germany and the manufacturing sector in Canada and about 34.5 million cases for the full Canadian dataset) this test has very high power. Thus, even small differences between the original and synthetic data will lead to large values for this test statistic.
+To compute the $pMSE$, we estimate Equation (\ref{pMSE}) using logit models. The estimated $pMSE$ is 0.0121 for the Canadian data (0.0041 for the manufacturing sector) and 0.0013 for the German data (see Table~\ref{tab:pmse}). While these numbers may seem small, the $pMSE$ ratio and the standardized $pMSE$ are large, indicating that the null hypothesis that the synthetic data and the original data stem from the same data generating process should be rejected. The expected $pMSE$ is quite sensitive to sample size $N$. Even small differences between the original and synthetic data will lead to large values for this test statistic. In both countries, the confidential data files are quite large (about 2 million cases for Germany and the manufacturing sector in Canada and about 34.5 million cases for the full Canadian dataset). In practice, therefore, it is quite likely to reject the null of equivalence  given this test's very high power. 
 
 
 
