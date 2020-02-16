@@ -1,7 +1,7 @@
 # Make coefficient table a bit wider, and graph
 # Lars Vilhuber
 # 2020-02-09
-
+# long-run coefficient for payroll = Coefficient of payroll/(1- AR(1) coefficient)
 
 source(here::here("programs","Post","config.R"),echo=TRUE)
 
@@ -14,9 +14,22 @@ library(RColorBrewer)
 
 test <- FALSE
 
-all_reg_coeffs <- readRDS(file.path(datadir,paste0("all_reg_coeffs",".Rds")))
+all_reg_coeffs <- readRDS(file.path(datadir,paste0("all_reg_coeffs",".Rds"))) %>%
+  mutate(value=as.numeric(value))
 
-graph_regs <- all_reg_coeffs %>%
+# compute the long-run coefficient
+
+all_reg_coeffs %>%
+  filter(name %in% c("AR(1) Coefficient","Ln Pay")) %>%
+  filter(type %in% c("estimate")) %>%
+  pivot_wider(names_from = name,values_from = value) %>%
+  mutate(lr_pay = `Ln Pay` / (1 - `AR(1) Coefficient`)) %>%
+  select(-`Ln Pay`, - `AR(1) Coefficient`) %>%
+  pivot_longer(cols=lr_pay,names_to= "name", values_to = "value") -> lr_pay
+  
+
+# flip the stderr
+graph_regs <- bind_rows(all_reg_coeffs,lr_pay) %>%
   pivot_wider(names_from = "type",values_from = "value",values_fn = list(value = as.numeric))
 
 # Not working too well
@@ -50,6 +63,7 @@ tmp_graph_regs %>%
 mysave(graph_regs_wide)
 
 # Now describe graphically the results
+# Not used
 graph_regs_normalized %>%
   filter(name=="AR(1) Coefficient") %>%
   ggplot(aes(model, norm_estimate)) + 
@@ -69,6 +83,7 @@ ggsave(file.path(figuredir,"fig_estimates1.png"),plot = fig.estimates1,width = 8
 
 
 # Now describe graphically the results - ALTERNATe
+# Not used
 graph_regs_normalized %>%
   filter(name=="AR(1) Coefficient") %>%
   ggplot(aes(model, norm_estimate)) + 
@@ -84,8 +99,10 @@ ggsave(file.path(figuredir,"fig_estimates2.png"),plot = fig.estimates2,width = 8
 
 
 # Now describe graphically the results - ALTERNATe
+# In the paper, this is Figure 5
+
 graph_regs_normalized %>%
-  filter(name %in% c("AR(1) Coefficient","Ln Pay")) %>%
+  filter(name %in% c("AR(1) Coefficient","Ln Pay","lr_pay")) %>%
   filter(synthetic == TRUE) %>%
   ggplot(aes(model, norm_estimate)) + 
   coord_flip() +
@@ -99,6 +116,7 @@ graph_regs_normalized %>%
 ggsave(file.path(figuredir,"fig_estimates3.png"),plot = fig.estimates3,width = 8,units="in",height = 2)
 
 # Now describe graphically the results - standardized
+# Not used
 graph_regs_normalized %>%
   filter(name %in% c("AR(1) Coefficient","Ln Pay")) %>%
   filter(sector != "Private") %>%

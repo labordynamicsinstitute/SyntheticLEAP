@@ -22,8 +22,8 @@ c.ger <- 0.5234779
 c.can <- 0.5
 
 # Each regression includes industry dummies
-# For Germany, this is the TOTAL number of regressors
-k.ger <- 40
+# 
+k.ger <- 1
 
 # For Canada, we estimate the k, since we don't actually know the exact number.
 # Somewhat frustrating
@@ -31,11 +31,13 @@ k.ger <- 40
 first.year.can = 1991
 last.year.can = 2015
 
+first.year.ger = 1976
+last.year.ger  = 2008
+
 # Industries: we count the 4-digit industries minus the exclusions from the NAICS spec
 naics.exclusions.can <- c("61", "62", "91")
-# We only know that about 7% of *employment* failed, 
-# but we will simply use a 7% reduction in the number of industries
-naics.synthesis.failure.can <- 0.07
+# We know that "less than 10" failed, 
+naics.synthesis.failure.can <- 9
 
 infile <- "NAICS-SCIAN-2012-Structure-eng.csv"
 naics.can <- read_csv(file.path(datadir,infile))
@@ -44,11 +46,22 @@ naics.can %>%
   filter(Level == 3) %>%
   filter(! stri_sub(Code,from=1,length=2) %in% naics.exclusions.can) %>%
   summarise(k.can = n()) %>% 
-  as.numeric() * (1 - naics.synthesis.failure.can) %>%
-  round(digits = 0)-> k.can
+  as.numeric()  - naics.synthesis.failure.can %>%
+  round(digits = 0) -1 -> k.can
 
-# Correct for time periods
-k.can <- k.can + last.year.can - first.year.can +1
+# do the same for manufacturing (31-33)
+naics.can %>% 
+  filter(Level == 3) %>%
+  filter(stri_sub(Code,from=1,length=2) %in% c("31","32","33") ) %>%
+  summarise(k.can = n()) %>% 
+  as.numeric()  - naics.synthesis.failure.can/3 %>%
+  round(digits = 0) -1 -> k.can.manuf
+
+
+# Correct for time periods, -1 for constant
+k.can <- k.can + last.year.can - first.year.can 
+k.can.manuf <- k.can.manuf + last.year.can - first.year.can 
+k.ger <- k.ger + last.year.ger - first.year.ger
 
 clean_pmse <- function(infile,countryval = "Canada",...) {
   # these work for a second batch
@@ -97,7 +110,7 @@ pmse <- pmse.both %>%
 # the Canadian data did not output the indicator value
 pmse.both %>% 
   group_by(model,country,sector) %>%
-  filter(name != "indicator") %>%
+  filter(! name %in% c("indicator","N","pMSE")) %>%
   summarize(k = n()+1) -> k
 
 pmse.both %>% 
@@ -123,7 +136,8 @@ print("================= After adjustments ====================")
 ## Adjust k
 k %>%
   mutate(k=if_else(country=="Germany",k.ger,k)) %>%
-  mutate(k=if_else(country=="Canada",k+k.can,k))-> k
+  mutate(k=if_else(country=="Canada" & sector=="Private",k+k.can,k)) %>%
+  mutate(k=if_else(country=="Canada" & sector=="Manufacturing",k+k.can.manuf,k))-> k
 
 
 left_join(pmse,k) %>% left_join(N) %>%

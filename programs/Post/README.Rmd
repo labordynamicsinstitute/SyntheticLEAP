@@ -64,12 +64,17 @@ summary(naics.can) %>% kable()
 - R
 - Stata
 - bash shell (optional, to execute all programs in order)
+- SAS (for the synthetic data generation)
 
 ## Synthetic generation
 
-The software used to generate the synthetic data is described in Kinney et al (2011b). A copy of the code as used for the Canadian data is provided in the `programs/Canada` directory.
+The software used to generate the synthetic data is described in Kinney et al (2011b). A copy of the code can be found at (GITHUB ADDRESS).
 
-## Post-processing
+## Intra-mural Analysis
+
+The raw synthetic and confidential data served as input to the various analyses described in the paper. These analyses occurred within the secure environments of the respective agencies. The code for the analysis is common to both countries (with minor adjustments to account for different variable names). The code used in the Canadian context is provided as a single Stata file in the `programs/Canada` directory.
+
+## Extra-mural post-processing
 
 The following programs are used to post-process the analytic results:
 
