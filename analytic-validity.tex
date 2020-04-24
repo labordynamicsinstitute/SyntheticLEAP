@@ -102,30 +102,19 @@ When only considering the Canadian manufacturing sector (see Figure \ref{fig:Fir
 \subsection{Regression Analysis}
 
 %\todo{Need to expand the regression discussion: only one generic model, many others possible, reference to the Singapore presentation by Lars}
-To assess how well the synthetic data perform in a more complex model, we estimate a dynamic panel data model for the evolution of employment, using four variants suggested by the economics literature. 
-These allow us to assess whether the synthetic data capture variability in economic growth due to industry and firm age - the key variables in the data. 
-%
+To assess how well the synthetic data perform in a more complex model, we estimate a dynamic panel data model for the evolution of employment, using four variants suggested by the economics literature. These allow us to assess whether the synthetic data capture variability in economic growth due to industry, firm age and payroll - the key variables in the data. 
+
 The base model is an OLS specification:
-%
 \begin{eqnarray}	
 \label{eq:OLS}
 Emp_{et} & = & \beta_0 + \theta Emp_{e,t-1} + \eta Pay_{et} + Age_{et}^{T}\beta + \lambda_t + \alpha_i + \epsilon_{et}
 \end{eqnarray}
 where $Emp_{et}$ is log employment of entity $e$ in year $t$, $Emp_{e,t-1}$ is its one year lag, $Pay_{et}$ is the logarithm of payroll of entity $e$ in year $t$, $Age_{et}$ is a vector of dummy variables for age of entity $e$ in year $t$, $\lambda_t$ is the year fixed effect, $\alpha_i$ is an unobserved time-invariant industry-specific effect, and $\epsilon_{et}$ is the disturbance term of entity $e$ in year $t$. 
+As $Emp_{e,t-1}$ is correlated with $\alpha_{i}$ because $Emp_{e,t-1}$ is itself determined by time-invariant $\alpha_{i}$, OLS estimators are biased and inconsistent. To obtain consistent estimates of the parameters in the model, \textcite{RePEc:oup:restud:v:58:y:1991:i:2:p:277-297.} suggest using  generalized method of moments (GMM) estimation methods, as well as associated tests to assess the  validity of the model.  
 
+We also estimate the model using system GMM methods proposed by \textcite{RePEc:eee:econom:v:68:y:1995:i:1:p:29-51} and \textcite{RePEc:eee:econom:v:87:y:1998:i:1:p:115-143} (System GMM), as well as a variant of equation (\ref{eq:OLS}) that includes a first-order moving average in the error term $\epsilon_{et}$ (System GMM MA).
 
-As $Emp_{e,t-1}$ is correlated with $\alpha_{i}$ because $Emp_{e,t-1}$ is a function of $\alpha_{i}$, 
-%\todo{This may need to be explained for non-economists - why is lagged employment of firm e a function of industry effect alpha i?}
-OLS estimators are biased and inconsistent. 
-To take this endogeneity bias into account,  \textcite{RePEc:oup:restud:v:58:y:1991:i:2:p:277-297.} suggest a generalized method of moments (GMM) estimator, and tests to assess the  validity of the model.  
-%
-We also estimate the model using the system GMM  method proposed by \textcite{RePEc:eee:econom:v:68:y:1995:i:1:p:29-51} and \textcite{RePEc:eee:econom:v:87:y:1998:i:1:p:115-143}, as well as a variant specifying a first-order moving average using appropriate instruments for both level and difference equations  \parencite{RePEc:eee:econom:v:68:y:1995:i:1:p:29-51,RePEc:eee:econom:v:87:y:1998:i:1:p:115-143}:
-%
-\begin{eqnarray}	
-Emp_{et}&=&\beta_{0,e} +\theta Emp_{e,t-1}+\eta Pay_{et}+Age_{et}^{T}\beta+\lambda_t+\alpha_i+\epsilon_{et}+\gamma\epsilon_{e,t-1}
-\end{eqnarray}
-
-To test for autocorrelation, \textcite{RePEc:oup:restud:v:58:y:1991:i:2:p:277-297.} suggested various tests. We compute the z-score for the $m2$ test  for zero autocorrelation in the  first-differenced errors of order two. Deviations from zero reject the test. The Sargan test is used to verify the validity of the overidentifying restrictions on the instruments. A high p-value rejects the null that the restrictions are valid.
+The Sargan test is used to assess the validity of the overidentifying restrictions. We also compute the z-score for the $m2$ test for zero autocorrelation in the  first-differenced errors of order two (as suggested by \textcite{RePEc:oup:restud:v:58:y:1991:i:2:p:277-297.}). 
 
 An interesting derived effect is to consider the long-run effect of (log) payroll on (log) employment, or the elasticity of employment with respect to payroll. This can be estimated as
 
