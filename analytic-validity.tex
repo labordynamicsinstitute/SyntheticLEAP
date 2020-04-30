@@ -99,32 +99,103 @@ When only considering the Canadian manufacturing sector (see Figure \ref{fig:Fir
 
 
 %\newpage
-\subsection{Regression Analysis}
+\subsection{Modelling strategy}
 
 %\todo{Need to expand the regression discussion: only one generic model, many others possible, reference to the Singapore presentation by Lars}
-To assess how well the synthetic data perform in a more complex model, we estimate a dynamic panel data model for the evolution of employment, using four variants suggested by the economics literature. These allow us to assess whether the synthetic data capture variability in economic growth due to industry, firm age and payroll - the key variables in the data. 
+To assess how well the synthetic data perform in a more complex model and in the context of an analyst's modelling strategy, we simulate how a macroeconomist (the typical user of these data) might approach the problem of estimating a model for the evolution of employment if only the synthetic data are available. The analyst will consider both the literature and the data to propose a meaningful model. In doing so, a sequence of models will be proposed, and tests or theory brought to bear on their merits, potentially rejecting their appropriateness. In doing so, the outcome that the analyst obtains from following that strategy using the synthetic data should not diverge substantially from the outcome they would obtain when using the (inaccessible) confidential data. The specific parameter estimates obtained, and the actual model retained, are not the goal of this exercise --- the focus is on the process.
+
+To do so, our analyst would start by using a base model (typically OLS), and then let economic and statistical theory suggest more appropriate models. In this case, we will estimate variants of a dynamic panel data model for the evolution of employment. For each model, tests can be specified to test whether the model is an appropriate fit under a certain hypothesis.\footnote{We do not describe these models in more detail here, referring the reader to the literature instead, in particular \textcite{RePEc:eee:econom:v:68:y:1995:i:1:p:29-51} and \textcite{RePEc:eee:econom:v:87:y:1998:i:1:p:115-143}.} The outcome of this exercise, illustrated by Figure~\ref{fig:strategy}, allow us to assess whether the synthetic data capture variability in economic growth due to industry, firm age and payroll --- the key variables in the data --- and whether the analyst might reasonable choose the same, or a closely related modelling strategy.
+
+
+
+%
+%   FLOW diagram
+%
+
+\begin{figure}
+\centering 
+\tikzset{
+    fontscale/.style = {font=\relsize{#1}},
+    %Define standard arrow tip
+    >=stealth',
+    %Define style for boxes
+    punkt/.style={
+           rectangle,
+           rounded corners,
+           draw=black, very thick,
+           text width=9em,
+           minimum height=2em,
+           fontscale=0.8,
+           text centered},
+    % Define arrow style
+    pil/.style={
+           ->,
+           thick,
+           shorten <=2pt,
+           shorten >=2pt,}
+}
+\tikzstyle{decision} = [diamond, draw, 
+    text width=4.5em, text badly centered, node distance=3cm, inner sep=0pt]
+\tikzstyle{line} = [draw, -latex']
+
+\begin{tikzpicture}[node distance=1cm, auto,]
+ %nodes
+ \node[punkt] (ols) {OLS};
+ \node[right=0.1cm of ols] (m1) {};
+ \node[punkt, inner sep=5pt,right=0.1cm of m1]
+ (gmm) {GMM};
+ \node[right=0.1cm of gmm] (m2) {};
+ \node[punkt, inner sep=5pt,right=0.1cm of m2]
+ (sgmm) {System GMM};
+ \node[right=0.1cm of sgmm] (m3) {};
+ \node[punkt, inner sep=5pt,right=0.1cm of m3]
+ (sgmmma) {System GMM MA};
+ \node[above of=m2] (m4) {};
+ \node[above of= m4]
+ (analyst) {Analyst}
+ (analyst.east) edge[pil, bend left=22] node {\textit{specifies}} (sgmmma)
+ (analyst.west) edge[pil, bend right=22] node {\textit{specifies}} (ols)
+ (analyst) edge[pil, bend right=10]  (gmm)
+ (analyst) edge[pil, bend left=10]  (sgmm);
+ \node[decision,below=0.5cm of m1] (test1) {Test: Reject?};
+ \node[decision,below=0.5cm of m2] (test2) {Test: Reject?};
+ \node[decision,below=0.5cm of m3] (test3) {Test: Reject?};
+ \path[line] (ols) -> (test1);
+ \path[line] (gmm) -> (test1);
+ \path[line] (gmm) -> (test2);
+ \path[line] (sgmm) -> (test2);
+ \path[line] (sgmm) -> (test3);
+ \path[line] (sgmmma) -> (test3);
+ 
+\end{tikzpicture}
+
+\caption{Modelling strategy of a hypothetical analyst\label{fig:strategy}}
+\end{figure}
 
 The base model is an OLS specification:
 \begin{eqnarray}	
 \label{eq:OLS}
-Emp_{et} & = & \beta_0 + \theta Emp_{e,t-1} + \eta Pay_{et} + Age_{et}^{T}\beta + \lambda_t + \alpha_i + \epsilon_{et}
+Emp_{et} & = & \beta_0 + \theta Emp_{e,t-1} + \eta Pay_{et} + Age_{et}^{T}\beta + \gamma_i + \lambda_t + \epsilon_{et}
 \end{eqnarray}
-where $Emp_{et}$ is log employment of entity $e$ in year $t$, $Emp_{e,t-1}$ is its one year lag, $Pay_{et}$ is the logarithm of payroll of entity $e$ in year $t$, $Age_{et}$ is a vector of dummy variables for age of entity $e$ in year $t$, $\lambda_t$ is the year fixed effect, $\alpha_i$ is an unobserved time-invariant industry-specific effect, and $\epsilon_{et}$ is the disturbance term of entity $e$ in year $t$. 
-As $Emp_{e,t-1}$ is correlated with $\alpha_{i}$ because $Emp_{e,t-1}$ is itself determined by time-invariant $\alpha_{i}$, OLS estimators are biased and inconsistent. To obtain consistent estimates of the parameters in the model, \textcite{RePEc:oup:restud:v:58:y:1991:i:2:p:277-297.} suggest using  generalized method of moments (GMM) estimation methods, as well as associated tests to assess the  validity of the model.  
+where $Emp_{et}$ is log employment of entity $e$ in year $t$, $Emp_{e,t-1}$ is its one year lag, $Pay_{et}$ is the logarithm of payroll of entity $e$ in year $t$, $Age_{et}$ is a vector of dummy variables for age of entity $e$ in year $t$, $\lambda_t$ is a year  effect, $\gamma_i$ is a time-invariant industry-specific effect for each industry $i$, and $\epsilon_{et}$ is the disturbance term of entity $e$ in year $t$. 
+As $Emp_{e,t-1}$ is correlated with $\gamma_{i}$ because $Emp_{e,t-1}$ is itself determined by time-invariant $\gamma_{i}$, OLS estimators are biased and inconsistent. To obtain consistent estimates of the parameters in the model, \textcite{RePEc:oup:restud:v:58:y:1991:i:2:p:277-297.} suggest using  generalized method of moments (GMM) estimation methods, as well as associated tests to assess the  validity of the model.  
+%
+We also estimate the model using system GMM methods proposed by \textcite{RePEc:eee:econom:v:68:y:1995:i:1:p:29-51} and \textcite{RePEc:eee:econom:v:87:y:1998:i:1:p:115-143} (System GMM), as well as a variant of equation (\ref{eq:OLS}) that includes a first-order moving average in the error term $\epsilon_{et}$ (System GMM MA):
+\begin{eqnarray}	
+Emp_{et}&=&\beta_{0} +\theta Emp_{e,t-1}+\eta Pay_{et} + Age_{et}^{T}\beta + \lambda_t +\alpha_e   + \epsilon_{et} + \epsilon_{e,t-1}
+\end{eqnarray}
+where $\alpha_e$ is a time-invariant entity effect, which includes any time-invariant industry effects.
 
-We also estimate the model using system GMM methods proposed by \textcite{RePEc:eee:econom:v:68:y:1995:i:1:p:29-51} and \textcite{RePEc:eee:econom:v:87:y:1998:i:1:p:115-143} (System GMM), as well as a variant of equation (\ref{eq:OLS}) that includes a first-order moving average in the error term $\epsilon_{et}$ (System GMM MA).
-
-The Sargan test is used to assess the validity of the overidentifying restrictions. We also compute the z-score for the $m2$ test for zero autocorrelation in the  first-differenced errors of order two (as suggested by \textcite{RePEc:oup:restud:v:58:y:1991:i:2:p:277-297.}). 
+The Sargan test \parencite{hansen_large_1982,RePEc:oup:restud:v:58:y:1991:i:2:p:277-297.,blundell_estimation_2001} is used to assess the validity of the over-identifying restrictions. We also compute the z-score for the $m2$ test for zero autocorrelation in the  first-differenced errors of order two \parencite{RePEc:oup:restud:v:58:y:1991:i:2:p:277-297.}. 
 
 An interesting derived effect is to consider the long-run effect of (log) payroll on (log) employment, or the elasticity of employment with respect to payroll. This can be estimated as
-
 $$
-\eta^\star = \frac{\hat{\eta}}{\hat{\theta}}.
+\eta^\star = \frac{\hat{\eta}}{1-\hat{\theta}}.
 $$
 
 It is important that this model is close, but not identical to the model used to \textit{synthesize} the data. In \SynLBD, $Emp_{et}$ is synthesized as $f(Emp_{e,t-1},X_{et})$ (where $X_{et}$ does not contain $Pay_{et}$), and $Pay_{et} = f(Pay_{e,t-1},Emp_{et},X_{et})$ \citep[pg. 366]{KinneyEtAl2011}. Thus, the model we chose is purposefully not (completely) congenial with the synthesis model, but the synthesis process \SynLBD{} should preserve sufficient serial correlation in the data to be able to estimate these models.
 
-We estimate each model and test statistics separately on confidential and synthetic data for the private sector (and for Canada, for the manufacturing sector). Detailed estimation results are reported in the Appendix. Here we  focus on the two regression coefficients of major interest: $\theta$ and $\eta$, the coefficients for lagged employment and payroll, as well as the elasticity $\eta^\star$. Figure~\ref{fig:estimates3} plots the bias in the synthetic coefficients, i.e., $\theta_{synth}-\theta_{conf}$ and $\eta_{synth}-\eta_{conf}$, for all four models. While the detailed results in the Appendix confirm that all regression coefficients still have the same sign, all estimates plotted in Figure~\ref{fig:estimates3} show substantial bias in all models in all datasets (the OLS model for the German data being the only exception). However, the computed elasticity $\eta^\star$ has very little bias in most models.
+We estimate each model and test statistics separately on confidential and synthetic data for the private sector (and for Canada, for the manufacturing sector). Detailed estimation results are reported in the Online Appendix. Here we  focus on the two regression coefficients of major interest: $\theta$ and $\eta$, the coefficients for lagged employment and payroll, as well as the elasticity $\eta^\star$. Figure~\ref{fig:estimates3} plots the bias in the synthetic coefficients, i.e., $\theta_{synth}-\theta_{conf}$ and $\eta_{synth}-\eta_{conf}$, for all four models. While the detailed results in the Online Appendix confirm that all regression coefficients still have the same sign, all estimates plotted in Figure~\ref{fig:estimates3} show substantial bias in all models in all datasets (the OLS model for the German data being the only exception). However, the computed elasticity $\eta^\star$ has very little bias in most models.
 
 
 \input{figure_bias.tex}
@@ -149,10 +220,11 @@ Whereas the bias in coefficients is quite consistent across countries and models
 
 \subsection{pMSE}
 
-\input{tables/table_pmse_corrected}
 
 To compute the $pMSE$, we estimate Equation (\ref{pMSE}) using logit models. The estimated $pMSE$ is 0.0121 for the Canadian data (0.0041 for the manufacturing sector) and 0.0013 for the German data (see Table~\ref{tab:pmse}). While these numbers may seem small, the $pMSE$ ratio and the standardized $pMSE$ are large, indicating that the null hypothesis that the synthetic data and the original data stem from the same data generating process should be rejected. The expected $pMSE$ is quite sensitive to sample size $N$. Even small differences between the original and synthetic data will lead to large values for this test statistic. In both countries, the confidential data files are quite large (about 2 million cases for Germany and the manufacturing sector in Canada and about 34.5 million cases for the full Canadian dataset). In practice, therefore, it is quite likely to reject the null of equivalence  given this test's very high power. 
 
+
+\input{tables/table_pmse_corrected}
 
 
 %These numbers are difficult to interpret on an absolute scale, but the fact that they are all close to zero seems to imply that the measure indicates a high level of analytical validity. However, as pointed out by \citet{Woo_Reiter_Oganian_Karr_2009}, the value of the $pMSE$ depends on the model specification of the propensity score model. Including more predictors or interaction terms in the model will typically lead to an increase in the $pMSE$. This was also confirmed by \citet{Snoke_RSSA2018}, who showed that under the assumption that both datasets come from the same data generating process, the expected value of the $pMSE$ is $(k-1)(1-c)^2c/N$, where $k$ is the number of parameters included in the propensity model, $c$ is the proportion of synthetic records in the stacked dataset and $N$ is the number of records in the stacked dataset. Thus, adding complexity to the propensity score model will generally lead to an increase in the $pMSE$ even if the synthesis model is perfect. The findings of \citet{Snoke_RSSA2018} also illustrate that it is not meaningful to compare the $pMSE$ from the Canadian data to the $pMSE$ from the German data or to the $pMSE$ of the manufacturing sector as the sizes of the datasets are substantially different. 
