@@ -55,7 +55,8 @@ tmp_graph_regs %>%
   mutate(model_name = stri_join(model, sector,sep=", "),
          sector_country = stri_join(country, sector, sep=", ")) %>%
   dplyr::select(-conf_stderr) %>%
-  mutate(synth = if_else(synthetic,"Synthetic","Confidential"))   -> graph_regs_normalized
+  mutate(synth = if_else(synthetic,"Synthetic","Confidential"),
+         model=factor(model,levels <- c("OLS","GMM","System GMM","System GMM MA"))) -> graph_regs_normalized
 
 # - Wide, for table
 tmp_graph_regs %>%
@@ -66,7 +67,7 @@ mysave(graph_regs_wide)
 # Not used
 graph_regs_normalized %>%
   filter(name=="AR(1) Coefficient") %>%
-  ggplot(aes(model, norm_estimate)) + 
+  ggplot(aes(fct_rev(model), norm_estimate)) + 
   coord_flip() +
   geom_hline(yintercept=0, lty=2, lwd=1, colour="grey50") +
   geom_errorbar(aes(ymin=norm_estimate - 1.96*stderr, ymax=norm_estimate + 1.96*stderr), 
@@ -86,7 +87,7 @@ ggsave(file.path(figuredir,"fig_estimates1.png"),plot = fig.estimates1,width = 8
 # Not used
 graph_regs_normalized %>%
   filter(name=="AR(1) Coefficient") %>%
-  ggplot(aes(model, norm_estimate)) + 
+  ggplot(aes(fct_rev(model), norm_estimate)) + 
   coord_flip() +
   geom_hline(yintercept=0, lty=2, lwd=1, colour="grey50") +
   geom_point(aes(color=as.factor(synth),shape=as.factor(synth)),size=2) +
@@ -104,7 +105,7 @@ ggsave(file.path(figuredir,"fig_estimates2.png"),plot = fig.estimates2,width = 8
 graph_regs_normalized %>%
   filter(name %in% c("AR(1) Coefficient","Ln Pay","Elasticity")) %>%
   filter(synthetic == TRUE) %>%
-  ggplot(aes(model, norm_estimate)) + 
+  ggplot(aes(fct_rev(model), norm_estimate)) + 
   coord_flip() +
   geom_hline(yintercept=0, lty=2, lwd=1, colour="grey50") +
   geom_point(aes(color=as.factor(name),shape=as.factor(name)),size=2) +
@@ -122,7 +123,7 @@ graph_regs_normalized %>%
   filter(name %in% c("AR(1) Coefficient","Ln Pay")) %>%
   filter(sector != "Private") %>%
   filter(synthetic == TRUE) %>%
-  ggplot(aes(model, std_estimate)) + 
+  ggplot(aes(fct_rev(model), std_estimate)) + 
   coord_flip() +
   geom_hline(yintercept=0, lty=2, lwd=1, colour="grey50") +
   geom_point(aes(color=as.factor(name),shape=as.factor(name)),size=2) +

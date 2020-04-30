@@ -4,11 +4,12 @@
 mran.date <- "2019-12-01"
 options(repos=paste0("https://cran.microsoft.com/snapshot/",mran.date,"/"))
 
-# install.packages(c("tidyverse","readr","here"))
+# install.packages(c("tidyverse","readr","here","forcats"))
 
 library(tidyverse)
 library(readr)
 library(here)
+library(forcats)
 
 
 # location
