@@ -80,7 +80,7 @@ clean_pmse <- function(infile,countryval = "Canada",...) {
     mutate(name= if_else(name=="",lag(name,1),name)) %>% 
     filter(!is.na.data.frame(`_name`)) %>%
     dplyr::select(-`_name`) %>% 
-    filter(! name %in% c("pseudo R-sq")) %>%
+    #filter(! name %in% c("pseudo R-sq")) %>%
     pivot_longer(-c("name","type"),names_to = "sector",values_to = "_parameter") %>%
     mutate(value = str_replace_all(`_parameter`,"[=\"*()]",""),
            type=if_else(str_detect(sector,"-se"),"stderr","estimate"),
@@ -109,12 +109,14 @@ pmse <- pmse.both %>%
 # Compute k
 # the Canadian data did not output the indicator value
 pmse.both %>% 
+  filter(! name %in% c("pseudo R-sq")) %>%
   group_by(model,country,sector) %>%
   filter(! name %in% c("indicator","N","pMSE")) %>%
   summarize(k = n()+1) -> k
 
 pmse.both %>% 
   filter(name == "N") %>%
+  filter(! name %in% c("pseudo R-sq")) %>%
   mutate(N = as.numeric(value)) %>%
   dplyr::select(-flag,-name,-value) -> N
 
@@ -164,5 +166,21 @@ stargazer(pmse.logit,summary=FALSE,
           label = "tab:pmse",
           rownames=FALSE,out=file.path(tabledir,"table_pmse_corrected.tex"))
 
+## After referee comments: remove the probit estimates, print a single corrected table
+## We also want to print out a corrected table
 
+pmse.table %>% select(sector,country,model,value=pMSE) %>%
+  mutate(name="pMSE") %>%
+  right_join(pmse.both,by=c("sector","country","model","name")) %>%
+  mutate(value = if_else(is.na(value.x),as.numeric(value.y),value.x)) %>%
+  filter(model=="logit",name != "indicator") %>%
+  select(-value.x,-value.y,-model) %>%
+  pivot_wider(id_cols = c("name"),names_from = c("sector","country"),values_from = value) -> pmse.table.logit
+
+## We will need to edit the final table a bit
+
+stargazer(pmse.table.logit,summary=FALSE,
+          title = "Detailed results for pMSE by sector and country",
+          label = "tab:pmse:details",
+          rownames=FALSE,out=file.path(tabledir,"table_pmse_details.tex"))
 

@@ -1,10 +1,15 @@
 
+> mran.date <- "2019-12-01"
+
+> options(repos = paste0("https://cran.microsoft.com/snapshot/", 
++     mran.date, "/"))
+
 > library(tidyverse)
 ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.0 ──
-✔ ggplot2 3.2.1     ✔ purrr   0.3.3
-✔ tibble  2.1.3     ✔ dplyr   0.8.3
-✔ tidyr   1.0.0     ✔ stringr 1.4.0
-✔ readr   1.3.1     ✔ forcats 0.4.0
+✔ ggplot2 3.3.0     ✔ purrr   0.3.3
+✔ tibble  3.0.0     ✔ dplyr   0.8.5
+✔ tidyr   1.0.2     ✔ stringr 1.4.0
+✔ readr   1.3.1     ✔ forcats 0.5.0
 ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ✖ dplyr::filter() masks stats::filter()
 ✖ dplyr::lag()    masks stats::lag()
@@ -27,6 +32,15 @@ here() starts at /mnt/local/slow_home/vilhuber/Workspace-non-encrypted/git/larsv
 +     print("---------- Saving -------------")
 +     print(names(object))
 +    .... [TRUNCATED] 
+Parsed with column specification:
+cols(
+  Level = col_double(),
+  `Hierarchical structure` = col_character(),
+  Code = col_character(),
+  `Class title` = col_character(),
+  Superscript = col_character(),
+  `Class definition` = col_character()
+)
 Parsed with column specification:
 cols(
   X1 = col_character(),
@@ -53,8 +67,42 @@ cols(
 Warning messages:
 1: Missing column names filled in: 'X1' [1] 
 2: Duplicated column names deduplicated: 'b' => 'b_1' [4], 'se' => 'se_1' [5] 
+[1] "================= Prior to adjustments ===================="
+# A tibble: 6 x 4
+# Groups:   model, country [4]
+  model  country sector            k
+  <chr>  <chr>   <chr>         <dbl>
+1 logit  Canada  Manufacturing     7
+2 logit  Canada  Private           7
+3 logit  Germany Universe          7
+4 probit Canada  Manufacturing     7
+5 probit Canada  Private           7
+6 probit Germany Universe          7
 Joining, by = c("sector", "model", "country")
 Joining, by = c("sector", "model", "country")
+# A tibble: 6 x 11
+  sector model country   pMSE     k      N     c pMSE.stdev pMSE.exp
+  <chr>  <chr> <chr>    <dbl> <dbl>  <dbl> <dbl>      <dbl>    <dbl>
+1 Manuf… logit Canada  0.0041     7 2.24e6 0.5      1.93e-7  3.34e-7
+2 Priva… logit Canada  0.0121     7 3.46e7 0.5      1.25e-8  2.17e-8
+3 Manuf… prob… Canada  0.0041     7 2.24e6 0.5      1.93e-7  3.34e-7
+4 Priva… prob… Canada  0.0124     7 3.46e7 0.5      1.25e-8  2.17e-8
+5 Unive… logit Germany 0.0013     7 2.12e6 0.523    1.94e-7  3.36e-7
+6 Unive… prob… Germany 0.0013     7 2.12e6 0.523    1.94e-7  3.36e-7
+# … with 2 more variables: pMSE.standardized <dbl>, pMSE.ratio <dbl>
+[1] "================= After adjustments ===================="
+Joining, by = c("sector", "model", "country")
+Joining, by = c("sector", "model", "country")
+# A tibble: 6 x 11
+  sector model country   pMSE     k      N     c pMSE.stdev pMSE.exp
+  <chr>  <chr> <chr>    <dbl> <dbl>  <dbl> <dbl>      <dbl>    <dbl>
+1 Manuf… logit Canada  0.0041   113 2.24e6 0.5      8.34e-7  6.24e-6
+2 Priva… logit Canada  0.0121   307 3.46e7 0.5      8.93e-8  1.10e-6
+3 Manuf… prob… Canada  0.0041   113 2.24e6 0.5      8.34e-7  6.24e-6
+4 Priva… prob… Canada  0.0124   307 3.46e7 0.5      8.93e-8  1.10e-6
+5 Unive… logit Germany 0.0013    33 2.12e6 0.523    4.48e-7  1.79e-6
+6 Unive… prob… Germany 0.0013    33 2.12e6 0.523    4.48e-7  1.79e-6
+# … with 2 more variables: pMSE.standardized <dbl>, pMSE.ratio <dbl>
 [1] "---------- Saving -------------"
  [1] "sector"            "model"             "country"          
  [4] "pMSE"              "k"                 "N"                
@@ -69,7 +117,7 @@ Please cite as:
 
 
 % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-% Date and time: Fri, Feb 14, 2020 - 06:10:27 PM
+% Date and time: Thu, Apr 30, 2020 - 05:15:00 PM
 \begin{table}[!htbp] \centering 
   \caption{pMSE by sector and country} 
   \label{tab:pmse} 
@@ -78,9 +126,32 @@ Please cite as:
 \hline \\[-1.8ex] 
 country & sector & pMSE & pMSE.ratio & pMSE.standardized \\ 
 \hline \\[-1.8ex] 
-Canada & Manufacturing & 0.0041 & 9196.35 & 18390.69 \\ 
-Canada & Private & 0.0121 & 419128.55 & 838255.1 \\ 
-Germany & Universe & 0.0013 & 595.05 & 2623.24 \\ 
+Canada & Manufacturing & 0.0041 & 656.88 & 4908.17 \\ 
+Canada & Private & 0.0121 & 10957.61 & 135525.77 \\ 
+Germany & Universe & 0.0013 & 725.21 & 2896.85 \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table} 
+
+% Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
+% Date and time: Thu, Apr 30, 2020 - 05:15:00 PM
+\begin{table}[!htbp] \centering 
+  \caption{Detailed results for pMSE by sector and country} 
+  \label{tab:pmse:details} 
+\begin{tabular}{@{\extracolsep{5pt}} cccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+name & Manufacturing\_Canada & Private\_Canada & Universe\_Germany \\ 
+\hline \\[-1.8ex] 
+Ln ALU & 0.158 & 0.7138 & -0.2895 \\ 
+Ln Pay & 0.0039 & -0.4426 & 0.2584 \\ 
+Age 3-4 & 0.0392 & 0.0972 & -0.0987 \\ 
+Age 5-7 & -0.0382 & 0.0477 & -0.0973 \\ 
+Age 8-12 & -0.1258 & -0.0263 & -0.1172 \\ 
+Age 13 or more & -0.219 & -0.1024 & -0.1487 \\ 
+N & 2243011 & 34638723 & 2121956 \\ 
+pseudo R-sq & 0.0112 & 0.0318 & 0.0038 \\ 
+pMSE & 0.0041 & 0.0121 & 0.0013 \\ 
 \hline \\[-1.8ex] 
 \end{tabular} 
 \end{table} 
