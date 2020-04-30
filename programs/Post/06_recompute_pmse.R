@@ -89,8 +89,7 @@ clean_pmse <- function(infile,countryval = "Canada",...) {
            sector=str_squish(str_replace(sector,"_1"," ")),
            flag=if_else(name=="pMSE","yes","no"),
            country=countryval) %>%
-    filter(type == "estimate") %>%
-    dplyr::select(-`_parameter`,-type) 
+    dplyr::select(-`_parameter`) 
 }
 
 pmse.1 <- clean_pmse("pMSE_estimates.csv")  
@@ -98,7 +97,9 @@ pmse.1 <- clean_pmse("pMSE_estimates.csv")
 pmse.2 <- clean_pmse("pMSE_estimates_GsynLBD.csv",countryval = "Germany") %>% 
   mutate(sector="Universe")
 
-pmse.both <- bind_rows(pmse.1,pmse.2)
+pmse.both.all <- bind_rows(pmse.1,pmse.2)
+
+pmse.both <- pmse.both.all %>% filter(type == "estimate") %>% dplyr::select(-type)
 
 # split this up, compute k and N
 pmse <- pmse.both %>% 
@@ -171,15 +172,17 @@ stargazer(pmse.logit,summary=FALSE,
 
 pmse.table %>% select(sector,country,model,value=pMSE) %>%
   mutate(name="pMSE") %>%
-  right_join(pmse.both,by=c("sector","country","model","name")) %>%
+  right_join(pmse.both.all,by=c("sector","country","model","name")) %>%
   mutate(value = if_else(is.na(value.x),as.numeric(value.y),value.x)) %>%
   filter(model=="logit",name != "indicator") %>%
   select(-value.x,-value.y,-model) %>%
-  pivot_wider(id_cols = c("name"),names_from = c("sector","country"),values_from = value) -> pmse.table.logit
+  pivot_wider(id_cols = c("name","type"),names_from = c("sector","country"),values_from = value) %>%
+  filter(!is.na(Manufacturing_Canada)) -> pmse.table.logit
 
 ## We will need to edit the final table a bit
 
-stargazer(pmse.table.logit,summary=FALSE,
+stargazer(pmse.table.logit %>% mutate(name=if_else(type=="stderr","",name)) %>% select(-type)
+          ,summary=FALSE,
           title = "Detailed results for pMSE by sector and country",
           label = "tab:pmse:details",
           rownames=FALSE,out=file.path(tabledir,"table_pmse_details.tex"))
