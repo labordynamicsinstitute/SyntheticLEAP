@@ -1,3 +1,4 @@
+%!TeX TXS-program:bibliography = txs:///biber
 \documentclass[10pt,twoside]{article}
 \usepackage[paperheight=238mm,paperwidth=166mm,text={128mm,198mm},centering]{geometry}
 \usepackage{amssymb,amsmath}
@@ -16,16 +17,40 @@
 \usepackage{acronym}
 \usepackage{csquotes}
 \usepackage[plainpages=false]{hyperref}
-\usepackage{todonotes}
-\usepackage{fullpage}
+\usepackage[final]{todonotes}
+%\usepackage{fullpage}
 \usepackage{subcaption}
 \usepackage{dsfont}
+
+% for flow diagram
+\usepackage{tikz}
+\usepackage{relsize}
+\usetikzlibrary{arrows,shapes,positioning,calc}
+
+\hypersetup{%
+	%backref=true,%
+    plainpages=false,%
+	naturalnames=true,%
+	bookmarksnumbered=true,%
+	bookmarksopen=false,%
+	colorlinks=true,%
+	urlcolor=black,
+	linkcolor=black,%
+	filecolor=black,%
+	citecolor=black,%
+	%pagecolor=myblue,%
+	%pdftitle={\mytitle},%
+	pdfpagemode=UseOutlines%
+	%pdfauthor={\myauthors},%
+	%pdfsubject={\myshorttitle}
+}
 \usepackage[natbib,style=chicago-authordate,strict,maxbibnames=9]{biblatex}
 \input{biblatex-fix.tex}
 
 % bibliography
 \addbibresource{paper.bib}
 \addbibresource{zotero.bib}
+\addbibresource{from_zotero.bib}
 
 \acrodef{CDER}{Canadian Center for Data Development and Economic Research}
 \acrodef{PEI}{Prince Edward Island}
@@ -50,14 +75,19 @@
 
 %%end added packages etc.
 
+
+% to scale tables
+% \resizebox{\columnwidth}{!}{%
+
 \usepackage{helvet}
 \renewcommand{\familydefault}{\sfdefault}
 
 \usepackage{mathptmx} 
 \usepackage{fancyhdr}
 
-\def \sitissue{STATISTICS IN TRANSITION new series, March 2018}
-\def \sitshort{First A., Second A.: A Simple Manuscript ...  }
+\def \mytitle{Applying Data Synthesis for Longitudinal Business Data across Three Countries }
+\def \sitissue{STATISTICS IN TRANSITION new series, August 2020}
+\def \sitshort{Alam, J., Dostie, B., Drechsler, J., Vilhuber, L.: \mytitle}
 
 \pagestyle{fancy}
 \fancyhead{}
@@ -81,6 +111,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
+\thispagestyle{empty}
 \vspace*{-8mm}
 \begin{small}
 \noindent {\em \sitissue }\\
@@ -89,8 +120,7 @@
 
 \begin{onehalfspace}
 	\begin{center} 
-		{\Large \bf APPLYING DATA SYNTHESIS FOR
-		LONGITUDINAL BUSINESS DATA ACROSS THREE COUNTRIES} 
+		{\Large \bf \MakeUppercase{\mytitle} }
 	\end{center}
 \end{onehalfspace}
 
@@ -116,14 +146,14 @@ Data on businesses collected by statistical agencies are challenging to protect.
 Synthetic microdata have been proposed as a secure mechanism to publish microdata, as part of a broader discussion of how  to provide broader access to such datasets to researchers.
 In this article, we document an experiment to create analytically valid synthetic data, using the exact same model and methods previously employed for the United States, for data from two different countries: Canada (\ac{LEAP}) and Germany (\ac{BHP}). We assess utility and protection, and provide an assessment of the feasibility of extending such an approach in a cost-effective way to other data.
 
-\smallskip \noindent \textbf{Key words:} business data, confidentiality, LBD, LEAP, BHP, synthetic.
+\smallskip \noindent \textbf{Keywords:} synthetic data, business data, confidentiality, LBD, LEAP, BHP, synthetic.
 
 \end{singlespace}
 \end{small}
 \end{addmargin}
 
 \smallskip
-
+\acresetall
 \section{Introduction}
 \input{intro.tex}
 
@@ -151,22 +181,16 @@ In this article, we document an experiment to create analytically valid syntheti
 \input{conclusion.tex}
 
 
+\section*{Acknowledgements}
 
-\newpage
+The opinions expressed here are those of the authors, and do not reflect the opinions of any of the statistical agencies involved. All results were reviewed for disclosure risks by their respective custodians, and released to the authors.  Alam was a part-time employee of Statistics Canada when this research was conducted.  Alam thanks Claudiu Motoc and Danny Leung for help with the Canadian data.  Vilhuber acknowledges funding through NSF Grants SES-1131848 and SES-1042181, and a grant from Alfred P. Sloan Grant (G-2015-13903). Alam and Dostie acknowledge funding through SSHRC Partnership Grant ``Productivity, Firms and Incomes''. The creation of the Synthetic LBD  was funded by NSF Grant SES-0427889.
 
 
 \printbibliography
 
+
 \newpage
 
-\input{appendix.tex}
-
-\section*{Acknowledgements}
-
-The opinions expressed here are those of the authors, and do not reflect the opinions of any of the statistical agencies involved. All results were reviewed for disclosure risks by their respective custodians, and released to the authors. Alam thanks Claudiu Motoc and Danny Leung for help with the Canadian data. Vilhuber acknowledges funding through NSF Grants SES-1131848 and SES-1042181, and a grant from Alfred P. Sloan Grant (G-2015-13903). Alam and Dostie acknowledge funding through SSHRC Partnership Grant ``Productivity, Firms and Incomes''. The creation of the Synthetic LBD  was funded by NSF Grant SES-0427889.
-
-\noindent \begin{center}\begin{large}{\bf REFERENCES}\end{large}\end{center}
 
 \input{appendix.tex}
-
 \end{document}
