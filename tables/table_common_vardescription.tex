@@ -3,16 +3,19 @@
   \caption{Variable descriptions and comparison}  \label{tab:common_Variable} \medskip
   \renewcommand{\arraystretch}{1}
  \setlength{\tabcolsep}{4.5pt}
- \begin{tabular}{l  c c c c c c c}
+ \begin{tabular}{l  l l c c c c c}
     \toprule
     \textbf{Name}&\textbf{Type} &\textbf{Description} &\textbf{US} & \textbf{Canada} &\textbf{Germany} &\textbf{Nature}\\
     \midrule
 Entity Identifier& identifier& & Establishment & Employer & Establishment &Created\\
+\midrule
 Industry code&Categorical& Various across countries &SIC3 & NAICS4 & WZ2003 &Unmodified\\
              &           &                          &(3-digit )& (4-digit) &(4-digit)  &\\
+\midrule
 First year&Categorical&First year entity is observed &\multicolumn{3}{c}{--- firstyear ---}&Synthesized\\
 Last year&Categorical&Last year entity is observed &\multicolumn{3}{c}{--- lastyear ---}&Synthesized\\
 Year&Categorical&Year dating of annual variables&\multicolumn{3}{c}{--- year ---}&Derived\\
+\midrule
 Employment & Continuous & Employment measure & Count & ALU* & Count & Synthesized \\
             &            &                    & (March 15) &(annual)& (June 30)&\\
 Payroll&Continuous&  Payroll (annual)& Reported & Computed & Computed,  &Synthesized\\
