@@ -17,6 +17,7 @@ basedir <- here::here() # will find base of git repo
 datadir <- file.path(basedir,"data")
 tabledir <- file.path(basedir,"tables")
 figuredir <- file.path(basedir,"r-graphs")
+programs <- file.path(basedir,"programs","Post")
 
 #!------------ aux function - consistent saving -----------
 mysave <- function(object) {

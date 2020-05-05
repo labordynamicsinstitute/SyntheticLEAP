@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+<meta name="date" content="2020-05-04" />
+
+<title>APPLYING DATA SYNTHESIS FOR LONGITUDINALBUSINESS DATA ACROSS THREE COUNTRIES</title>
+
+<script src="README_files/jquery-1.12.4/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="README_files/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="README_files/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="README_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="README_files/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="README_files/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="README_files/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="README_files/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="README_files/navigation-1.1/tabsets.js"></script>
+<link href="README_files/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="README_files/highlightjs-9.12.0/highlight.js"></script>
+<link href="README_files/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="README_files/pagedtable-1.1/js/pagedtable.js"></script>
+<script src="README_files/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<link href="README_files/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="README_files/datatables-binding-0.13/datatables.js"></script>
+<link href="README_files/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="README_files/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="README_files/dt-core-1.10.20/js/jquery.dataTables.min.js"></script>
+<link href="README_files/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
+<script src="README_files/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="fluid-row" id="header-img">
+
+<img src="https://labordynamicsinstitute.github.io/LDIimage_11.22.19_FINALv1.jpg" height="100px" />
+</div>
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">APPLYING DATA SYNTHESIS FOR LONGITUDINALBUSINESS DATA ACROSS THREE COUNTRIES</h1>
+<h4 class="date">2020-05-04</h4>
+
+</div>
+
+
+<div id="data-availability-statement" class="section level2">
+<h2>Data Availability Statement</h2>
+<p>The key data sources used in the article are described and cited in the article. All source data is confidential, available on restricted-access servers.</p>
+<div id="leap" class="section level3">
+<h3>LEAP</h3>
+<ul>
+<li>Confidential LEAP: Access to the <a href="https://www.statcan.gc.ca/eng/cder/data#a6">LEAP</a> can be requested at Statistics Canada/ CDER (<a href="https://www.statcan.gc.ca/eng/cder/index">https://www.statcan.gc.ca/eng/cder/index</a>).</li>
+<li>Synthetic LEAP: Release of the data was not requested; data are thus still considered to be confidential. The data were generated on internal servers, and accessed by one of the authors during his stay at Statistics Canada. None of the authors currently have access to the data. Data may be accessible through the CDER access process outlined above. The Canadian LEAP is accessible at CRDE.</li>
+<li>Applicants need to be Canadian residents, and a security check is conducted. Access is only at Statistics Canada offices in Ottawa, ON, Canada.</li>
+</ul>
+</div>
+<div id="bhp" class="section level3">
+<h3>BHP</h3>
+<ul>
+<li>Access to the BHP (in English: Establishment History Panel) is possible through the Research Data Center of the IAB (<a href="https://fdz.iab.de/en.aspx">https://fdz.iab.de/en.aspx</a>). One of the authors, as an IAB employee, had access to the internal version of the data not available to researchers. Release of the data was not requested; data are thus still considered to be confidential.</li>
+</ul>
+<p>A 50% sample of the BHP is accessible to external researchers through the FDZ (Research Data Center) of the IAB. Applicants must fill out a form, subject to approval, and can access the data via the various access mechanisms of the FDZ, including physical locations in Germany, elsewhere in Europe, and North America.</p>
+</div>
+<div id="synthetic-data" class="section level3">
+<h3>Synthetic data</h3>
+<p>Synthetic data from both confidential data were never released to the public, and are accessible only via the same access mechanisms as above. A related synthetic LEAP was made available through the Canadian Research Data Center system, as part of a pilot program, to prepare access to the confidential data. We are not aware of current access. The outcomes of the pilot program have not been made public yet.</p>
+</div>
+<div id="naics-data" class="section level3">
+<h3>NAICS data</h3>
+<p>As a small part of the post-processing, we count the (theoretical) number of Canadian NAICS industry groups (Statistics Canada, 2012). The file can be downloaded from <a href="https://www.statcan.gc.ca/eng/subjects/standard/naics/2012/index">https://www.statcan.gc.ca/eng/subjects/standard/naics/2012/index</a>.</p>
+<pre><code>## Parsed with column specification:
+## cols(
+##   Level = col_double(),
+##   `Hierarchical structure` = col_character(),
+##   Code = col_character(),
+##   `Class title` = col_character(),
+##   Superscript = col_character(),
+##   `Class definition` = col_character()
+## )</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">Level</th>
+<th align="left">Hierarchical structure</th>
+<th align="center">Code</th>
+<th align="left">Class title</th>
+<th align="left">Superscript</th>
+<th align="left">Class definition</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td align="center">Min. :1.000</td>
+<td align="left">Length:2078</td>
+<td align="center">Length:2078</td>
+<td align="left">Length:2078</td>
+<td align="left">Length:2078</td>
+<td align="left">Length:2078</td>
+</tr>
+<tr class="even">
+<td></td>
+<td align="center">1st Qu.:4.000</td>
+<td align="left">Class :character</td>
+<td align="center">Class :character</td>
+<td align="left">Class :character</td>
+<td align="left">Class :character</td>
+<td align="left">Class :character</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td align="center">Median :4.000</td>
+<td align="left">Mode :character</td>
+<td align="center">Mode :character</td>
+<td align="left">Mode :character</td>
+<td align="left">Mode :character</td>
+<td align="left">Mode :character</td>
+</tr>
+<tr class="even">
+<td></td>
+<td align="center">Mean :4.161</td>
+<td align="left">NA</td>
+<td align="center">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td align="center">3rd Qu.:5.000</td>
+<td align="left">NA</td>
+<td align="center">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td></td>
+<td align="center">Max. :5.000</td>
+<td align="left">NA</td>
+<td align="center">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="analytic-outcomes" class="section level2">
+<h2>Analytic outcomes</h2>
+<p>The analytic outcomes described in the article were released through the respective disclosure avoidance mechanisms, subject to disclosure avoidance procedures of each statistical institution. These outcomes, as figures, CSV files, and others, are available in this repository. Some were extracted from figures or released tables by the programs in this directory.</p>
+</div>
+<div id="files" class="section level2">
+<h2>Files</h2>
+<div id="data-directory" class="section level3">
+<h3>Data directory</h3>
+<p>The <a href="data/README.md">data</a> directory contains materials released from Statistics Canada and the IAB. It is mostly highly aggregated synthetic data, as well as regression coefficients. All data releases were authorized by the respective statistical agencies.</p>
+<div id="htmlwidget-2f67a4628c952fffc09f" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2f67a4628c952fffc09f">{"x":{"filter":"none","autoHideNavigation":true,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60"],[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60],["all_reg_coeffs.csv","all_reg_coeffs.Rds","graph_regs_jkt_summary.csv","graph_regs_jkt_summary.Rds","graph_regs_jkt.csv","graph_regs_jkt.Rds","graph_regs_wide.csv","graph_regs_wide.Rds","Gross_employment_level_by_year_manufacturing.csv","Gross_employment_level_by_year_manufacturing.dta","Gross_employment_level_by_year_private.csv","Gross_employment_level_by_year_private.dta","Job_creation_rate_by_year_Manufacturing.csv","Job_creation_rate_by_year_Manufacturing.dta","Job_creation_rate_by_year_private.csv","Job_creation_rate_by_year_private.dta","NAICS-SCIAN-2012-Structure-eng.csv","Net_job_creation_rate__by_year_Manufacturing.csv","Net_job_creation_rate__by_year_Manufacturing.dta","Net_job_creation_rate__by_year_private.csv","Net_job_creation_rate__by_year_private.dta","pmse.table.csv","pmse.table.Rds","README.md","reg_can_dyn2_gmm.csv","reg_can_dyn2_gmm.Rds","reg_can_dyn2_System_gmm_MA.csv","reg_can_dyn2_System_gmm_MA.Rds","reg_can_dyn2_System_gmm.csv","reg_can_dyn2_System_gmm.Rds","reg_can_OLS2.csv","reg_can_OLS2.Rds","reg_ger_dyn2_gmm.csv","reg_ger_dyn2_gmm.Rds","reg_ger_dyn2_System_gmm_MA.csv","reg_ger_dyn2_System_gmm_MA.Rds","reg_ger_dyn2_System_gmm.csv","reg_ger_dyn2_System_gmm.Rds","reg_ger_OLS2.csv","reg_ger_OLS2.Rds","Share_of_employment_by_NAICS_two-digit_and_year_Manufacturing.csv","Share_of_employment_by_NAICS_two-digit_and_year_Manufacturing.dta","Share_of_employment_by_NAICS_two-digit_and_year_private.csv","Share_of_employment_by_NAICS_two-digit_and_year_private.dta","Share_of_firms_by_NAICS_two-digit_and_year_Manufacturing.csv","Share_of_firms_by_NAICS_two-digit_and_year_Manufacturing.dta","Share_of_firms_by_NAICS_two-digit_and_year_private.csv","Share_of_firms_by_NAICS_two-digit_and_year_private.dta","Share_of_payroll_by_NAICS_two-digit_and_year_Manufacturing.csv","Share_of_payroll_by_NAICS_two-digit_and_year_Manufacturing.dta","Share_of_payroll_by_NAICS_two-digit_and_year_private.csv","Share_of_payroll_by_NAICS_two-digit_and_year_private.dta","table_tests.csv","table_tests.Rds","table-comparison-original.png","table-comparison.csv","Total_payroll_by_year_manufacturing.csv","Total_payroll_by_year_manufacturing.dta","Total_payroll_by_year_private.csv","Total_payroll_by_year_private.dta"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>name<\/th>\n      <th>value<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":1},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="graphs-directory" class="section level3">
+<h3>graphs directory</h3>
+<p>The <a href="graphs/">graphs</a> contains mostly pre-rendered figures released as part of the agency data releases. The programs to generate these figures can be found in <a href="programs/Canada">programs/Canada</a>, and were run on the confidential data.</p>
+<div id="htmlwidget-78df6ee9ab0f94d75aef" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-78df6ee9ab0f94d75aef">{"x":{"filter":"none","autoHideNavigation":true,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59"],[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59],["Divergence_of_exit_and_entry_rate_between_BHP_and_CanSynLBD_bw.pdf","Divergence_of_exit_and_entry_rate_between_BHP_and_GSynLBD_bw.pdf","Divergence_of_exit_and_entry_rate_between_BHP_and_GSynLBD.pdf","Divergence_of_exit_and_entry_rate_between_LEAP_and_CanSynLBD_bw.pdf","Divergence_of_exit_and_entry_rate_between_LEAP_and_CanSynLBD.pdf","Entry_rate_bw_GsynLBD.pdf","Entry_rate_bw_private.pdf","Entry_rate_GSynLBD.pdf","Entry_rate_private.pdf","Exit_rate_bw_GsynLBD.pdf","Exit_rate_bw_private.pdf","Exit_rate_GSynLBD.pdf","Exit_rate_private.pdf","figure-strategy-2.tex","figure-strategy.log","figure-strategy.tex","Gross_employment_level_by_year_bw_GsynLBD.pdf","Gross_employment_level_by_year_manufacturing_bw.pdf","Gross_employment_level_by_year_manufacturing.pdf","Gross_employment_level_by_year_private_bw.pdf","Gross_employment_level_by_year_private.pdf","Job_creation_rate_by_year_bw_GsynLBD.pdf","Job_creation_rate_by_year_Manufacturing_bw.pdf","Job_creation_rate_by_year_Manufacturing.pdf","Job_creation_rate_by_year_private_bw.pdf","Job_creation_rate_by_year_private.pdf","Job_destruction_by_year_bw_GsynLBD.pdf","Job_destruction_rate_by_year_GsynLBD.pdf","Job_destruction_rate_by_year_Manufacturing_bw.pdf","Job_destruction_rate_by_year_Manufacturing.pdf","Job_destruction_rate_by_year_private_bw.pdf","Net_job_creation_rate_by_year_bw_GsynLBD.pdf","Net_job_creation_rate_by_year_Manufacturing_bw.pdf","Net_job_creation_rate_by_year_Manufacturing.pdf","Net_job_creation_rate_by_year_private_bw.pdf","Net_job_creation_rate_by_year_private.pdf","Share_of_employment_by_NAICS_and_year_bw_GsynLBD.pdf","Share_of_employment_by_NAICS_two-digit_and_year_Manufacturing_bw.pdf","Share_of_employment_by_NAICS_two-digit_and_year_Manufacturing.pdf","Share_of_employment_by_NAICS_two-digit_and_year_private_bw.pdf","Share_of_employment_by_NAICS_two-digit_and_year_private.pdf","Share_of_firms_by_NAICS_and_year_bw_GsynLBD.pdf","Share_of_firms_by_NAICS_two-digit_and_year_Manufacturing_bw.pdf","Share_of_firms_by_NAICS_two-digit_and_year_Manufacturing.pdf","Share_of_firms_by_NAICS_two-digit_and_year_private_bw.pdf","Share_of_firms_by_NAICS_two-digit_and_year_private.pdf","Share_of_payroll_by_NAICS_and_year_bw_GsynLBD.pdf","Share_of_payroll_by_NAICS_two-digit_and_year_Manufacturing_bw.pdf","Share_of_payroll_by_NAICS_two-digit_and_year_Manufacturing.pdf","Share_of_payroll_by_NAICS_two-digit_and_year_private_bw.pdf","Share_of_payroll_by_NAICS_two-digit_and_year_private.pdf","The_difference_between_first_and_last_year_given_synthetic_first_year_bw_GsynLBD.pdf","The_difference_between_first_and_last_year_given_synthetic_first_year_bw.pdf","The_difference_between_first_and_last_year_given_synthetic_first_year.pdf","Total_payroll_by_year_bw_GsynLBD.pdf","Total_payroll_by_year_manufacturing_bw.pdf","Total_payroll_by_year_manufacturing.pdf","Total_payroll_by_year_private_bw.pdf","Total_payroll_by_year_private.pdf"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>name<\/th>\n      <th>value<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":1},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="stata-graphs-directory" class="section level3">
+<h3>stata-graphs directory</h3>
+<p>The <a href="graphs/">graphs</a> contains GPH (Stata) format files, the source for the PDFs in the <a href="graphs/">graphs</a> directory. The programs to generate these figures can be found in <a href="programs/Canada">programs/Canada</a>, and were run on the confidential data.</p>
+<div id="htmlwidget-f49b638fe3740e5574ff" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f49b638fe3740e5574ff">{"x":{"filter":"none","autoHideNavigation":true,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29"],[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29],["Divergence_of_exit_and_entry_rate_between_BHP_and_GSynLBD.gph","Divergence_of_exit_and_entry_rate_between_LEAP_and_CanSynLBD.gph","Entry_rate_GSynLBD.gph","Entry_rate_private.gph","Exit_rate_GSynLBD.gph","Exit_rate_private.gph","Gross_employment_level_by_year_Appendix_bw_GsynLBD.gph","Gross_employment_level_by_year_manufacturing.gph","Gross_employment_level_by_year_private.gph","Job_creation_rate_by_year_GsynLBD.gph","Job_creation_rate_by_year_Manufacturing.gph","Job_creation_rate_by_year_private.gph","Job_destruction_rate_by_year_Manufacturing.gph","Net_job_creation_rate _by_year_GsynLBD.gph","Net_job_creation_rate__by_year_Manufacturing.gph","Net_job_creation_rate__by_year_private.gph","Share_of_employment_by_NAICS_and_year_GsynLBD.gph","Share_of_employment_by_NAICS_two-digit_and_year_Manufacturing.gph","Share_of_employment_by_NAICS_two-digit_and_year_private.gph","Share_of_firms_by_NAICS_and_year_GsynLBD.gph","Share_of_firms_by_NAICS_two-digit_and_year_Manufacturing.gph","Share_of_firms_by_NAICS_two-digit_and_year_private.gph","Share_of_payroll_by_NAICS_and_year_GsynLBD.gph","Share_of_payroll_by_NAICS_two-digit_and_year_Manufacturing.gph","Share_of_payroll_by_NAICS_two-digit_and_year_private.gph","The_difference_between_first_and_last_year_given_synthetic_first_year_GsynLBD.gph","Total_payroll_by_year_GsynLBD.gph","Total_payroll_by_year_manufacturing.gph","Total_payroll_by_year_private.gph"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>name<\/th>\n      <th>value<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":1},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="programs" class="section level3">
+<h3>Programs</h3>
+<p>Programs for analysis (<a href="programs/Canada">programs/Canada</a>, used for both Canada and Germany), and post-processing (<a href="programs/Post">programs/Post</a>) are provided.</p>
+<div id="htmlwidget-448c1ed4a19cee8c641f" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-448c1ed4a19cee8c641f">{"x":{"filter":"none","autoHideNavigation":true,"data":[["1","2","3","4"],[1,2,3,4],["Canada","Germany","Post","README.md"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>name<\/th>\n      <th>value<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":1},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="derived-graphs" class="section level3">
+<h3>Derived graphs</h3>
+<p>Graphs generated through post-processing (<a href="programs/Post">programs/Post</a>) are available in <a href="r-graphs/">r-graphs</a>.</p>
+<div id="htmlwidget-7af98affe4ef200aa436" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7af98affe4ef200aa436">{"x":{"filter":"none","autoHideNavigation":true,"data":[["1","2","3","4","5","6"],[1,2,3,4,5,6],["fig_conf_both.png","fig_estimates1.png","fig_estimates2.png","fig_estimates3.png","fig_estimates4.png","fig_estimates5.png"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>name<\/th>\n      <th>value<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":1},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="tables" class="section level3">
+<h3>Tables</h3>
+<p>Tables generated both by tabulation of confidential data (<a href="programs/Canada">programs/Canada</a>, used for both Canada and Germany), and post-processing (<a href="programs/Post">programs/Post</a>) can be found in the <a href="tables/">tables</a> directory.</p>
+</div>
+</div>
+<div id="computation" class="section level2">
+<h2>Computation</h2>
+<div id="computational-requirements" class="section level3">
+<h3>Computational Requirements</h3>
+<ul>
+<li>R (for post-processing)</li>
+<li>Stata (for analysis of synthetic and confidential data)</li>
+<li>bash shell (optional, to execute all programs in order)</li>
+<li>SAS (for the synthetic data generation)</li>
+</ul>
+</div>
+<div id="synthetic-generation" class="section level3">
+<h3>Synthetic generation</h3>
+<p>The software used to generate the synthetic data is described in Kinney et al (2011b). A copy of the code can be obtained by request.</p>
+</div>
+<div id="intra-mural-analysis" class="section level3">
+<h3>Intra-mural Analysis</h3>
+<p>The raw synthetic and confidential data served as input to the various analyses described in the paper. These analyses occurred within the secure environments of the respective agencies. The code for the analysis is common to both countries (with minor adjustments to account for different variable names). The code used in the Canadian context is provided as a single Stata file in the <code>[programs/Canada](programs/Canada)</code> directory.</p>
+</div>
+<div id="extra-mural-post-processing" class="section level3">
+<h3>Extra-mural post-processing</h3>
+<p>The following programs are used to post-process the analytic results:</p>
+<div id="stata-programs" class="section level4">
+<h4>Stata programs</h4>
+<div id="htmlwidget-3482dcfd42750e4f087d" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-3482dcfd42750e4f087d">{"x":{"filter":"none","autoHideNavigation":true,"data":[["1","2","3"],[1,2,3],["01_extract_from_gph.do","config.do","program_my_extract.do"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>name<\/th>\n      <th>value<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":1},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="r-programs" class="section level4">
+<h4>R programs</h4>
+<div id="htmlwidget-cd4dd2ad5f3e6d6dcf96" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-cd4dd2ad5f3e6d6dcf96">{"x":{"filter":"none","autoHideNavigation":true,"data":[["1","2","3","4","5","6","7","8","9","10"],[1,2,3,4,5,6,7,8,9,10],["00_create_readme.R","02_read_tables.R","03_combine_tables.R","04_graph_coefs.R","05_compute_jkt.R","06_recompute_pmse.R","07_m2_table.R","08_graph_confmeasures.R","config.R","get_os.R"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>name<\/th>\n      <th>value<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":1},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<div id="execution-of-programs" class="section level3">
+<h3>Execution of programs</h3>
+<p>Numbered programs should be executed in the natural order. Other programs define locations and/or subroutines, and should not be executed. A convenience bash script <code>run_all.sh</code> is provided.</p>
+</div>
+</div>
+<div id="funding" class="section level2">
+<h2>Funding</h2>
+<p>Vilhuber acknowledges funding through NSF Grants SES-1131848 and SES-1042181, and a grant from Alfred P. Sloan Grant (G-2015-13903). Alam and Dostie acknowledge funding through SSHRC Partnership Grant “Productivity, Firms and Incomes”. The creation of the Synthetic LBD was funded by NSF Grant SES-0427889.</p>
+</div>
+<div id="license" class="section level2">
+<h2>License</h2>
+<p>These data are licensed under a <a href="https://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International</a> license. See [citation] for attribution.</p>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3,h4",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
