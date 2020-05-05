@@ -6,6 +6,11 @@ date: "2020-05-04"
 
 Also see [https://labordynamicsinstitute.github.io/SyntheticLEAP](https://labordynamicsinstitute.github.io/SyntheticLEAP).
 
+
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3785744.svg)](https://doi.org/10.5281/zenodo.3785744)
+
+
 ## Data Availability Statement
 
 The key data sources used in the article are described and cited in the article. All source data is confidential, available on restricted-access servers.
