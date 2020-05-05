@@ -22,6 +22,19 @@ source(here::here("programs","Post","config.R"),echo=TRUE)
 library(knitr)
 ```
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3785744.svg)](https://doi.org/10.5281/zenodo.3785744)
+
+## Abstract
+
+Data on businesses collected by statistical agencies are challenging to protect. Many businesses have unique characteristics, and distributions of employment, sales, and profits are highly skewed. Attackers wishing to conduct identification attacks often have access to much more information than for any individual. As a consequence, most disclosure avoidance mechanisms  fail to strike an acceptable balance between usefulness and confidentiality protection. Detailed aggregate statistics by geography or detailed industry classes  are rare, public-use microdata on businesses are virtually inexistant, and access to confidential microdata can be burdensome. 
+Synthetic microdata have been proposed as a secure mechanism to publish microdata, as part of a broader discussion of how  to provide broader access to such datasets to researchers.
+
+In this article, we document an experiment to create analytically valid synthetic data, using the exact same model and methods previously employed for the United States, for data from two different countries: Canada (\ac{LEAP}) and Germany (\ac{BHP}). We assess utility and protection, and provide an assessment of the feasibility of extending such an approach in a cost-effective way to other data.
+
+- [Working paper](pdfs/AlamDostieDrechslerVilhuber_20200504.pdf)
+- [Online appendix](pdfs/AlamDostieDrechslerVilhuber-online-appendix.pdf) to accompany Alam, Dostie, Drechsler, Vilhuber (SiT, 2020 forthcoming)
+
+
 ## Data Availability Statement
 
 The key data sources used in the article are described and cited in the article. All source data is confidential, available on restricted-access servers.
