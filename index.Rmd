@@ -6,7 +6,7 @@ output:
   html_document: 
     includes:
       before_body: _includes/header.html
-    keep_md: yes
+    keep_md: no
     self_contained: no
     toc: yes
     toc_depth: 4

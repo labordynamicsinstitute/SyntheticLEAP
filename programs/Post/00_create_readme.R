@@ -29,5 +29,5 @@ render_report = function(document) {
     )
 }
 
-render_report("README")
+render_report("index")
 
