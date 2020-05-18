@@ -1,12 +1,15 @@
 ---
 title: "APPLYING DATA SYNTHESIS FOR LONGITUDINALBUSINESS DATA ACROSS THREE COUNTRIES"
 authors: "M. Jahangir Alam, Benoit Dostie, Jörg Drechsler, Lars Vilhuber"
-date: "2020-05-04"
+date: "2020-05-18"
 ---
 
 Also see [https://labordynamicsinstitute.github.io/SyntheticLEAP](https://labordynamicsinstitute.github.io/SyntheticLEAP).
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3785744.svg)](https://doi.org/10.5281/zenodo.3785744)
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3832173.svg)](https://doi.org/10.5281/zenodo.3832173)
+
+
 
 
 ## Abstract
