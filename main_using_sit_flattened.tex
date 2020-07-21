@@ -69,7 +69,7 @@
 
 
 
-\usepackage{helvet}
+\usepackage{Minio Pro}
 \renewcommand{\familydefault}{\sfdefault}
 
 \usepackage{mathptmx} 
@@ -77,7 +77,7 @@
 
 \def \mytitle{Applying Data Synthesis for Longitudinal Business Data across Three Countries }
 \def \sitissue{STATISTICS IN TRANSITION new series, August 2020}
-\def \sitshort{Alam, J. et al.: Data Synthesis for Business Data across Three Countries}
+\def \sitshort{M. J. Alam et al.: Applying Data Synthesis for Longitudinal Business Data...}
 
 \pagestyle{fancy}
 \fancyhead{}
@@ -92,7 +92,7 @@
 
 \titleformat{\section}
 {\normalfont\bfseries\large}{\thesection.}{2mm}{}
-
+\setcounter{page}{1}
 \titleformat{\subsection}
 {\normalfont\bfseries}{\thesubsection.}{2mm}{}
 
@@ -103,12 +103,13 @@
 \vspace*{-8mm}
 \begin{small}
 \noindent {\em \sitissue }\\
-{\em Vol. XX, No. X, pp. xxx--xxx}
+{\em Special Issue, pp. xxx--xxx, DOI 10.21307/stattrans-2020-xxx}\\
+{\small Submitted – 31.01.2020; paper accepted for published – 30.06.2020}
 \end{small}
 
 \begin{onehalfspace}
 	\begin{center} 
-		{\Large \bf \MakeUppercase{\mytitle} }
+		{\Large \bf {\mytitle} }
 	\end{center}
 \end{onehalfspace}
 
@@ -116,10 +117,10 @@
 
 \begin{center}
 	\begin{large} 
-	{\bf M. Jahangir Alam}\footnote{Department of Applied Economics, HEC Montr\'eal, and Department of Economics, Truman State University.  E-mail: jalam@truman.edu},
-	{\bf Benoit Dostie}\footnote{Department of Applied Economics, HEC Montr\'eal. E-mail: benoit.dostie@hec.ca}	 
-    {\bf J\"org Drechsler}\footnote{Institute for Employment Research. E-mail: joerg.drechsler@iab.de}	 
-    {\bf Lars Vilhuber}\footnote{Cornell University. E-mail: lars.vilhuber@cornell.edu}	 
+	{\bf M. Jahangir Alam}\footnote{Department of Applied Economics, HEC Montr\'eal, and Department of Economics, Truman State University. USA. E-mail: jalam@truman.edu.\\ ORCID: https://orcid.org/0000-0001-6478-114X.},
+	{\bf Benoit Dostie}\footnote{Department of Applied Economics, HEC Montr\'eal. USA. E-mail: benoit.dostie@hec.ca. ORCID: https://orcid.org/0000-0002-4133-2365.}	 
+    {\bf J\"org Drechsler}\footnote{Institute for Employment Research. USA. E-mail: joerg.drechsler@iab.de}	 
+    {\bf Lars Vilhuber}\footnote{Cornell University. E-mail: lars.vilhuber@cornell.edu. \\ORCID: https://orcid.org/0000-0001-5733-8932.}	 
     \end{large}
 \end{center}
 
@@ -131,10 +132,10 @@
 \begin{singlespace}
 
 Data on businesses collected by statistical agencies are challenging to protect. Many businesses have unique characteristics, and distributions of employment, sales, and profits are highly skewed. Attackers wishing to conduct identification attacks often have access to much more information than for any individual. As a consequence, most disclosure avoidance mechanisms  fail to strike an acceptable balance between usefulness and confidentiality protection. Detailed aggregate statistics by geography or detailed industry classes are rare, public-use microdata on businesses are virtually inexistant, and access to confidential microdata can be burdensome. 
-Synthetic microdata have been proposed as a secure mechanism to publish microdata, as part of a broader discussion of how  to provide broader access to such datasets to researchers.
+Synthetic microdata have been proposed as a secure mechanism to publish microdata, as part of a broader discussion of how  to provide broader access to such data sets to researchers.
 In this article, we document an experiment to create analytically valid synthetic data, using the exact same model and methods previously employed for the United States, for data from two different countries: Canada (\ac{LEAP}) and Germany (\ac{BHP}). We assess utility and protection, and provide an assessment of the feasibility of extending such an approach in a cost-effective way to other data.
 
-\smallskip \noindent \textbf{Keywords:} business data, confidentiality, LBD, LEAP, BHP, synthetic.
+\smallskip \noindent \textbf{Key words:} business data, confidentiality, LBD, LEAP, BHP, synthetic.
 
 \end{singlespace}
 \end{small}
@@ -143,15 +144,15 @@ In this article, we document an experiment to create analytically valid syntheti
 \smallskip
 \acresetall
 \section{Introduction}
-There is growing demand for firm-level data allowing detailed studies of firm dynamics. Recent examples include \textcite{NBERc0480} who use cross-country firm-level data to study average post-entry behavior of young firms. \textcite{10.1257/aer.20141280} use the Business Dynamics Statistics (BDS) to show the role of firm size in firm dynamics. However, such studies are made difficult due to the limited or restricted access to firm-level data.
+There is growing demand for firm-level data allowing detailed studies of firm dynamics. Recent examples include \textcite{NBERc0480}, who use cross-country firm-level data to study average post-entry behavior of young firms. \textcite{10.1257/aer.20141280} use the Business Dynamics Statistics (BDS) to show the role of firm size in firm dynamics. However, such studies are made difficult due to the limited or restricted access to firm-level data.
 
-Data on businesses collected by statistical agencies are challenging to protect. Many businesses have unique characteristics, and distributions of employment, sales, and profits are highly skewed. Attackers wishing to conduct identification attacks often have access to much more information than for any individual. It is easy to find examples of firms and establishments that are so dominant in their industry or location that they would be immediately identified if  data were publicly released that included their survey responses or administratively collected data. Finally, there are also greater financial incentives to identifying the particulars of some firms and their competitors.
+Data on businesses collected by statistical agencies are challenging to protect. Many businesses have unique characteristics, and distributions of employment, sales and profits are highly skewed. Attackers wishing to conduct identification attacks often have access to much more information than for any individual. It is easy to find examples of firms and establishments that are so dominant in their industry or location that they would be immediately identified if data that included their survey responses or administratively collected data were publicly released.  Finally, there are also greater financial incentives to identifying the particulars of some firms and their competitors.
 
 As a consequence, most disclosure avoidance mechanisms  fail to strike an acceptable balance between usefulness and confidentiality protection. Detailed aggregate statistics by geography or detailed industry classes  are rare, public-use microdata on business are virtually inexistant,\footnote{See \citet{NBERw22095} and \citet{startupcartography} for an example of scraped, public-use microdata.} and access to confidential microdata can be burdensome. It is not uncommon that access to establishment microdata, if granted at all, is provided through data enclaves (Research Data Centers), at headquarters of statistical agencies, or some other limited means, under strict security conditions. These restrictions on data access reduce the growth of knowledge by increasing the cost to researchers of accessing the data.
 
-Synthetic microdata have been proposed as a secure mechanism to publish microdata \citep{drechsler2008,RePEc:taf:japsta:v:39:y:2012:i:2:p:243-265,NAP11844,SJIAOS-2014c}, based on suggestions and methods first proposed by \citet{rubin93} and \citet{little93}. Such data are  part of a broader discussion of how  to provide improved access to such datasets to researchers  \citep{Bender2009,Vilhuber2013,AbowdLane2004,AbowdSchmutte_BPEA2015}.\footnote{For a recent overview of some, see \citet{VilhuberAbowdReiter:Synthetic:SJIAOS:2016}. See \citet{dre:2011} for a review of the theory and applications of the synthetic data methodology.
+Synthetic microdata have been proposed as a secure mechanism to publish microdata \citep{drechsler2008,RePEc:taf:japsta:v:39:y:2012:i:2:p:243-265,NAP11844,SJIAOS-2014c}, based on suggestions and methods first proposed by \citet{rubin93} and \citet{little93}. Such data are  part of a broader discussion of how  to provide improved access to such data sets to researchers  \citep{Bender2009,Vilhuber2013,AbowdLane2004,AbowdSchmutte_BPEA2015}.\footnote{For a recent overview of some, see \citet{VilhuberAbowdReiter:Synthetic:SJIAOS:2016}. See \citet{dre:2011} for a review of the theory and applications of the synthetic data methodology.
 	Other access methods include secure data enclaves (e.g., research data centers of the U.S. Federal Statistical System, of the  German Federal Employment Agency, others), and  remote submission systems. We will comment on the latter in the conclusion.}
-For business data, synthetic business microdata were released in the United States \citep{KinneyEtAl2011} and in Germany  \citep{RePEc:iab:iabfme:201101_de} in 2011. The former dataset, called \ac{SynLBD}, was  released to an easily web-accessible computing environment \citep{AbowdVilhuber2010}, and combined with a validation mechanism.  By making disclosable synthetic microdata available through a remotely accessible data server, combined with a validation server, the SynLBD approach alleviates some of the access restrictions associated with economic data. The approach is mutually beneficial to both agency and researchers. Researchers can access public use servers at little or no cost, and can later validate their model-based inferences on the full confidential microdata. Details about the modeling strategies used for the \SynLBD  can be found in  \citet{KinneyEtAl2011} 
+For business data, synthetic business microdata were released in the United States \citep{KinneyEtAl2011} and in Germany  \citep{RePEc:iab:iabfme:201101_de} in 2011. The former data set, called \ac{SynLBD}, was  released to an easily web-accessible computing environment \citep{AbowdVilhuber2010}, and combined with a validation mechanism.  By making disclosable synthetic microdata available through a remotely accessible data server, combined with a validation server, the SynLBD approach alleviates some of the access restrictions associated with economic data. The approach is mutually beneficial to both agency and researchers. Researchers can access public use servers at little or no cost, and can later validate their model-based inferences on the full confidential microdata. Details about the modeling strategies used for the SynLBD   can be found in  \citet{KinneyEtAl2011} 
 and \citet{RePEc:cen:tnotes:11-01}.
 
 
@@ -160,20 +161,20 @@ In this article, we document an experiment to create analytically valid syntheti
 
 In Canada, the Canadian Center for Data Development and Economic Research (CDER) was created in 2011 to allow Statistics Canada to make better use of its business data holdings, without compromising security. Secure access  to business microdata for approved analytical research projects is done through a physical facility located in Statistics Canada’s headquarters. 
 
-CDER implements many risk mitigation measures to alleviate the security risks specific to micro-level business data including limits on tabular outputs, centralized vetting, monitoring of program logs. Access to the data is done through a Statistics Canada designed interface in which actual observations cannot be viewed. But the most significant barrier to access remains the  cost of traveling to Ottawa.
+CDER implements many risk mitigation measures to alleviate the security risks specific to micro-level business data including limits on tabular outputs, centralized vetting, monitoring of program logs. Access to the data is done through a Statistics Canada designed interface, in which actual observations cannot be viewed. But the cost of traveling to Ottawa remains the most significant barrier to access.
 
 The Institute for Employment Research (IAB) in Germany also strictly regulates the access to its business data. All business data can  be accessed exclusively onsite at the research data center (RDC) and only after the research proposal has been approved by the Federal Ministry of Labour and Social Affairs. All output is carefully checked by staff at the RDC and only cleared output can be removed  from the RDC. 
 
 The experiment described in this paper aims not so much at finding the \textit{best} synthetic data method for each file, but rather to assess the effectiveness of using a `pre-packaged' method to cost-effectively generate synthetic data. In particular, while we could have used newer implementations of methods combined with a pre-defined or automated model \citep{JSSv074i11,Raab_Nowok_Dibben_2018}, we chose to use the exact SAS code used to create the original \ac{SynLBD}. A brief synopsis of the  method, and any adjustments we made to take into account structural data differences, are described in Section~\ref{sec:methodology}.
 
-We verify the analytical validity of the synthetic data files so created along a variety of measures. First, we show how well average firm characteristics (gross employment, total payroll) in the synthetic data  match those from the original data. We also consider how well the synthetic data  replicates various measures of firm dynamics (entry and exit rates) and job flows (job creation and destruction rate). Second, we assess whether measures of economic growth vary between both datasets using dynamic panel data models. Finally, to assess the analytical validity from a more general perspective, we  compute global validity measures based on the ideas of propensity score matching as proposed by \citet{Woo_Reiter_Oganian_Karr_2009,Snoke_RSSA2018}.
+We verify the analytical validity of the synthetic data files so created along a variety of measures. First, we show how well average firm characteristics (gross employment, total payroll) in the synthetic data  match those from the original data. We also consider how well the synthetic data  replicates various measures of firm dynamics (entry and exit rates) and job flows (job creation and destruction rate). Second, we assess whether measures of economic growth vary between both data sets using dynamic panel data models. Finally, to assess the analytical validity from a more general perspective, we  compute global validity measures based on the ideas of propensity score matching as proposed by \citet{Woo_Reiter_Oganian_Karr_2009,Snoke_RSSA2018}.
 
 To assess how protective the newly created synthetic database is, we estimate the probability that the synthetic first year equals the true first year given the synthetic fist year.
 
 
 
-The rest of the paper is organized as follows. Section 2 describes the different data sources and summarizes which steps were taken to harmonize the datasets prior to the actual synthesis. Section 3 provides some background on the synthesis methods, limitations in the applications, and a discussion of some of the measures, which are used in Section 4 to evaluate the analytical validity of the generated datasets. Preliminary results regarding the achieved level of protection are included in Section 5. The paper concludes with a discussion of the implications of the study for future data synthesis projects.
- 
+The rest of the paper is organized as follows. Section 2 describes the different data sources and summarizes which steps were taken to harmonize the data sets prior to the actual synthesis. Section 3 provides some background on the synthesis methods, limitations in the applications, and a discussion of some of the measures, which are used in Section 4 to evaluate the analytical validity of the generated data sets. Preliminary results regarding the achieved level of protection are included in Section 5. The paper concludes with a discussion of the implications of the study for future data synthesis projects.
+ \newpage
 \section{Data} 
 \label{sec:data}
 
@@ -181,7 +182,7 @@ In this section, we briefly describe the structure of the three data sources.
 
 \subsection{United States: \acf{LBD}}
 
-The \ac{LBD} \citep{LBD} is created from the U.S. Census Bureau's \ac{BR} by creating longitudinal links of establishments using name and address matching. The database has information on birth, death, location, industry,  firm  affiliation of employer establishments, and ownership by multi-establishment firms, as well as their employment over time, for nearly all sectors of the economy from 1976 through 2015 (as of this writing). It serves as a key linkage file as well as a research dataset in its own right for numerous research articles, as well as a tabulation input to the U.S. Census Bureau's \acl{BDS} \citep[\acs{BDS}]{BDS}. Other statistics created from the underlying Business Register include the \acl{CBP} \citep[\acs{CBP}]{CBP} and the \acl{SBUSB} \citep[\acs{SBUSB}]{SBUSB}. For a full description, readers should consult  \citet{RePEc:cen:wpaper:02-17,}. The key variables of interest for this experiment are birth and death dates, payroll, employment, and the industry coding of the establishment.  \citet{SJIAOS-2014d} explore a possible expansion of the synthesis methods described later to include location and firm affiliation. Note that information on payroll and employment does not come from individual-level wage records, as is the case for both the Canadian and German datasets described below, as well as for the \acl{QWI} \citep{AbowdEtAl2009} derived from the \acl{LEHD} \citep[LEHD]{RePEc:cen:wpaper:18-27} in the United States. Thus, methods that connect establishments based on labor flows \citep{BenedettoEtAl2007,RePEc:iab:iabfme:201006_en} are not employed. We also note that payroll is the cumulative sum of wages paid over the entire calendar year, whereas employment is measured as of March 12 of each year.
+The \ac{LBD} \citep{LBD} is created from the U.S. Census Bureau's \ac{BR} by creating longitudinal links of establishments using name and address matching. The database has information on birth, death, location, industry,  firm  affiliation of employer establishments, and ownership by multi-establishment firms, as well as their employment over time, for nearly all sectors of the economy from 1976 through 2015 (as of this writing). It serves as a key linkage file as well as a research data set in its own right for numerous research articles, as well as a tabulation input to the U.S. Census Bureau's \acl{BDS} \citep[\acs{BDS}]{BDS}. Other statistics created from the underlying Business Register include the \acl{CBP} \citep[\acs{CBP}]{CBP} and the \acl{SBUSB} \citep[\acs{SBUSB}]{SBUSB}. For a full description, readers should consult  \citet{RePEc:cen:wpaper:02-17,}. The key variables of interest for this experiment are birth and death dates, payroll, employment, and the industry coding of the establishment.  \citet{SJIAOS-2014d} explore a possible expansion of the synthesis methods described later to include location and firm affiliation. Note that information on payroll and employment does not come from individual-level wage records, as is the case for both the Canadian and German data sets described below, as well as for the \acl{QWI} \citep{AbowdEtAl2009} derived from the \acl{LEHD} \citep[LEHD]{RePEc:cen:wpaper:18-27} in the United States. Thus, methods that connect establishments based on labor flows \citep{BenedettoEtAl2007,RePEc:iab:iabfme:201006_en} are not employed. We also note that payroll is the cumulative sum of wages paid over the entire calendar year, whereas employment is measured as of March 12 of each year.
 
 
 
@@ -228,7 +229,7 @@ Industries are identified according to the WZ 2003 classification system \citep{
  
 \subsection{Harmonizing and Preprocessing}
 
-In all countries, the underlying data provide annual measures. However, \SynLBD{} assumes a longitudinal (wide) structure of the dataset, with invariant industry (and location). In all cases, the modal industry is chosen to represent the entity's industrial activity. 
+In all countries, the underlying data provide annual measures. However, \SynLBD{} assumes a longitudinal (wide) structure of the data set, with invariant industry (and location). In all cases, the modal industry is chosen to represent the entity's industrial activity. 
 Further adjustments made to the \ac{BHP} for this project include estimating full-year payroll, creating time-consistent geographic information, and applying employment flow methods \citep{RePEc:iab:iabfme:201006_en} to adjust for spurious births and deaths in establishment identifiers. \citet{SJIAOS-2014b} provide a detailed description of the steps taken to harmonize the input data. 
 
 
@@ -295,7 +296,7 @@ Finally, due to a feature of \SynLBD{} that we did not fully explore, synthesis 
 
 \subsection{Measuring outcomes}
 
-In order to assess the outcomes of the experiment, we inspect analytical validity by various measures and also evaluate the extent of confidentiality protection. To check analytical validity, we compare basic univariate time series between the synthetic and confidential data (employment, entity entry and exit rates, job creation and destruction rates), and the distribution of entities (firms and establishment, depending on country),  employment, and payroll across time by industry. For a more complex assessment, we compute a dynamic panel data model of economic (employment) growth on each dataset. 
+In order to assess the outcomes of the experiment, we inspect analytical validity by various measures and also evaluate the extent of confidentiality protection. To check analytical validity, we compare basic univariate time series between the synthetic and confidential data (employment, entity entry and exit rates, job creation and destruction rates), and the distribution of entities (firms and establishment, depending on country),  employment, and payroll across time by industry. For a more complex assessment, we compute a dynamic panel data model of economic (employment) growth on each data set. 
 We computed, but do not report here the confidence interval overlap measure (CIO) proposed by \citet{tas2006} in all these evaluations.\footnote{The full parameter estimates and the computed CIO are available in our replication materials \parencite{SIT-paper-repo}.}
 The CIO is a popular measure when evaluating the validity for specific analyses. It evaluates how much the confidence intervals of the original data and the synthetic data overlap. We did not find this measure to be useful in our context. Most of our analyses are based on millions of records, and observed confidence intervals were so small that confidence intervals (almost) never overlap even when the estimates between the original data and the synthetic data are quite close. 
 
@@ -312,10 +313,10 @@ To provide a more comprehensive measure of  quality of the synthetic data relati
 \item Calculate the predicted probabilities, $\hat{p}_{et}$.
     \item Compute  $pMSE=\frac{1}{N}\sum_{t=1}^T\sum_{e=1}^E(\hat{p}_{et} - c)^2$, where $c=n_2/N$.
 \end{enumerate}
-If $n_1 = n_2$, $pMSE$ = 0 means every $\hat{p}_i = 0.5$, and the two databases are distributionally indistinguishable, suggesting  high analytical validity. While the number of records in the synthetic data typically matches the number of records in the original data, i.e., $n_1 = n_2$, this does not necessarily hold in our application. Although the synthesis process ensures that the total number of entities is the same in both datasets, the years in which the entities are observed will generally differ between the original data and the synthetic data and thus the number of records in the long format will not necessarily match between the two datasets. For this reason we follow 
+If $n_1 = n_2$, $pMSE$ = 0 means every $\hat{p}_{et}= 0.5$, and the two databases are distributionally indistinguishable, suggesting  high analytical validity. While the number of records in the synthetic data typically matches the number of records in the original data, i.e., $n_1 = n_2$, this does not necessarily hold in our application. Although the synthesis process ensures that the total number of entities is the same in both data sets, the years in which the entities are observed will generally differ between the original data and the synthetic data and thus the number of records in the long format will not necessarily match between the two data sets. For this reason we follow 
 \citet{Woo_Reiter_Oganian_Karr_2009} and \citet{Snoke_RSSA2018} and use $c=n_2/N$ instead of fixing $c$ at 0.5. Using this more general definition, $c$ will always be the mean of the predicted propensity scores so that the $pMSE$ measures the average of the squared deviations from the mean, as intended. 
 
-Since the $pMSE$ depends on the number of predictors included in the propensity score model, \textcite{Snoke_RSSA2018} derived the expected value and standard deviation for the $pMSE$ under the null hypothesis ($pMSE_0$) that the synthesis model is correct, i.e, it matches the true data generating process \parencite[Equation 1]{Snoke_RSSA2018}:
+Since the $pMSE$ depends on the number of predictors included in the propensity score model, \textcite{Snoke_RSSA2018} derived the expected value and standard deviation for the $pMSE$ under the null hypothesis ($pMSE_0$) that the synthesis model is correct, i.e., it matches the true data generating process \parencite[Equation 1]{Snoke_RSSA2018}:
 $$
 E[pMSE_0] = (k-1)(1-c)^2 \frac{c}{N}
 $$
@@ -340,10 +341,13 @@ where $\widehat{pMSE}$ is the estimated pMSE based on the data at hand. Under th
 
 \newcommand{\CanTableNote}{$LEAP$ is the Longitudinal Employment Analysis Program and $CanSynLBD$ is the Canadian synthetic database based on LEAP. }
 
-In the following figures, the data for the Canadian data are shown in the left panels, and the German data in the right panels. In all cases, the Canadian data are reported for the entire private sector,  including the manufacturing sector but excluding  the public sector industries (NAICS 61, 62, and 91). German results are for two WZ2003 industries.
+In the following figures, the results for the Canadian data are shown in the left panels, and the German data in the right panels. In all cases, the Canadian data are reported for the entire private sector,  including the manufacturing sector but excluding  the public sector industries (NAICS 61, 62, and 91). German results are for two WZ2003 industries.
 
 \subsection{Entity Characteristics}
 
+
+ 
+Figure \ref{fig:entity_chracteristics} shows a comparison between the synthetic data and the original data for gross employment level (upper panels) and total payroll (lower panels) by year. While the general trends are preserved for both data sources, the results for the German synthetic data resemble the trends from the original data more closely. For the Canadian data the positive trends over time are generally overestimated. However, in both cases, levels are mostly overestimated. These patterns are not robust. When considering the   manufacturing sector in Canada (Figure \ref{fig:entity_chracteristics_manufac} in the Online Appendix), trends are better matched, but a significant \textit{negative} bias is present in levels.
 \begin{figure}[t]
   \begin{subfigure}[h]{0.48\linewidth}
     \includegraphics[trim=0 40 0 0,clip, width=\linewidth]{graphs/Gross_employment_level_by_year_private_bw.pdf}
@@ -362,9 +366,6 @@ In the following figures, the data for the Canadian data are shown in the left p
      \caption{GSynLBD}
    \end{subfigure}\caption{Gross employment level (upper panels) and total payroll (lower panels) by year.}\label{fig:entity_chracteristics}
 \end{figure}
- 
-Figure \ref{fig:entity_chracteristics} shows a comparison between the synthetic data and the original data for gross employment level (upper panels) and total payroll (lower panels) by year. While the general trends are preserved for both data sources, the results for the German synthetic data resemble the trends from the original data more closely. For the Canadian data the positive trends over time are generally overestimated. However, in both cases, levels are mostly overestimated. These patterns are not robust. When considering the Canadian  manufacturing sector in Canada (Figure \ref{fig:entity_chracteristics_manufac} in the Online Appendix), trends are better matched, but a significant \textit{negative} bias is present in levels.
-
 
 
 \subsection{Dynamics of Job Flows}
@@ -437,7 +438,7 @@ The second, smaller spike in the entry rate in the German data occurs in 1999. I
 
 
 
-The \SynLBD{} code  ensures that the total number of entities that ever exist within the considered time frame  match exactly between the original data and the synthetic data. But  each entity's entry and exit date are synthesized, and the total number of entities at any particular point in time may differ, and with it employment and payroll. To investigate how well the information is preserved at any given point in time, we compute the following statistic:
+The \SynLBD{} code  ensures that the total number of entities that ever exist within the considered time frame  matches exactly between the original data and the synthetic data. But  each entity's entry and exit date are synthesized, and the total number of entities at any particular point in time may differ, and with it employment and payroll. To investigate how well the information is preserved at any given point in time, we compute the following statistic:
 \begin{equation}
     \label{eq:share_employment}
 x_{its} = X_{its}/\sum_{i} \sum_{t} X_{its}, 
@@ -630,7 +631,7 @@ System GMM MA & m2 & 8.2 & -40.03 & 19.03 & -11.69 \\
 \end{table} 
  
 
-Whereas the bias in coefficients is quite consistent across countries and models, specification tests such as  the $m2$ test for autocorrelation and the Sargan test paint a slightly less consistent picture. Table~\ref{tab:m2sargan} shows the two tests for each of the models estimated by country, synthetic status, and model. The Sargan test rejects the null in both countries and for all models, consistently for confidential and synthetic data. But the $m2$ test is of opposite signs for half of the comparisons. 
+While the bias in coefficients is quite consistent across countries and models, specification tests such as  the $m2$ test for autocorrelation and the Sargan test paint a slightly less consistent picture. Table~\ref{tab:m2sargan} shows the two tests for each of the models estimated by country, synthetic status, and model. The Sargan test rejects the null in both countries and for all models, consistently for confidential and synthetic data. But the $m2$ test is of opposite signs for half of the comparisons. 
 
 
 
@@ -642,7 +643,7 @@ Whereas the bias in coefficients is quite consistent across countries and models
 \subsection{pMSE}
 
 
-To compute the $pMSE$, we estimate Equation (\ref{pMSE}) using logit models. The estimated $pMSE$ is 0.0121 for the Canadian data (0.0041 for the manufacturing sector) and 0.0013 for the German data (see Table~\ref{tab:pmse}). While these numbers may seem small, the $pMSE$ ratio and the standardized $pMSE$ are large, indicating that the null hypothesis that the synthetic data and the original data stem from the same data generating process should be rejected. The expected $pMSE$ is quite sensitive to sample size $N$. Even small differences between the original and synthetic data will lead to large values for this test statistic. In both countries, the confidential data files are quite large (about 2 million cases for Germany and the manufacturing sector in Canada and about 34.5 million cases for the full Canadian dataset). In practice, therefore, it is quite likely to reject the null of equivalence  given this test's very high power. 
+To compute the $pMSE$, we estimate Equation (\ref{pMSE}) using logit models. The estimated $pMSE$ is 0.0121 for the Canadian data (0.0041 for the manufacturing sector) and 0.0013 for the German data (see Table~\ref{tab:pmse}). While these numbers may seem small, the $pMSE$ ratio and the standardized $pMSE$ are large, indicating that the null hypothesis that the synthetic data and the original data stem from the same data generating process should be rejected. The expected $pMSE$ is quite sensitive to sample size $N$. Even small differences between the original and synthetic data will lead to large values for this test statistic. In both countries, the confidential data files are quite large (about 2 million cases for Germany and the manufacturing sector in Canada and about 34.5 million cases for the full Canadian data sets). In practice, therefore, it is quite likely to reject the null of equivalence  given this test's very high power. 
 
 
 
@@ -678,7 +679,7 @@ With the exception of the first year in the data, the average rate of concordanc
 \caption{Average and maximum likelihood that synthetic birthyear matches actual birthyear\label{fig:Conf.Both}}
 
 \begin{center}
-\begin{minipage}{0.8\linewidth}
+\begin{minipage}{0.7\linewidth}
 	\footnotesize \it
 Note: Plot shows fraction of entities by industry for which the synthetic birth year equals the true birth year, conditional on the synthetic birth year. Plot has been rescaled to be relative to the first year observed in the data.	
 \end{minipage}
@@ -687,19 +688,19 @@ Note: Plot shows fraction of entities by industry for which the synthetic birth 
 
 
 
- 
+ \newpage
 \section{Conclusion}
 \label{sec:conclusion}
 
-In this paper, we presented results from two projects that evaluated whether code developed to synthesize the U.S. LBD can easily be adapted to create synthetic versions of similar data from Canada and Germany. We considered both univariate time-series comparisons as well as model-based comparisons of coefficients and model fit. In general, utility evaluations show significant differences between each country's synthetic and confidential data. Frequently-used measures such as confidence interval overlap and $pMSE$ suggest that the synthetic data are an unreliable image of the confidential data. Less formal comparisons of specification test scores suggest that the synthetic data do not reliably lead to  the same modeling decisions.
+In this paper, we presented results from two projects that evaluated whether the code developed to synthesize the U.S. LBD can easily be adapted to create synthetic versions of similar data from Canada and Germany. We considered both univariate time-series comparisons as well as model-based comparisons of coefficients and model fit. In general, utility evaluations show significant differences between each country's synthetic and confidential data. Frequently-used measures such as confidence interval overlap and $pMSE$ suggest that the synthetic data are an unreliable image of the confidential data. Less formal comparisons of specification test scores suggest that the synthetic data do not reliably lead to  the same modeling decisions.
 
-Interestingly, the utility of the German synthetic data was higher than the utility of the Canadian data in almost all dimensions evaluated. At this point we can only speculate about potential reasons. The most important difference between the two data sources is that the German data comprises only a handful of industries while almost all industries have been included in the Canadian evaluation. Given that the industries included in the German data were rather large, and synthesis models are run independently for each industry, it might have been easier to preserve the industry level statistics for the German data. We cannot exclude the possibility that  the structure of the German data aligns more closely with the LBD and thus the synthesis models tuned on the LBD data provide better results on the (adjusted) BHP than on the LEAP. We note that both the LBD and the BHP are establishment-level datasets, whereas the LEAP is a employer-level dataset. 
+Interestingly, the utility of the German synthetic data was higher than the utility of the Canadian data in almost all dimensions evaluated. At this point we can only speculate about potential reasons. The most important difference between the two data sources is that the German data comprises only a handful of industries while almost all industries have been included in the Canadian evaluation. Given that the industries included in the German data were rather large, and synthesis models are run independently for each industry, it might have been easier to preserve the industry level statistics for the German data. We cannot exclude the possibility that  the structure of the German data aligns more closely with the LBD and thus the synthesis models tuned on the LBD data provide better results on the (adjusted) BHP than on the LEAP. We note that both the LBD and the BHP are establishment-level data sets, whereas the LEAP is an employer-level data set. 
 
 We emphasize that adjustments to the original synthesis code were explicitly limited to ensuring that the code runs on the new input data. The validity of the synthetic data could possibly be improved by tuning the synthesis models to the particularities of the data at hand, such as the non-standard dynamics introduced into the German data by reunification.  However, the aim of this project was to illustrate that the high investments necessary for developing the synthesis code for the LBD offered additional payoffs as the re-use of the code substantially reduced the amount of work required to generate decent synthetic data products for other business data. One of the major criticisms of the synthetic data approach has been  that investments necessary to develop useful synthesizers are substantial. This project illustrated that substantial gains can be achieved when exploiting knowledge from previous projects. With the advent of tailor-made software such as the \textit{synthpop} package in R \citep{JSSv074i11}, the investments for generating useful synthetic data might be further reduced in the future.
 
-However, even without  fine-tuning or customization of models, the current synthetic data have, in fact, proven useful. De facto, many deployments of synthetic data, including the Synthetic LBD in the US, have been used for model preparation by researchers in a public or lower-security environment, with subsequent remote submission of prepared code for validation against the confidential data. When viewed through the lens of such a validation system, the synthetic data prepared here would seem to have reasonable utility. While time series dynamics are not the same, they are broadly similar. Models converged in similar fashions, and while coefficients were strictly different, they were broadly similar and plausible. Specification tests did not lead to the same conclusions, but they also did not collapse or yield meaningless conclusions. Thus, we believe that the synthetic data, despite being different, have the potential to be a useful tool for analysts to prepare models without direct access to the confidential data. \textcite{VilhuberAbowd2016-SOLE,Vilhuber2019-SGP} come to a similar conclusion when evaluating usage of the synthetic datasets available through the Synthetic Data Server \citep{AbowdVilhuber2010}, including the Synthetic LBD. A more thorough evaluation would need to explicitly measure the investment in synthetic data generation, the cost of setting up a validation structure, and the number of studies enabled through such a setup. We note that such an evaluation is non-trivial: the counter-factual in many circumstances is that no access is allowed to sensitive business microdata, or that access occurs through a secure research data system that is also costly to maintain. This study has contributed to such a future evaluation by showing that plausible results can be achieved with relatively low up-front investments.
+However, even without  fine-tuning or customization of models, the current synthetic data have, in fact, proven useful. De facto, many deployments of synthetic data, including the Synthetic LBD in the US, have been used for model preparation by researchers in a public or lower-security environment, with subsequent remote submission of prepared code for validation against the confidential data. When viewed through the lens of such a validation system, the synthetic data prepared here would seem to have reasonable utility. While time series dynamics are not the same, they are broadly similar. Models converged in similar fashions, and while coefficients were strictly different, they were broadly similar and plausible. Specification tests did not lead to the same conclusions, but they also did not collapse or yield meaningless conclusions. Thus, we believe that the synthetic data, despite being different, have the potential to be a useful tool for analysts to prepare models without direct access to the confidential data. \textcite{VilhuberAbowd2016-SOLE,Vilhuber2019-SGP} come to a similar conclusion when evaluating usage of the synthetic data sets available through the Synthetic Data Server \citep{AbowdVilhuber2010}, including the Synthetic LBD. A more thorough evaluation would need to explicitly measure the investment in synthetic data generation, the cost of setting up a validation structure, and the number of studies enabled through such a setup. We note that such an evaluation is non-trivial: the counter-factual in many circumstances is that no access is allowed to sensitive business microdata, or that access occurs through a secure research data system that is also costly to maintain. This study has contributed to such a future evaluation by showing that plausible results can be achieved with relatively low up-front investments.
  
-The use of synthetic datasets to broaden access to confidential microdata is likely to increase in the near future, with increasing concerns by statistical agencies regarding the disclosure risks of releasing microdata. The resulting reduction in access to scientific microdata is overwhelmingly seen as problematic. Broadly ``plausible'' if not analytically valid synthetic datasets such as those described in this paper, combined with scalable remote submission systems that integrate modern disclosure avoidance mechanisms, may be a feasible mitigation strategy. 
+The use of synthetic data sets to broaden access to confidential microdata is likely to increase in the near future, with increasing concerns by statistical agencies regarding the disclosure risks of releasing microdata. The resulting reduction in access to scientific microdata is overwhelmingly seen as problematic. Broadly ``plausible'' if not analytically valid synthetic data sets such as those described in this paper, combined with scalable remote submission systems that integrate modern disclosure avoidance mechanisms, may be a feasible mitigation strategy. 
  
 
 
