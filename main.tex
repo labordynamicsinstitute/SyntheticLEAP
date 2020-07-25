@@ -1,5 +1,4 @@
-\documentclass[10pt,twoside]{article}
-\usepackage[paperheight=238mm,paperwidth=166mm,text={128mm,198mm},centering]{geometry}
+\documentclass[10pt]{article}
 \usepackage{amssymb,amsmath}
 \usepackage{scrextend}
 \usepackage{setspace}
@@ -74,52 +73,29 @@
 \newcommand{\sym}[1]{\rlap{#1}}
 
 
-
-
-
-
-%\usepackage{Minio Pro}
-\renewcommand{\familydefault}{\sfdefault}
-
 \usepackage{mathptmx} 
 \usepackage{fancyhdr}
 
 \def \mytitle{Applying Data Synthesis for Longitudinal Business Data across Three Countries }
-\def \sitissue{STATISTICS IN TRANSITION new series, August 2020}
-\def \sitshort{M. J. Alam et al.: Applying Data Synthesis for Longitudinal Business Data...}
 
-\pagestyle{fancy}
-\fancyhead{}
-\fancyhead[LO]{{\small \textit{\sitissue}}}
-\fancyhead[RO]{{\small \textit{\thepage}}}
-\fancyhead[RE]{{\small \textit{\sitshort}}}
-\fancyhead[LE]{{\small \textit{\thepage}}}
-\fancyfoot[CE]{}
-\fancyfoot[CO]{}
 
-\linespread{1.07} 
 
-\titleformat{\section}
-{\normalfont\bfseries\large}{\thesection.}{2mm}{}
-\setcounter{page}{1}
-\titleformat{\subsection}
-{\normalfont\bfseries}{\thesubsection.}{2mm}{}
+% \titleformat{\section}
+% {\normalfont\bfseries\large}{\thesection.}{2mm}{}
+% \setcounter{page}{1}
+% \titleformat{\subsection}
+% {\normalfont\bfseries}{\thesubsection.}{2mm}{}
 
 % this gets the references right
 \begin{filecontents}{empty.tex}
 % this is a dummy file
 \end{filecontents}
 % In a first run, comment out the following line. Then leave it uncommented for the rest. The references to the Appendix tables will now work
-\includeonly{empty}
+%\includeonly{empty}
 
 \begin{document}
 \thispagestyle{empty}
-\vspace*{-8mm}
-\begin{small}
-\noindent {\em \sitissue }\\
-{\em Special Issue, pp. xxx--xxx, DOI 10.21307/stattrans-2020-xxx}\\
-{\small Submitted – 31.01.2020; paper accepted for published – 30.06.2020}
-\end{small}
+
 
 \begin{onehalfspace}
 	\begin{center} 
@@ -302,7 +278,7 @@ To evaluate whether synthetic data algorithms developed in the U.S. can be adapt
 
 In all countries, the synthesis of certain industries failed to complete. In both Canada and the US, this number is less than 10. In Canada, they account for about 7 percent of the total number of observations (see Table 13
 %\ref{tab:Synthesized_observations} 
-in the Online Appendix).
+in the  Appendix).
 
 In the German case, our experiments were limited to only a handful of industries, due to a combination of time and software availability factors. The results should still be considered preliminary. In both countries, as outlined in Section~\ref{sec:data}, there are subtle but potentially important differences in the various variable definitions. Industry coding differs across all three countries, and the level of detail in each of the industry codings may affect the success and precision of the synthesis.\footnote{\textcite{StatisticsCanada1991}, when comparing the 1987 US \ac{SIC} to the 1980 Canadian \ac{SIC},  already pointed out that the degree of specialization, the organization of production, and the size of the respective markets differed. Thus, the density of establishments within each of the chosen categories is likely to affect the quality of the synthesis.} 
 
@@ -364,7 +340,7 @@ In the following figures, the results for the Canadian data are shown in the lef
 
  
 Figure \ref{fig:entity_chracteristics} shows a comparison between the synthetic data and the original data for gross employment level (upper panels) and total payroll (lower panels) by year. While the general trends are preserved for both data sources, the results for the German synthetic data resemble the trends from the original data more closely. For the Canadian data the positive trends over time are generally overestimated. However, in both cases, levels are mostly overestimated. These patterns are not robust. When considering the   manufacturing sector in Canada (Figure 8 %\ref{fig:entity_chracteristics_manufac} 
-in the Online Appendix), trends are better matched, but a significant \textit{negative} bias is present in levels.
+in the  Appendix), trends are better matched, but a significant \textit{negative} bias is present in levels.
 \begin{figure}[t]
   \begin{subfigure}[h]{0.48\linewidth}
     \includegraphics[trim=0 40 0 0,clip, width=\linewidth]{graphs/Gross_employment_level_by_year_private_bw.pdf}
@@ -408,7 +384,7 @@ in the Online Appendix), trends are better matched, but a significant \textit{ne
  
 Key statistics commonly computed from business registers such as the LEAP or the BHP include job flows over time. Following \citet{DavisHaltiwangerSchuh}, job creation is defined as the sum of all employment gains from expanding firms from year $t-1$ to year $t$ including entry firms. The job destruction rate is defined as the sum of all employment losses from contracting firms from year $t-1$ to year $t$ including exiting firms. Figure~\ref{fig:job_flows} depicts  job creation rates (upper panels) and destruction rates (lower panels). The general levels and trends are preserved for both data sources, but the time-series align more closely for the German data. Even the substantial increase in job creations in 1993, which can be attributed to the integration of the data from Eastern Germany after reunification, is remarkably well preserved in the synthetic data. Still, there seems to be a small but systematic overestimation of job creation and destruction rates in both synthetic data sources. The substantial deviation in the job destruction rate in the last year of CanSynLBD is an artefact  requiring further investigation.\footnote{The results for the Canadian manufacturing sector are included in Figure 9
 %\ref{fig:job_flows_manufac} 
-in the Online Appendix, and are comparable to the results for the entire private sector.}
+in the  Appendix, and are comparable to the results for the entire private sector.}
 
 
 
@@ -471,7 +447,7 @@ Figure~\ref{fig:FirmShare} plots the results from the original data against the 
 We find that the share of entities is well preserved for both data sources, but share of employment and share of payroll vary more in the Canadian data with an upward bias for the larger shares. 
 It should be noted that the German data shown here and elsewhere in this paper only contain data from two industries, whereas the Canadian data contains nearly all  available industry codes at the two digit level. Thus, results from Canada are expected to be more diverse. 
 When only considering the Canadian manufacturing sector (see Figure 10 %\ref{fig:FirmShare_manufac} 
-in the Online Appendix), less bias is present.
+in the  Appendix), less bias is present.
 
 
 
@@ -606,7 +582,7 @@ $$
 
 It is important that this model is close, but not identical to the model used to \textit{synthesize} the data. In \SynLBD, $Emp_{et}$ is synthesized as $f(Emp_{e,t-1},X_{et})$ (where $X_{et}$ does not contain $Pay_{et}$), and $Pay_{et} = f(Pay_{e,t-1},Emp_{et},X_{et})$ \citep[pg. 366]{KinneyEtAl2011}. Thus, the model we chose is purposefully not (completely) congenial with the synthesis model, but the synthesis process of the \SynLBD{} should preserve sufficient serial correlation in the data to be able to estimate these models.
 
-We estimate each model and test statistics separately on confidential and synthetic data for the private sector (and for Canada, for the manufacturing sector). Detailed estimation results are reported in the Online Appendix. Here we  focus on the two regression coefficients of major interest: $\theta$ and $\eta$, the coefficients for lagged employment and payroll, as well as the elasticity $\eta^\star$. Figure~\ref{fig:estimates3} plots the bias in the synthetic coefficients, i.e., $\theta_{synth}-\theta_{conf}$ and $\eta_{synth}-\eta_{conf}$, for all four models. While the detailed results in the Online Appendix confirm that all regression coefficients still have the same sign, all estimates plotted in Figure~\ref{fig:estimates3} show substantial bias in all models in all datasets (the OLS model for the German data being the only exception). Still, the computed elasticity $\eta^\star$ has very little bias in most models.
+We estimate each model and test statistics separately on confidential and synthetic data for the private sector (and for Canada, for the manufacturing sector). Detailed estimation results are reported in the  Appendix. Here we  focus on the two regression coefficients of major interest: $\theta$ and $\eta$, the coefficients for lagged employment and payroll, as well as the elasticity $\eta^\star$. Figure~\ref{fig:estimates3} plots the bias in the synthetic coefficients, i.e., $\theta_{synth}-\theta_{conf}$ and $\eta_{synth}-\eta_{conf}$, for all four models. While the detailed results in the  Appendix confirm that all regression coefficients still have the same sign, all estimates plotted in Figure~\ref{fig:estimates3} show substantial bias in all models in all datasets (the OLS model for the German data being the only exception). Still, the computed elasticity $\eta^\star$ has very little bias in most models.
 
 
 \begin{figure} [H]
@@ -614,7 +590,7 @@ We estimate each model and test statistics separately on confidential and synthe
 \includegraphics[width=\linewidth]{r-graphs/fig_estimates3.png}
 \caption{Bias in estimates of coefficients on  pay and lagged employment\label{fig:estimates3}} 
 \begin{minipage}{0.70\linewidth}
-{\footnotesize \textit{Note}: For details on the estimated coefficients, see the Online Appendix. \par}
+{\footnotesize \textit{Note}: For details on the estimated coefficients, see the  Appendix. \par}
 \end{minipage}
 \end{figure}
  
@@ -690,7 +666,7 @@ Germany & Universe & 0.0013 & 725.21 & 2896.85 \\
 \label{sec:confidentiality}
 
 To assess the risk of disclosure, we use a measure proposed by \textcite{KinneyEtAl2011}: For each industry, we estimate the fraction of entities for which the synthetic birth year equals the true birth year, conditional on the synthetic birth year, and interpret it as a probability. Tables 14 and 15 %Tables~\ref{tab:Can:ProbabilityPrivate} and \ref{tab:GLBD:Probability} 
-in the Online Appendix show the minimum, maximum, and mean of these probabilities, by year. Figure~\ref{fig:Conf.Both} shows the maximum and average values across time, for each country.\footnote{The Canadian manufacturing sector is not shown. In the German case, we only use two industries, but we show the average of the two, rather than the values for both industries, to maintain comparability with the Canadian plot.} The figure shows that these probabilities are quite low except for the first year. Entry rates in the first year are much larger than in any other year due to censoring. It is therefore quite likely that the (left-censored) entry year of the synthetic record matches that of the (left-censored) original record if the synthetic entry year is the first year observed in the data. A somewhat more muted version of this effect can be seen for Germany in the years 1991 and 1992, when the lower panel of Figure~\ref{fig:Conf.Both} shows another spike. These are the years in which data from Eastern Germany were added to the database successively, leading to new sets of (left-censored) entities. 
+in the  Appendix show the minimum, maximum, and mean of these probabilities, by year. Figure~\ref{fig:Conf.Both} shows the maximum and average values across time, for each country.\footnote{The Canadian manufacturing sector is not shown. In the German case, we only use two industries, but we show the average of the two, rather than the values for both industries, to maintain comparability with the Canadian plot.} The figure shows that these probabilities are quite low except for the first year. Entry rates in the first year are much larger than in any other year due to censoring. It is therefore quite likely that the (left-censored) entry year of the synthetic record matches that of the (left-censored) original record if the synthetic entry year is the first year observed in the data. A somewhat more muted version of this effect can be seen for Germany in the years 1991 and 1992, when the lower panel of Figure~\ref{fig:Conf.Both} shows another spike. These are the years in which data from Eastern Germany were added to the database successively, leading to new sets of (left-censored) entities. 
 
 With the exception of the first year in the data, the average rate of concordance between synthetic and observed birth year of an establishment in the Canadian data is below 5\%, and the maximum is never above 50\%. The German data reflect results from a smaller set of industries, and while the average concordance is higher (never above 10\%), the maximum is never above 6\% other than during the noted entry spikes. This suggests that the synthetic lifespan of any given entity is highly unlikely to be matched to its confidential real lifespan. This is generally considered to be a high degree of confidentiality. 
 
