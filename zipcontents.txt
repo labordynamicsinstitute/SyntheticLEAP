@@ -1,0 +1,37 @@
+Archive:  arxiv.zip
+ Length   Method    Size  Cmpr    Date    Time   CRC-32   Name
+--------  ------  ------- ---- ---------- ----- --------  ----
+       0  Stored        0   0% 07-24-2020 20:14 00000000  r-graphs/
+   24971  Defl:N    18038  28% 02-18-2020 19:42 0c04284c  r-graphs/fig_conf_both.png
+   57447  Defl:N    49406  14% 05-18-2020 11:24 d4e15d80  r-graphs/fig_estimates3.png
+       0  Stored        0   0% 07-24-2020 20:14 00000000  graphs/
+   54852  Defl:N    44911  18% 07-23-2019 11:17 96d99764  graphs/Share_of_employment_by_NAICS_two-digit_and_year_Manufacturing_bw.pdf
+   54138  Defl:N    44606  18% 07-23-2019 11:17 9ff2c4e4  graphs/Job_creation_rate_by_year_private_bw.pdf
+   57743  Defl:N    47666  18% 02-01-2020 15:04 a372eb8d  graphs/Share_of_payroll_by_NAICS_and_year_bw_GsynLBD.pdf
+   81009  Defl:N    69393  14% 07-23-2019 11:17 4efbae1d  graphs/Share_of_firms_by_NAICS_two-digit_and_year_private_bw.pdf
+   60938  Defl:N    51082  16% 02-18-2020 19:42 a2d2cfbe  graphs/Job_destruction_by_year_bw_GsynLBD.pdf
+   59928  Defl:N    50078  16% 02-01-2020 15:04 b45f6697  graphs/Job_creation_rate_by_year_bw_GsynLBD.pdf
+   55833  Defl:N    46038  18% 02-18-2020 19:42 fefbe66d  graphs/Entry_rate_bw_private.pdf
+   60926  Defl:N    51163  16% 02-01-2020 15:04 c5e76ff6  graphs/Gross_employment_level_by_year_bw_GsynLBD.pdf
+   58464  Defl:N    48596  17% 02-18-2020 19:42 318f26da  graphs/Exit_rate_bw_GsynLBD.pdf
+   57683  Defl:N    47862  17% 02-18-2020 19:42 b066ed84  graphs/Entry_rate_bw_GsynLBD.pdf
+   56450  Defl:N    46648  17% 02-18-2020 19:42 e21953d0  graphs/Exit_rate_bw_private.pdf
+   54735  Defl:N    45195  17% 07-23-2019 11:17 842884c6  graphs/Gross_employment_level_by_year_private_bw.pdf
+   53951  Defl:N    44468  18% 07-23-2019 11:17 d3e4d4c3  graphs/Job_creation_rate_by_year_Manufacturing_bw.pdf
+   60202  Defl:N    50393  16% 02-01-2020 15:04 7aa1268c  graphs/Total_payroll_by_year_bw_GsynLBD.pdf
+   54835  Defl:N    44934  18% 07-23-2019 11:17 302e04a6  graphs/Share_of_firms_by_NAICS_two-digit_and_year_Manufacturing_bw.pdf
+   59172  Defl:N    49418  17% 02-18-2020 19:42 e9613916  graphs/Job_destruction_rate_by_year_Manufacturing_bw.pdf
+   54583  Defl:N    45092  17% 07-23-2019 11:17 ac9c99f3  graphs/Total_payroll_by_year_manufacturing_bw.pdf
+   57605  Defl:N    47449  18% 02-01-2020 15:04 4293d9b6  graphs/Share_of_employment_by_NAICS_and_year_bw_GsynLBD.pdf
+   55016  Defl:N    45505  17% 07-23-2019 11:17 82214413  graphs/Gross_employment_level_by_year_manufacturing_bw.pdf
+   80624  Defl:N    68966  15% 07-23-2019 11:17 7b915ee0  graphs/Share_of_employment_by_NAICS_two-digit_and_year_private_bw.pdf
+   57628  Defl:N    47461  18% 02-01-2020 15:04 aa2c6f82  graphs/Share_of_firms_by_NAICS_and_year_bw_GsynLBD.pdf
+   54481  Defl:N    44962  18% 07-23-2019 11:17 93215bb2  graphs/Total_payroll_by_year_private_bw.pdf
+   59293  Defl:N    49526  17% 02-18-2020 19:42 6ece1ce8  graphs/Job_destruction_rate_by_year_private_bw.pdf
+   54914  Defl:N    45044  18% 07-23-2019 11:17 9db78bc7  graphs/Share_of_payroll_by_NAICS_two-digit_and_year_Manufacturing_bw.pdf
+   80880  Defl:N    69458  14% 07-23-2019 11:17 c20d14a0  graphs/Share_of_payroll_by_NAICS_two-digit_and_year_private_bw.pdf
+   64115  Defl:N    20935  67% 07-24-2020 20:31 064632dd  main.tex
+  112003  Defl:N    22981  80% 07-24-2020 21:07 1a1228a1  main.bbl
+   23179  Defl:N     4533  80% 07-24-2020 20:30 f21a9316  online-appendix-final.tex
+--------          -------  ---                            -------
+ 1777598          1361807  23%                            32 files
