@@ -6,9 +6,11 @@ date: "2020-05-18"
 
 Also see [https://labordynamicsinstitute.github.io/SyntheticLEAP](https://labordynamicsinstitute.github.io/SyntheticLEAP).
 
-
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3832173.svg)](https://doi.org/10.5281/zenodo.3832173)
-
+|   |   |
+|---|---|
+| Article | [![DOI](https://zenodo.org/badge/DOI/10.21307/stattrans-2020-039.svg)](https://doi.org/10.21307/stattrans-2020-039) |
+| arXiv | [![arXiv](https://img.shields.io/badge/arXiv-2008.02246-b31b1b.svg)](https://arxiv.org/abs/2008.02246)|
+| Data and code | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3832173.svg)](https://doi.org/10.5281/zenodo.3832173) |
 
 
 
@@ -17,11 +19,35 @@ Also see [https://labordynamicsinstitute.github.io/SyntheticLEAP](https://labord
 Data on businesses collected by statistical agencies are challenging to protect. Many businesses have unique characteristics, and distributions of employment, sales, and profits are highly skewed. Attackers wishing to conduct identification attacks often have access to much more information than for any individual. As a consequence, most disclosure avoidance mechanisms  fail to strike an acceptable balance between usefulness and confidentiality protection. Detailed aggregate statistics by geography or detailed industry classes  are rare, public-use microdata on businesses are virtually inexistant, and access to confidential microdata can be burdensome. 
 Synthetic microdata have been proposed as a secure mechanism to publish microdata, as part of a broader discussion of how  to provide broader access to such datasets to researchers.
 
-In this article, we document an experiment to create analytically valid synthetic data, using the exact same model and methods previously employed for the United States, for data from two different countries: Canada (\ac{LEAP}) and Germany (\ac{BHP}). We assess utility and protection, and provide an assessment of the feasibility of extending such an approach in a cost-effective way to other data.
+In this article, we document an experiment to create analytically valid synthetic data, using the exact same model and methods previously employed for the United States, for data from two different countries: Canada (LEAP) and Germany (BHP). We assess utility and protection, and provide an assessment of the feasibility of extending such an approach in a cost-effective way to other data.
 
+## Versions
+
+- [Published version](https://doi.org/10.21307/stattrans-2020-039)
 - [Working paper](pdfs/AlamDostieDrechslerVilhuber_20200504.pdf)
-- [Online appendix](pdfs/AlamDostieDrechslerVilhuber-online-appendix.pdf) to accompany Alam, Dostie, Drechsler, Vilhuber (SiT, 2020 forthcoming)
+- [arXiv version](https://arxiv.org/abs/2008.02246)
+- [Online appendix](pdfs/AlamDostieDrechslerVilhuber-online-appendix.pdf) to accompany Alam, Dostie, Drechsler, Vilhuber (SiT, 2020 )
 
+## Citation
+
+---
+ J. M. Alam, B. Dostie, J. Drechsler, and L. Vilhuber (2020) “Applying Data Synthesis for Longitudinal Business Data across Three Countries,” *Statistics in Transition New Series*, vol. 21, iss. 4, p. 212–236. [https://doi.org/10.21307/stattrans-2020-039](https://doi.org/10.21307/stattrans-2020-039)
+
+---
+
+```
+@article{alamdostiedrechslervilhuber2020,
+  title = {Applying Data Synthesis for Longitudinal Business Data across Three Countries},
+  author = {Alam, M. Jahangir and Dostie, Benoit and Drechsler, J{\"o}rg and Vilhuber, Lars},
+  year = {2020},
+  volume = {21},
+  pages = {212--236},
+  doi = {10.21307/stattrans-2020-039},
+  journal = {Statistics in Transition New Series},
+  language = {en},
+  number = {4},
+  }
+```
 
 ## Data Availability Statement
 
